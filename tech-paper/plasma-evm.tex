@@ -1,0 +1,703 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[letterpaper, 11pt]{article}
+
+
+% layout/spacing related packages
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}\onehalfspace
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{CJKutf8}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+
+
+% Math related packageshttps://www.overleaf.com/8551111161wcjcgcnvhzvx
+\usepackage{amsmath} \allowdisplaybreaks
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\theoremstyle{definition}    % if you want normal upright font styles for theorems.
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{assumption}{Assumption}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+
+
+% bibliography and reference related packcages
+\usepackage{bibentry}
+
+
+\usepackage{booktabs} % for toprule, midrule, bottomrule
+\usepackage{graphicx}
+\usepackage{appendix}
+\usepackage[counterclockwise]{rotating} % for sidewaystable
+\usepackage{subcaption} % for subfigure
+\usepackage[normalem]{ulem} % for uline
+\usepackage{showexpl}
+\usepackage{threeparttable} % for tables with footnotes
+
+\usepackage[hyphens]{url}
+\usepackage[bookmarks=false,hidelinks]{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,calc,trees,positioning,arrows,chains,shapes.geometric,%
+decorations.pathreplacing,decorations.pathmorphing,shapes,%
+matrix,shapes.symbols,plotmarks,decorations.markings,shadows}
+
+\usepackage{pgf}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+
+\usepackage{authblk}
+\renewcommand\Authfont{\sf\small}
+\renewcommand\Affilfont{\rm\small}
+
+
+
+
+
+%%%%%%%%%%%%%% MACRO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\email}[1]{{\href{mailto:#1}{\nolinkurl{#1}}}}
+
+\usepackage{bm}
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+\newcommand{\mat}[1]{\vec{#1}}
+\newcommand{\set}[1]{\mathcal{#1}}
+
+% https://tex.stackexchange.com/questions/265689/ignore-greek-letters-using-mathcal
+\DeclareMathSymbol{\Gamma}{\mathord}{operators}{"00}
+\DeclareMathSymbol{\Delta}{\mathord}{operators}{"01}
+\DeclareMathSymbol{\Theta}{\mathord}{operators}{"02}
+\DeclareMathSymbol{\Lambda}{\mathord}{operators}{"03}
+\DeclareMathSymbol{\Xi}{\mathord}{operators}{"04}
+\DeclareMathSymbol{\Pi}{\mathord}{operators}{"05}
+\DeclareMathSymbol{\Sigma}{\mathord}{operators}{"06}
+\DeclareMathSymbol{\Upsilon}{\mathord}{operators}{"07}
+\DeclareMathSymbol{\Phi}{\mathord}{operators}{"08}
+\DeclareMathSymbol{\Psi}{\mathord}{operators}{"09}
+\DeclareMathSymbol{\Omega}{\mathord}{operators}{"0A}
+
+\newcommand{\LB}{\mathsf{LB}}
+\newcommand{\UB}{\mathsf{UB}}
+
+\usepackage{xcolor}
+\newcommand{\note}[1]{{\Large\bf#1}}
+\newcommand{\bluenote}[1]{{\Large\color{blue}#1}}
+\newcommand{\rednote}[1]{{\Large\color{red}#1}}
+
+\usepackage{etoolbox}
+% To use, for example, \Ac for \mathcal{A}.  Requires "etoolbox" package
+\makeatletter
+\def\do#1{\@namedef{#1c}{\ensuremath{\mathcal{#1}}}}
+\docsvlist{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+\makeatother
+
+\def\Eb{\mathbb{E}}
+\def\Rb{\mathbb{R}}
+%\def\response{[$\Longrightarrow$]}
+
+\newenvironment{response}
+{ [$\Longrightarrow$]\sf }
+{ \hfill \rule{1ex}{1ex} }
+
+\newcommand{\dx}{\mathop{}\!\mathrm{d}x}
+\newcommand{\dy}{\mathop{}\!\mathrm{d}y}
+\newcommand{\dz}{\mathop{}\!\mathrm{d}z}
+\newcommand{\dt}{\mathop{}\!\mathrm{d}t}
+
+\renewcommand{\bar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+
+\title{Plasma EVM}
+\author[1]{Carl Park}
+\author[1]{Aiden Park}
+\author[1]{Kevin Jeong}
+\affil[1]{Onther Inc.}
+
+\date{May, 2019}
+
+%\usepackage{showlabels}
+%\usepackage[final]{showlabels}
+
+
+
+
+
+
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\begin{CJK}{UTF8}{mj}
+EVM (Ethereum Virtual Machine) provides such a powerful turing-complete computation so that ethereum can run a general program, also known as smart contract. Plasma EVM is a fully generalized Plasma that can execute EVM in Plasma chain, and it is based on current Ethereum clients (go-ethereum, py-evm, parity). We propose state-enforceable Plasma construction to guarantee that only valid state can be finalized in root chain with TrueBit-like verification game, providing a way to enter and exit account storage between two chains. This can be done because both chains have identical architecture. Plasma EVM can improve decentralization, performance, stability and usability of Dapps (Decentralized Applications), by migrating from the current Ethereum chain into the Plasma chain. \\
+
+\end{CJK}
+\end{abstract}
+
+\section{Introduction} \label{sec:childchain}
+\begin{CJK}{UTF8}{mj}
+Plasma EVM consists largely of \emph{RootChain contract}, Operator, User, and \emph{Requestable contract}. The operator operates a child chain, mines blocks and submits them to \emph{RootChain contract}, which manages the Plasma EVM, and users receive block data from the operator and can run individual nodes. \emph{Requestable contract} is a contract to apply \emph{Request} which enforces state transition of the child chain. Users generate \emph{Request} to move the state of \emph{Requestable contract} between the root chain and the child chain, and the operator applies \emph{Request} to state of the child chain by mining blocks. Applying \emph{Request} is enforced by \emph{RootChain contract} and it can be \emph{Challenged} if it is incorrectly applied. Plasma EVM also resolves data unavailability through Continuous Rebase.
+
+
+\end{CJK}
+
+
+\section{Related Works}
+\begin{CJK}{UTF8}{mj}
+\paragraph{Plasma MVP}
+Plasma MVP is the first Plasma implementation since ~\ref{plasma-whitepaper}. It uses transactions with only two outputs and UTXO (Unspent transaction output) to represent the state of the child chain as in the name 'Minimal Viable Plasma’. To deal with invalid block and block withholding attack, users make confirmation signature to finalize transaction only if their transaction is correctly included in the block. Because the finality of each UTXO is guaranteed through confirmation signature, users can safely exit their UTXOs from the child chain to the root chain through Exit Game.
+
+
+\paragraph{Plasma Cash}
+Plasma Cash represents the state (UTXO) of the child chain using the Sparse Merkle Tree (SMT) to replace the confirmation signature, which was the disadvantage of Plasma MVP. Using inclusion-exclusion proof of SMT, Exit Game can prevent an attacker from attempting to exit 1) with unowned UTXO, 2) double-spent UTXO, or 3) when UTXO is based on a double spending UTXO.
+
+\paragraph{More Viable Plasma}
+In Plasma MVP, the criteria for the exit priority were determined by UTXO’s age of output. More Viable Plasma proved that they can build the existing valid Exit Game schema excluding the confirmation step by changing the exit priority rule from the age of output of UTXO to the age of the youngest input.
+
+\paragraph{Plasma Leap}
+Plasma Leap is a partially generalized Plasma implemented using Spending Conditions, which breaks down smart contracts into smaller programs, and Non-fungible storage token (NST), which stores the state. It uses the Truebit-like verification game, as Plasma EVM does, to verify correct execution of Spending Conditions. In addition, it is easy to resolve data unavailability because it is still possible to use Exit Game of More Viable Plasma. However, unlike Plasma EVM, it is not possible to provide the same level of functionality as Ethereum because it reduces the state representation, from account-based to UTXO-based, and executable EVM opcodes.
+\end{CJK}
+
+\section{Plasma EVM} \label{sec:childchain}
+\begin{CJK}{UTF8}{mj}
+Plasma EVM client is based on existing Ethereum clients, and most of the mechanisms are the same as them. The data structure of child chain such as block, transaction, and receipt is identical to Ethereum. However, there are some changes in order to apply generalized Plasma protocols, unlike the existing Ethereum.
+\end{CJK}
+
+\paragraph{Rootchain Network Assumption} \begin{CJK}{UTF8}{mj}
+In Ethereum, PoW(Proof of Work) can cause problems such as chain reorganization or network congestion. However, this article assumes that the Ethereum network is not in this situation.
+\end{CJK}
+
+\subsection{3 Types of Block and Epoch}
+\begin{CJK}{UTF8}{mj}
+Plasma EVM has different types of blocks, including \emph{Non-Request Block}, \emph{Request Block} and \emph{Escape Block}. \emph{Non-Request Block (NRB)} is a common block which includes user's normal transactions. \emph{NRB} is the same as the block in Ethereum, Bitcoin, and other blockchains.
+
+\emph{Request Block (RB)} is the block for applying \emph{Requests} to the child chain. Users create \emph{Requests} and the operator generates \emph{RB} and applies these \emph{Requests} to the child chain. Because the \emph{RootChain contract} specifies \emph{transactionsRoot} for that \emph{RB}, it can enforce which transactions should be included in \emph{RB}.
+
+\emph{Escape Block (EB)} is a kind of \emph{RB} for users to protect themselves from block withholding attacks by the operator. For more information of \emph{Escape} and \emph{Rebase}, see~\ref{subsec:continuous-rebase} Continuous Rebase.
+
+\bigskip
+
+\emph{Epoch} is a period of several blocks. Depending on the type of block, \emph{Epoch} is divided into \emph{Non-Request Epoch (NRE)}, \emph{Request Epoch (RE)}, and \emph{Escape Epoch (EE)}. The length of \emph{Epoch} is the number of blocks included in each \emph{Epoch}. The length of \emph{NRE} is a predefined constant, so it cannot be changed. However, for \emph{RE} and \emph{EE}, the length is variable so that it can be increased or decreased according to how many users create \emph{Request} or \emph{Escape request}. However, the Genesis block is included in the 0th \emph{NRE} and the length of \emph{NRE\#0} is always 1.
+
+\emph{RootChain contract} enforces state transition of the child chain by specifying which type of \emph{Epoch} should be placed. It causes ordinary transactions of the child chain to be included through \emph{NRE}. If \emph{Request} is generated, it places \emph{RE} after \emph{NRE}, and if \emph{Escape request} is generated, it enforces that existing \emph{NRE} and \emph{RE} are \emph{Rebased} after \emph{EE}.
+\end{CJK}
+
+\subsection{Block Mining} \label{subsec:blockmining}
+\begin{CJK}{UTF8}{mj}
+\emph{RootChain contract} can apply transactions in the child chain and requests generated in root chain by placing \emph{Epoch} in the following order: \\
+1. \emph{NRE\#1} is placed after \emph{NRE\#0}. \\
+2. After \emph{NRE\#N}, \emph{RE\#(N+1)} is always placed. Similarly, after \emph{RE\#N}, \emph{NRE\#(N+1)} is placed. \\
+3. \emph{Request} generated when current \emph{Epoch} is \emph{NRE\#N} or \emph{RE\#(N+1)}, is applied in \emph{RE\#(N+3)}. If the \emph{Request} is not generated, the length of the \emph{RE} becomes 0.
+
+\bigskip
+The state of \emph{RootChain contract} changes to \emph{Accept NRB} and \emph{Accept RB} in order to receive two types of block like above. In \emph{Accept NRB}, only \emph{Non-Request Block} can be submitted and only \emph{Request block} can be submitted in \emph{Accept RB}. The operator must submit \emph{Non-Request Block} or \emph{Request block} according to the state of \emph{RootChain contract}.
+
+Figure~\ref{fig:simple-state-transition-diagram} shows how the state of \emph{RootChain contract} changes. However, the content covered here does not include Continuous Rebase of the Plasma EVM. The overall operation process is covered later in~\ref{subsec:continuous-rebase} Continuous Rebase.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\columnwidth]{figure/"Simple Rootchain".png}
+\caption{Simplified state transition of RootChain contract}
+\label{fig:simple-state-transition-diagram}
+\end{figure}
+
+\end{CJK}
+
+\subsection{Block Submission}
+\begin{CJK}{UTF8}{mj}
+The operator should submit three Merkle roots, \emph{stateRoot}, \emph{transactionsRoot} and \emph{receiptsRoot} for each block. However, there are situations in which it is possible to submit only \emph{transactionsRoot}, further details are covered in~\ref{subsec:continuous-rebase} Continuous Rebase. If computation of state transition is not executed properly and an incorrect Merkle roots have been submitted, the invalid block cannot be finalized by \emph{Computation Challenge}. It is similar to TrueBit's verification game, and resolved using $preStateRoot$ and $postStateRoot$ to verify the \emph{State transition function for each block}.
+\end{CJK}
+
+
+\subsection{Apply Request}
+\begin{CJK}{UTF8}{mj}
+\emph{Request} is created by users sending transactions to \emph{RootChain contract}. \emph{Enter request} and \emph{Exit request} are included in \emph{RB}. \emph{Escape request} and \emph{Undo request} are included in \emph{EB}. \emph{Enter request} changes state in the root chain and then it is included in block in form of \emph{Request transaction}. For \emph{Exit}, \emph{Escape}, and \emph{Undo request}, they are included in the block in the form of \emph{Request transaction}, and then applied in the root chain. If the \emph{Request transaction} has been reverted, \emph{Exit Challenge} can prevent it from being applied in the root chain.
+
+Contract, which can apply \emph{Request}, is \emph{Requestable contract}. It is possible to apply \emph{Request} in both chains by calling a specific function of \emph{Requestable contract}. By implementing \emph{Requestable} interface for each contract, the general-purpose computing platform oriented by Ethereum can be 'Plasmafied'.
+
+The operator must map the addresses of \emph{Requestable contracts} in each chain so that \emph{RootChain contract} can create \emph{Request}. \emph{Requestable contracts} in each chain must have the same \emph{codeHash}, which means that both contracts have identical storage layout.
+
+
+\subsubsection{Request and Request Transaction}
+\begin{CJK}{UTF8}{mj}
+\emph{Request} consists of following 4 parameters.
+\begin{itemize}
+\item $requestor$: account who generated \emph{Request}
+\item $to$: an address of \emph{Requestable contract} deployed on the root chain
+\item $trieKey$: the identifier of \emph{Request}
+\item $trieValue$: the value of \emph{Request}
+\end{itemize}
+It is possible to create each \emph{Request} using $startEnter$, $startExit$, $startEscape$, and $startUndo$ functions of \emph{RootChain contract}. All four functions have the same parameters of $to$, $trieKey$, and $trieValue$.
+
+\emph{Request transaction} is included in \emph{Request block} and is generated with \emph{Null Address} as \emph{Transactor} so that anyone can mine that block. \emph{Null Address(NA)} has no private key and the address is $0x00$.
+\emph{Request transaction} consists of following 5 parameters.
+\begin{itemize}
+\item $sender$: \emph{NA}
+\item $to$: an address of \emph{Requestable contract} deployed on the child chain
+\item $value$: 0
+\item function signature: a specific function signature of \emph{Requestable contract}
+\item parameters: parameters for calling the function
+\end{itemize}
+
+\emph{RootChain contract} can enforce \emph{RB} to include \emph{Request} by computing the hash of \emph{Request transactions} and $transactionsRoot$ of \emph{RB}. Users can also get \emph{Request} data from \emph{RootChain contract}, so the operator cannot withhold \emph{RB} data. This is the same for \emph{EB}.
+\end{CJK}
+
+\subsubsection{Requestable Contract}
+\begin{CJK}{UTF8}{mj}
+The \emph{Requestable} interface has the following functions, and the \emph{Requestable contract} implements the \emph{Requestable} interface below.
+
+% TODO: add language=Solidity if it supports Solidity
+\lstinputlisting[breaklines=true, basicstyle=\small]{Requestable.sol}
+
+An variable of \emph{Requestable contract} that can be changed by \emph{Request} is \emph{Requestable} variable. Not all variables in \emph{Requestable contract} need to be \emph{Requestable}. This is because some variables do not require any feature related to \emph{Request}. For a particular variable, it needs to check the permission of \emph{Request} according to who the $requestor$ is. For example, if \emph{Request} is available for someone else's token balance, this would not be desirable. Therefore, we included specific logic in \emph{Requestable contract} to solve these issues in advance. This is possible because $trieKey$ can be used to identify the permission of \emph{Request} for specific variables.
+
+Depending on the type of \emph{Request}, \emph{Request transaction} has a different function signature. See also~\ref{appendix:requestable-contract-examples} Requestable Contract Example for an example of \emph{Requestable contract} implementation.
+\end{CJK}
+
+\subsubsection{Apply Enter Request}
+\begin{CJK}{UTF8}{mj}
+\emph{RootChain contract} applies \emph{Enter request} to the \emph{Requestable contract} deployed on each chain as follows:
+
+1. The user sends a transaction calling $RootChain.startEnter()$ to \emph{RootChain contract}.
+
+2. \emph{RootChain contract} applies \emph{Enter request} to \emph{Requestable contract} in the root chain. \emph{Enter request} will not be generated if the transaction is reverted in this process.
+
+3. If step 2 has been processed successfully, the \emph{RootChain contract} records \emph{Enter request}.
+
+4. In \emph{Request epoch}, the operator mines \emph{Request Block} including \emph{Request transaction}.
+
+5. \emph{Request transaction} changes the state of the child chain according to \emph{Enter request}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\columnwidth]{figure/"Enter".png}
+\caption{Enter Diagram}
+\label{fig:enter-diagram}
+\end{figure}
+
+\end{CJK}
+
+\subsubsection{Apply Exit Request}
+\begin{CJK}{UTF8}{mj}
+\emph{RootChain contract} applies \emph{Exit request} to the \emph{Requestable contract} deployed on each chain as follows:
+
+1. User sends transaction calling $RootChain.startExit()$ to \emph{RootChain contract}.
+
+2. Unlike \emph{Enter request}, \emph{Exit request} is immediately recorded and included in \emph{RB} in the form of \emph{Request transaction}.
+
+3. After the \emph{Challenge} period of \emph{RB} has ended, \emph{Challenge} period of \emph{Exit request} is started. If the \emph{Request transaction} in step 2 is reverted, anyone can execute \emph{Exit Challenge} to it by calling the $RootChain.challengeExit()$ function.
+
+4. After \emph{Challenge} in step 3, \emph{Exit request} is \emph{Finalized} by calling $RootChain.finalizeRequest()$. It will apply \emph{Exit request} to \emph{Requestable contract} deployed on the root chain.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\columnwidth]{figure/"Exit".png}
+\caption{Exit Diagram}
+\label{fig:exit-diagram}
+\end{figure}
+
+\end{CJK}
+
+\subsubsection{Apply Escape and Undo request}
+\begin{CJK}{UTF8}{mj}
+\emph{Escape request} and \emph{Undo request} are processed the same as \emph{Exit request}, but \emph{Request transaction} is included in \emph{Escape Block} instead of \emph{Request Block}.
+\end{CJK}
+
+\end{CJK}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\columnwidth]{figure/"Request and Challenge".png}
+\caption{Request and challenge diagram}
+\label{fig:figure2}
+\end{figure}
+
+\subsection{Continuous Rebase} \label{subsec:continuous-rebase}
+\begin{CJK}{UTF8}{mj}
+Plasma EVM sets \emph{Rebase}\footnote{It is named after git's rebase.} as default behavior. It makes the Plasma chain apply continuously and periodically \emph{Escape request}. It allows users to safely escape based on the last \emph{finalized} block by submitting an \emph{Escape request} if the block data is withheld.
+\end{CJK}
+
+\subsubsection{Rebase}
+\begin{CJK}{UTF8}{mj}
+\emph{Rebase} is re-mining blocks based on another block. In other words, transactions are re-executed based on other parent block. Even After \emph{Rebase}, \emph{transactionsRoot} of block remains to be unchanged. However, \emph{stateRoot} and \emph{receiptsRoot} can be changed because the specific results of each transaction may vary.
+
+\emph{Rebased Non-Request Epoch (NRE')} and \emph{Rebased Request Epoch (RE')} are \emph{Epochs} which \emph{Rebase} existing \emph{NRE} and \emph{ORE}. Similarly, \emph{Rebased Non-Request Block (NRB')} and \emph{Rebased Request Block (RB')} are \emph{Rebased} blocks.
+\end{CJK}
+
+\subsubsection{Cycles and Stages}
+\begin{CJK}{UTF8}{mj}
+\emph{Cycle} is an entire operational period of the Plasma EVM. \emph{Cycle} consists of a total of four \emph{Stages}. The \emph{Stages} are \emph{Pre-commit}, \emph{DA-check}, \emph{Commit}, and \emph{Challenge} in that order. When all \emph{Stages} are completed in sequence, the \emph{Cycle} is \emph{Finalized}. See Figure~\ref{fig:cycle} to know how they work.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\columnwidth]{figure/"Cycle".png}
+\caption{Cycles and Stages}
+\label{fig:cycle}
+\end{figure}
+
+\end{CJK}
+
+\subsubsection{Pre-commit}
+\begin{CJK}{UTF8}{mj}
+\emph{Pre-commit} is a kind of preliminary submission step, and the operator mines blocks as described in~\ref{subsec:blockmining} and submits \emph{transactionsRoot} of those blocks to the root chain. The operator also propagates those blocks to users at the same time. If the operator sends incorrect block data at the \emph{Pre-commit} stage, or if the entire block data is not fully transferred, users can submit an \emph{Escape request}. However, for \emph{RB}, the \emph{transactionsRoot} is determined by \emph{RootChain contract} so it is not necessary to submit it to the root chain.
+
+The reason why only \emph{transactionsRoot} is submitted to the root chain is because \emph{stateRoot} and \emph{receiptsRoot} are determined later in the \emph{Rebase} stage. In addition, the reason why the operator must submit the \emph{transactionsRoot} is because users can know the correct \emph{stateRoot} of the block if they know which transactions are to be included in that block. Thus, users who receive block data that matches the \emph{transactionsRoot} submitted to \emph{RootChain contract}, can challenge even if the operator withheld the data and submitted the wrong \emph{stateRoot}.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\columnwidth]{figure/"Pre-commit".png}
+\caption{Pre-commit}
+\label{fig:pre-commit}
+\end{figure}
+
+\end{CJK}
+
+
+\subsubsection{DA-check}
+\begin{CJK}{UTF8}{mj}
+\emph{DA-check} is a stage in which users check data availability in \emph{Pre-commit} and size of transaction. The reason why users should check the size is that transaction whose size exceeds block gas limit of the root chain cannot be verified. If the operator is determined to be byzantine during \emph{DA-check}, users must escape from that chain to protect themselves.
+
+\paragraph{1) Submit \emph{Escape request}}
+\emph{Escape request} is a means that allows users to safely escape from the plasma chain in case of block withholding attack. Its structure and feature are the same as \emph{Exit request}, but there is a difference in that it is always processed based on the last block of the \emph{Commit} stage of the previous \emph{Cycle}. This is to ensure that users are always able to escape from the chain based on the final state of last \emph{Cycle}. If users did not escape from the previous \emph{Cycle}, it means that those users received all the data of the previous \emph{Cycle} correctly. This means that they can know what the correct state of the \emph{Cycle} is.
+
+\paragraph{2) Submit \emph{Undo request} if users enter that \emph{Cycle}}
+Because \emph{Escape request} is processed based on the last block of the previous \emph{Cycle}, it cannot rollback \emph{Enter request} of the current \emph{Cycle}. For this reason, users must submit \emph{Undo request}, which cancels \emph{Enter request} of the current \emph{Cycle}, together with \emph{Escape request}. \emph{Undo request} prevents \emph{Enter request} from being applied in the child chain. After the \emph{Undo request} is finalized, users can undo the state transition of the \emph{Enter request} in the root chain.
+
+\paragraph{3) Cancel \emph{Exit request} if users make \emph{Exit request} for that \emph{Cycle}}
+If \emph{Exit request} is executed again after all states have been exited with \emph{Escape request}, the \emph{Request} can be reverted and challenged with \emph{Exit challenge}. As a result, users who submitted \emph{Escape request} should cancel all \emph{Exit requests} of that \emph{Cycle} in \emph{RootChain contract}. Cancelled \emph{Exit request} cannot be subject to \emph{Exit Challenge} regardless of its execution result. In addition, cancelled \emph{Exit requests}, even if finalized, cannot cause corresponding state transition in the root chain. Thus, the canceled \emph{Exit request} may result in no inappropriate gain or loss for users.
+
+\paragraph{}
+The reason why the \emph{DA-check} stage should be placed explicitly is that operator may not transfer data correctly at the \emph{Pre-commit} stage to attack users. For example, if the operator withholds the block data at the end of a \emph{Pre-commit} stage, it provides enough time for users to recognize it and take appropriate action. Users can immediately submit an \emph{Escape request} without waiting for the \emph{DA-check} stage if the block data is withheld from the beginning of the \emph{Pre-commit} stage.
+
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\columnwidth]{figure/"DA-check".png}
+\caption{DA-check}
+\label{fig:da-check}
+\end{figure}
+
+\end{CJK}
+
+\subsubsection{Commit}
+\begin{CJK}{UTF8}{mj}
+\emph{Commit} is the stage in which the operator submits \emph{Escape block(EB)} applying \emph{Escape request} and \emph{Undo request} submitted in \emph{Pre-commit} and \emph{DA-check}, \emph{Rebasing} all the blocks submitted in the \emph{Pre-commit} stage based on the \emph{EB} and submitting \emph{stateRoot}, \emph{transactionsRoot} and \emph{receiptsRoot}.
+
+At this time, the parent block of \emph{EB} is the last committed block of the previous \emph{Cycle}. However, if none of the \emph{Escape request} is submitted, submission of \emph{EB} and \emph{Rebase} is skipped and the operator just submits \emph{stateRoot} and \emph{receiptsRoot} of mined blocks in \emph{Pre-commit} stage.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\columnwidth]{figure/"Commit".png}
+\caption{Commit}
+\label{fig:commit-diagram}
+\end{figure}
+
+\end{CJK}
+
+\subsubsection{Challenge}
+\begin{CJK}{UTF8}{mj}
+In the \emph{Challenge} stage, users can submit a \emph{Challenge} for which the blocks submitted in \emph{Commit} are invalid. However, the available \emph{Challenge} is \emph{Request Challenge}, \emph{Null Address Challenge}, and \emph{Computation Challenge} except \emph{Exit Challenge}.
+
+If the number of \emph{Challenges} submitted is large, the other \emph{Challenges} will be cancelled as soon as the challenger wins. In addition, if the challenger wins, all subsequent blocks including that \emph{Cycle} will be canceled, and that \emph{Cycle} will go back to the \emph{DA Check} stage.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\columnwidth]{figure/"Challenge".png}
+\caption{Challenge}
+\label{fig:challenge-block-sequence}
+\end{figure}
+
+\end{CJK}
+
+
+\subsection{Finalize}
+\begin{CJK}{UTF8}{mj}
+If there is no successful challenge, the corresponding \emph{Cycle} will be \emph{Finalized}, and all blocks submitted in \emph{Commit} will be \emph{Finalized} simultaneously. However, the \emph{Challenge} stage will not be completed until all submitted challenges are completed, and all subsequent \emph{Cycle}s, including challenged \emph{Cycle}, will not be \emph{Finalized}.
+\end{CJK}
+
+\subsection{Stage Length}
+\begin{CJK}{UTF8}{mj}
+\emph{Stage length} is the number of \emph{Epoch} to be processed in \emph{Pre-commit} and \emph{Commit}. \emph{Pre-commit length} is $N_{NRE} * 2$ and \emph{Commit length} is $N_{NRE} * 2 + 1$. Additional one \emph{Epoch} in \emph{Commit length} means \emph{Escape Epoch}. \emph{Pre-commit length} and \emph{Commit length} are determined by the operator when the \emph{RootChain contract} is deployed.
+\end{CJK}
+
+\subsection{Stage Period}
+\begin{CJK}{UTF8}{mj}
+\emph{Stage period} is the time allocated for each \emph{Stage}. \emph{Pre-commit period} and \emph{Commit period} are the criteria for fulfilling \emph{Halting condition} to be covered below. \emph{DA-check period} and \emph{Challenge period} is simply the time to process each \emph{Stage}.
+
+All \emph{Stage periods} are determined by the operator when the \emph{RootChain contract} is deployed. \emph{Pre-commit} and \emph{Commit} can be completed regardless of corresponding \emph{Stage period}. However, \emph{DA-check} and \emph{Challenge} is completed only after corresponding \emph{Stage period}. For \emph{Challenge period}, it can be extended depending on the progress of \emph{Computation Challenge}.
+\end{CJK}
+
+\subsection{Halting Condition}
+\begin{CJK}{UTF8}{mj}
+\emph{Halting condition} is fulfilled if the operator does not properly perform the prescribed procedures of each \emph{Stage} of \emph{Cycle} for any reason. The \emph{Stage} where the \emph{Halting condition} can be fulfilled is \emph{Pre-commit}, \emph{Commit}, and the specific conditions and results are as follows.
+\end{CJK}
+
+\paragraph{Pre-commit}
+\begin{CJK}{UTF8}{mj}
+When the operator fails to submit all \emph{Epochs} of \emph{Pre-commit length} within \emph{Pre-commit period}, the \emph{Halting condition} is fulfilled. In this case, the chain is in \emph{Shutdown}.
+\end{CJK}
+
+\paragraph{Commit}
+\begin{CJK}{UTF8}{mj}
+When the operator fails to submit all \emph{Epochs} of \emph{Commit length} within \emph{Pre-commit period}, the \emph{Halting condition} is fulfilled. This will suspend progress of all subsequent \emph{Cycle}s, including the corresponding \emph{Cycle}. If the \emph{EB} has not yet been submitted, anyone can submit \emph{EB}. After \emph{EB} is submitted, the suspended \emph{Cycle} can be resumed. If it is halted in the progress of \emph{Rebase}, the chain will be in \emph{Shutdown}.
+\end{CJK}
+
+\paragraph{Shutdown}
+\begin{CJK}{UTF8}{mj}
+\emph{Shutdown} is a kind of plasma chain closing procedure. When \emph{Shutdown} is started, no further \emph{Cycle} in that chain can proceed. \emph{Cycle} can only repeat following procedure: Submit \emph{Escape request} based on last finalized \emph{Cycle} - Submit $EB$ - \emph{Challenge}, to ensure that all users can safely exit from the chain. In the \emph{Shutdown}, anyone can submit $EB$, which allows users to exit for themselves. \\
+\\
+The operating process of one \emph{Cycle} discussed so far can be represented by Figure~\ref{fig:continuouse-rebase}.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\columnwidth]{figure/"Rootchain".png}
+\caption{Continuous rebase (Sequential cycle)}
+\label{fig:continuouse-rebase}
+\end{figure}
+
+\end{CJK}
+
+\subsection{Overlapping of Cycles} \label{subsec:overlap}
+\begin{CJK}{UTF8}{mj}
+What we have discussed so far is the operational process of only one \emph{Cycle}. When several \emph{Cycles} are overlapped, the \emph{Pre-commit} of the following \emph{Cycle} can be started, regardless of whether the \emph{Challenge} of previous \emph{Cycle} is completed or not.
+
+In Figure~\ref{fig:overlap-of-cycle}, as soon as the \emph{Pre-commit} of \emph{Cycle2} is completed, \emph{DA-check} of \emph{Cycle2} and \emph{Pre-commit} of \emph{Cycle3}, the next \emph{Cycle}, is started. At this point, the first block of \emph{Pre-commit} of \emph{Cycle3} is computed based on the last \emph{Pre-commit} block of \emph{Cycle2}. In order for \emph{Cycles} to be overlapped together like this, the following conditions must be fulfilled: \\
+\\n
+1. As soon as the \emph{Pre-commit} of the current \emph{Cycle} is completed, the \emph{Pre-commit} of next \emph{Cycle} must begin. \\
+2. As soon as \emph{Pre-commit} of the current \emph{Cycle} is completed, \emph{DA-check} of the current \emph{Cycle} must start. \\
+3. The \emph{Commit} of the current \emph{Cycle} must start only after completing the \emph{Commit} of pre-\emph{Cycle}. \\
+
+These rules will allow users to continue to use the chain if the operator normally operates the child chain. Note that further \emph{Cycles} can be progressed regardless of the completion of \emph{Challenge stage} in the last \emph{Cycle}. However, even if a \emph{Challenge} is completed for a subsequent \emph{Cycle}, it cannot be \emph{Finalized} until the previous \emph{Cycle} is \emph{Finalized}.
+\end{CJK}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\columnwidth]{figure/"Overlap".png}
+\caption{Overlapping of Cycles}
+\label{fig:overlap-of-cycle}
+\end{figure}
+
+\subsection{Finality}
+\begin{CJK}{UTF8}{mj}
+\paragraph{Block}
+The plasma EVM can specify the checkpoints of blocks like plasma XT, for blocks that have passed the challenge period without any valid challenge.
+
+\paragraph{Request}
+Apart from finality of blocks, there is also finality for all \emph{Requests} except \emph{Enter requests}. When a block containing a \emph{Request} is \emph{Finalized}, \emph{Request challenge period} which is challenge period for that \emph{Request} begins. If no valid challenge is submitted during this time, the \emph{Request} will be \emph{Finalized}.
+\end{CJK}
+
+% Challenge
+\section{Challenge}
+\begin{CJK}{UTF8}{mj}
+The block and \emph{Exit request} can be verified with the following \emph{Challenges}.
+
+\subsection{Null Address Challenge}
+\begin{CJK}{UTF8}{mj}
+\emph{Null address challenge} checks for transactions with the \emph{Transactor} of $NA$ in $NRB$. Such transactions mean \emph{Request transaction}, so if they are included in $NRB$ instead of $RB$ and $EB$, the operator is byzantine.
+\end{CJK}
+
+\subsection{Exit Challenge}
+\begin{CJK}{UTF8}{mj}
+If an \emph{Exit request} and \emph{Escape request} is invalid, the corresponding \emph{Request transaction} will be reverted, and also the \emph{Request} must be deleted from the \emph{RootChain contract}. The \emph{Exit challenge} verifies invalid \emph{Exit request} with the reverted \emph{Request transaction} as proof. However, before starting challenge for \emph{Exit request}, the block including that \emph{Request} must be \emph{Finalized}. This is because \emph{Request transactions} that are not reverted in valid block can be reverted in invalid block. Therefore, \emph{Exit Challenge} can start after the block including target \emph{Request} is \emph{Finalized}.
+\end{CJK}
+
+\subsection{Computation Challenge}
+\begin{CJK}{UTF8}{mj}
+For the $NRB$, $RB$ and $EB$, \emph{Computation Challenge} verifies that the operator has executed transactions correctly. If the operator submits an invalid \emph{stateRoot}, he can be challenged through TrueBit-like Verification game with \emph{blockData}, \emph{preStateRoot}, and \emph{postStateRoot}.
+
+$$preState = commitedStateRoots[i-1]$$
+$$postState = commitedStateRoots[i] = STF_{block}(preState, Block_i)$$
+
+By comparing the output of $STF_{block}$ executed in \emph{RootChain contract} with the output submitted previously, state transition of the block can be verified.
+\end{CJK}
+
+\subsection{Verification Game}
+\begin{CJK}{UTF8}{mj}
+TrueBit proposed a verification game as a way to verify the output of outsourced computation. Its final step uses a method of executing computation once in Ethereum and comparing the actual output with the expected output. We will verify the computation with solEVM~\ref{ref:solevm}, a smart contract that runs EVM inside the EVM that has been implemented by Ohalo and Parsec Labs. However, to use \href{https://hackmd.io/s/SkxNKAXU7}{EVM Compatible Transaction Fee(GAS) Delegated Execution Architecture}, this must be adopted to solEVM.
+\end{CJK}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\columnwidth]{figure/"verification game".png}
+\caption{Verification game}
+\label{fig:figure5}
+\end{figure}
+\end{CJK}
+
+
+\section{Attack Scenarios}
+\begin{CJK}{UTF8}{mj}
+
+\end{CJK}
+
+\subsection{Block Withholding Attack}
+\begin{CJK}{UTF8}{mj}
+If the operator withholds block data in \emph{Pre-commit}, users can submit an \emph{Escape request} in \emph{Pre-commit} and \emph{DA-check} to safely exit from the chain.
+\end{CJK}
+
+\subsection{Invalid Block}
+\begin{CJK}{UTF8}{mj}
+The operator can submit invalid blocks to the root chain in \emph{Commit} stage. However, in this case, all users remaining in the chain have checked which transactions are included in those blocks, so they can know correct state of them. Therefore, users can cancel invalid blocks through \emph{Computation challenge}.
+\end{CJK}
+
+
+% Further research
+\section{Further Research}
+\subsection{Toward Instant Finality}
+\begin{CJK}{UTF8}{mj}
+By setting \emph{Rebase} as the default behavior of the plasma chain, users can exit safely even though operator withholds the block data. But users can maliciously cancel their transactions by submitting a \emph{Escape request} regardless of data availability. Therefore, users must check if any \emph{Escape request} canceling their transactions is submitted or not.
+
+For example, the decentralized exchange(DEX) is operating on Plasma EVM. Also, it takes about 24 hours for one \emph{Cycle} to be \emph{Finalized}. User A purchased token T from user B with 100 ETH about an hour ago. But now the price of token T has plummeted to 1 ETH. In this case, User A will submit an \emph{Escape request} before the transaction is \emph{Finalized} so that he or she can withdraw all of his or her balances in advance and cancel the transaction. In this case, user B who sold the token could suffer a significant loss.
+\end{CJK}
+
+\subsection{Light Client Support}
+\begin{CJK}{UTF8}{mj}
+Users should always download all block data to check data availability. In other words, all users must be running a full node on the plasma chain. This could be a serious impediment to User Experience(UX).
+
+This problem is not only just for Plasma EVM but also for all other Plasma proposals. Most other Plasma models also have restrictions on users to run a full node to check all data. To address these problems, some research~\ref{ref:noteonda} has been presented using Erasure Coding to enable checking data availability with only light client. As with Plasma EVM, further research is needed to enable users to check data availability with only light client rather than full node.
+\end{CJK}
+
+\subsection{Addressing Requestable Contracts in Both Chains}
+\begin{CJK}{UTF8}{mj}
+\emph{Requestable contract} should have the same codeHash in both chains. In an existing contract creation transaction, contract address was determined using address of the Transactor and Nonce. The operator had to check the codeHash and address of those two contracts and map it in the \emph{RootChain contract}. However, anyone can deploy a \emph{Requestable contract} to both chains with identical addresses by simply executing the same transaction, which is generated in child chain, on the root chain using CREATE2 to be newly added in the Constantinople hard fork~\ref{ref:constantinople}.
+
+By making the address of the Factory contract, which creates contracts, the same as the address of the \emph{RootChain contract} deployed on the root chain using CREATE2 and putting it in the genesis block of the child chain, this feature can be supported.
+\end{CJK}
+
+
+\section{Conclusion}
+\begin{CJK}{UTF8}{mj}
+Plasma EVM makes generalized state feasible with \emph{Request}, \emph{Request block} and \emph{Requestable contract} in Plasma chain. \emph{Challenge} guarantees that only valid block and \emph{Request} is finalized in root chain. Most of all, the data unavailability, which has been deadly vulnerability of generalized Plasma, has been resolved through Continuous Rebase. It made that honest users can be safe in any attack situation. However, shortcomings such as not instant finality due to \emph{Rebase} are still major challenges to address.
+\end{CJK}
+
+\newpage
+
+
+\appendix
+\section{Glossary} \label{appendix:glossary}
+\subsection{General}
+\begin{CJK}{UTF8}{mj}
+\begin{itemize}
+    \item Root chain: Ethereum blockchain
+    \item Child chain: Plasma blockchain. It can also be called plasma chain.
+    \item Operator: Agent that operate child chain
+    \item NULL ADDRESS: $0x00$ with nonce and signature $v = r = s = 0$, denoted $NA$
+    \item Transactor: Account which generate transaction, \emph{tx.origin}
+    \item RootChain manager contract: A plasma contract on root chain accepting enter / exit (ETH / ERC20)
+    \item Request: A request which enforces to apply state transition by root chain
+    \item Requestable contract: Contracts able to accept exit / enter request in both of root and child chain. 2 identical contracts should be deployed in root and chind chain, and $R$ maps two addresses.
+    \item Enter request: A request to enter something from root chain to child chain. eg) deposit asset, move account storage variable.
+    \item Exit request: A request to exit asset or account storage from child chain to root chain. Any exit request on root chain immediately updates account storage in child chain. If the update in child chain is rejected(TX  reverted), the exit can be challenged with the computation output of the update as proof.
+    \item Escape request: A request to escape from child chain. It has identical structure to exit request, but there is restriction on the submission time.
+    \item Undo request: A request to prevents future enter request in child chain from being applied.
+    \item Request block: A block applying state transition that is enforced by the root chain, denoted $RB$
+    \item Non-Request block: A block where transactions are only related between accounts in child chain, denoted $NRB$
+    \item Request block: A request block applying enter / exit request by the operator, denoted $RB$
+    \item Escape request block: A request block only including escape requests and undo requests, denoted $EB$
+    \item Epoch: A period in which the same block must be submitted. Epoch for each type of block is denoted NRE, ORE, and ERE respectively.
+\end{itemize}
+\end{CJK}
+
+\subsection{Challenge}
+\begin{CJK}{UTF8}{mj}
+\begin{itemize}
+    \item Null Address Challenge: challenge if $NRB$ contains a transacton from $NA$.
+    \item Computation Challenge: challenge if block have the state computed in a wrong way.
+    \item Exit Challenge: challenge if invalid \emph{Exit request} cannot be accepted in child chain (but the request should be included in $RB$).
+    \item Finalized: Every block and \emph{Exit request} can be deterministically finalized only if any no successful challenge exists.
+\end{itemize}
+\end{CJK}
+
+\subsection{Continuous Rebase}
+\begin{CJK}{UTF8}{mj}
+\begin{itemize}
+    \item Rebase: Re-mining blocks based on another block. As a result, stateRoot and receiptsRoot of blocks can be changed but transactionRoot should be identical to original one.
+   \item Cycle: The entire operational period of the Plasma EVM, one cycle consists of a total of four stages. Each stage is Pre-commit, DA-check, Commit and Challenge.
+   \item Pre-commit: A stage that operator mines blocks in child chain and submits \emph{transactionRoot} of them. At the same time, the operator must broadcast block data to users so that they can check data availability.
+   \item DA-check: A stage that users check data availability of blocks submitted in Pre-commit. In case of unavailability, they can submit \emph{Escape request} to escape from that chain. However, \emph{Escape request} can be submitted at both Pre-commit, DA-check stages.
+   \item Commit: The stage which the operator must submit an \emph{Escape request block} applying \emph{Escape request} and execute \emph{Rebase} blocks submitted in Pre-commit.
+   \item Challenge: The stage in which users can challenge if blocks submitted in Commit are invalid.
+   \item Stage length: The number of \emph{Epoch} to be processed in \emph{Pre-commit} and \emph{Commit}.
+   \item Stage period: The time allocated for each \emph{Stage}.
+   \item Halting condition: A specific condition to halt child chain.
+   \item Finalize: After the Challenge stage, whole blocks in a cycle can be finalized.
+   \item Shutdown: A closing procedure of plasma chain. After shutdown, no more cycles can be initiated. It only allows users to escape from that chain.
+\end{itemize}
+\end{CJK}
+
+\newpage
+
+\section{Requestable Contract Examples} \label{appendix:requestable-contract-examples}
+
+\subsection{Requestable token contract} \label{appendix:example-token}
+\lstinputlisting[breaklines=true, basicstyle=\small]{RequestableTokenContract.sol}
+
+\newpage
+
+
+\begin{thebibliography}{9}
+\bibitem{plasma-whitepaper} \label{plasma-whitepaper}
+Joseph Poon and Vitalik Buterin. Plasma: Scalable Autonomous Smart Contracts,
+\\\texttt{https://plasma.io/}
+
+\bibitem{plasmamvp}
+Vitalik Buterin. Minimal Viable Plasma,
+\\\texttt{https://ethresear.ch/t/minimal-viable-plasma/426}
+
+
+\bibitem{plasmacash}
+Vitalik Buterin. Plasma Cash: Plasma with much less per-user data checking,
+\\\texttt{https://ethresear.ch/t/plasma-cash-plasma-with-much-less-per-user-data-checking/1298}
+
+
+\bibitem{plasmaxt}
+Kelvin Fichter. Plasma XT: Plasma Cash with much less per-user data checking,
+\\\texttt{https://ethresear.ch/t/plasma-xt-plasma-cash-with-much-less-per-user-data-checking/1926}
+
+
+\bibitem{parseclabs}
+PARSEC Labs. PLASMA - FROM MVP TO GENERAL COMPUTATION,
+\\\texttt{https://parseclabs.org/files/plasma-computation.pdf}
+
+
+\bibitem{plasmaleap}
+Johann Barbie. Plasma Leap - a State-Enabled Computing Model for Plasma,
+\\\texttt{https://ethresear.ch/t/plasma-leap-a-state-enabled-computing-model-for-plasma/3539}
+
+\bibitem{truebit}
+Jason Teutsch, Christian Reitwießner. A scalable verification solution for blockchains,
+\\\texttt{https://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf}
+
+\bibitem{noteonda} \label{ref:noteonda}
+Vitalik Buterin. A note on data availability and erasure coding,
+\\\texttt{https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding}
+
+\bibitem{evmplasma} \label{ref:evmplasma}
+Kelvin Fichter. Why is EVM-on-Plasma hard?,
+\\\texttt{https://medium.com/@kelvinfichter/why-is-evm-on-plasma-hard-bf2d99c48df7}
+
+\bibitem{morevp} \label{ref:morevp}
+Ben Jones, Kelvin Fichter. More Viable Plasma,
+\\\texttt{https://ethresear.ch/t/more-viable-plasma/2160}
+
+\bibitem{constantinople} \label{ref:constantinople}
+Ethereum Blog. Ethereum Constantinople/St. Petersburg Upgrade Announcement,
+\\\texttt{https://blog.ethereum.org/2019/02/22/ethereum-constantinople-st-petersburg-upgrade-announcement/}
+
+\bibitem{solevm} \label{ref:solevm}
+Ohalo Limited. Solidity EVM and Runtime,
+\\\texttt{https://github.com/Ohalo-Ltd/solevm}
+
+\end{thebibliography}
+\end{document}
