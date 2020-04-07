@@ -180,21 +180,21 @@ Plasma EVM에는 \emph{Non-Request Block}, \emph{Request Block}, \emph{Escape Bl
 
 \emph{Epoch}은 여러 블록들을 포함하는 주기이다. 블록의 타입에 따라 \emph{Epoch}또한 \emph{Non-Request Epoch(NRE)}, \emph{Request Epoch(RE)}, \emph{Escape Epoch(EE)}으 구분된다. \emph{Epoch}의 길이는 해당 \emph{Epoch}에 포함되는 블록의 갯수이며, \emph{NRE}의 길이는 사전에 정의된 상수로 변하지 않는다. 하지만 \emph{RE}와 \emph{EE}의 경우 유저가 \emph{Request} 혹은 \emph{Escape request}을 생성할 경우 길이가 가변적으로 늘어나거나 줄어들 수 있다. 단, Genesis 블록은 0번째 \emph{NRE}에 포함되며, \emph{NRE\#0}의 길이는 항상 1 이다.
 
-\emph{RootChain contract}는 어느 종류의 \emph{Epoch}이 배치되어야 하는지 지정함으로써 자식 체인의 상태 변화를 강제한다. \emph{NRE}를 통해 자식 체인에서 발생한 트랜잭션을 허용한다. \emph{Request}가 생성될 경우 \emph{NRE} 이후에 \emph{RE}가 오도록 배치하고, \emph{Escape request}이 생성될 경우 \emph{EE} 이후에 기존의 \emph{NRE}와 \emph{RE}가 \emph{Rebase} 되도록 한다.
+\emph{RootChain contract}는 어느 종류의 \emph{Epoch}이 배치되어야 하는지 지정함으로써 자식 체인의 상태 변화를 강제한다. \emph{NRE}를 통해 자식 체인에서 발생한 트랜잭션을 허용한다. \emph{Request}가 생성될 경우 \emph{NRE} 이후에 \emph{RE}가 오도록 배치하고, \emph{Escape request}가 생성될 경우 \emph{EE} 이후에 기존의 \emph{NRE}와 \emph{RE}가 \emph{Rebase} 되도록 한다.
 
 \end{CJK}
 
 \subsection{Block Mining} \label{subsec:blockmining}
 \begin{CJK}{UTF8}{mj}
-\emph{RootChain contract}는 기본적으로 다음과 같은 순서로 Epoch을 배치시킴으로써 자식 체인의 트랜잭션과 루트 체인에서 생성된 Request을 반영할 수 있다.\\
+\emph{RootChain contract}는 기본적으로 다음과 같은 순서로 Epoch을 배치시킴으로써 자식 체인의 트랜잭션과 루트 체인에서 생성된 Request를 반영할 수 있다.\\
 \\
 1. \emph{NRE\#0} 이후에 \emph{NRE\#1}이 위치한다.\\
 2. \emph{NRE\#N} 이후엔 항상 \emph{RE\#(N+1)}이 위치한다. 마찬가지로 \emph{RE\#N} 이후엔 \emph{NRE\#(N+1)}이 위치한다.\\
-3. 현재 \emph{Epoch}이 \emph{NRE\#N} 혹은 \emph{RE\#(N+1)} 일 때 생성된 \emph{Request}은 \emph{RE\#(N+3)} 에 반영된다. 만약 \emph{Request}이 생성되지 않는다면, 해당 \emph{RE}의 길이는 0이다.
+3. 현재 \emph{Epoch}이 \emph{NRE\#N} 혹은 \emph{RE\#(N+1)} 일 때 생성된 \emph{Request}는 \emph{RE\#(N+3)} 에 반영된다. 만약 \emph{Request}가 생성되지 않는다면, 해당 \emph{RE}의 길이는 0이다.
 
 \bigskip
 
-\emph{RootChain contract}는 위처럼 두 종류의 블록을 제출 받기 위해 주기적으로 \emph{Accept NRB}, \emph{Accept RB} 상태로 변한다. \emph{Accept NRB}는 오직 \emph{NRB}만 제출될 수 있는 상태이며, \emph{Accept RB}는 오직 \emph{RB}만 제출될 수 있는 상태이다. 오퍼레이터는 \emph{RootChain contract}의 상태에 따라 \emph{Request block} 또는 \emph{Non-request block}를 제출해야 한다.
+\emph{RootChain contract}는 위처럼 두 종류의 블록을 제출 받기 위해 주기적으로 \emph{Accept NRB}, \emph{Accept RB} 상태로 변한다. \emph{Accept NRB}는 오직 \emph{NRB}만 제출될 수 있는 상태이며, \emph{Accept RB}는 오직 \emph{RB}만 제출될 수 있는 상태이다. 오퍼레이터는 \emph{RootChain contract}의 상태에 따라 \emph{Request block} 또는 \emph{Non-request block}을 제출해야 한다.
 
 Figure ~\ref{fig:simple-state-transition-diagram}는 이러한 \emph{RootChain contract}의 상태가 어떻게 변경되는지 보여준다. 단, 여기서 다루는 내용은 Plasma EVM의 Continuous Rebase를 포함하지 않는다. 전체적인 동작 과정에 대한 내용은 이후의 섹션 ~\ref{subsec:continuous-rebase}에서 다룬다.
 % \end{CJK}
@@ -216,11 +216,11 @@ Figure ~\ref{fig:simple-state-transition-diagram}는 이러한 \emph{RootChain c
 
 \subsection{Apply Request}
 \begin{CJK}{UTF8}{mj}
-\emph{Request}은 사용자가 \emph{RootChain contract}에 트랜잭션을 보냄으로써 생성된다. \emph{Enter request}와 \emph{Exit request}은 \emph{RB}에 포함되며, \emph{Escape request}과 \emph{Undo request}은 \emph{EB}에 포함된다. \emph{Enter request}은 루트 체인에서 먼저 상태를 변경하고 \emph{Request} 트랜잭션(\emph{Request transaction})의 형태로 블록에 포함된다. \emph{Exit}, \emph{Escape}, 그리고 \emph{Undo request}의 경우 \emph{Request} 트랜잭션의 형태로 블록에 포함된 이후 루트 체인에서 반영된다. 만약 해당 \emph{Request} 트랜잭션이 실패(Reverted)되었다면 \emph{Exit Challenge}를 통해 루트 체인에서 반영되는 것을 방지할 수 있다.
+\emph{Request}는 사용자가 \emph{RootChain contract}에 트랜잭션을 보냄으로써 생성된다. \emph{Enter request}와 \emph{Exit request}는 \emph{RB}에 포함되며, \emph{Escape request}와 \emph{Undo request}는 \emph{EB}에 포함된다. \emph{Enter request}는 루트 체인에서 먼저 상태를 변경하고 \emph{Request} 트랜잭션(\emph{Request transaction})의 형태로 블록에 포함된다. \emph{Exit}, \emph{Escape}, 그리고 \emph{Undo request}의 경우 \emph{Request} 트랜잭션의 형태로 블록에 포함된 이후 루트 체인에서 반영된다. 만약 해당 \emph{Request} 트랜잭션이 실패(Reverted)되었다면 \emph{Exit Challenge}를 통해 루트 체인에서 반영되는 것을 방지할 수 있다.
 
-\emph{Request}을 반영할 수 있는 컨트랙트는 \emph{Requestable} 하며, \emph{Requestable} 컨트랙트의 특정 함수를 호출함으로써 루트 체인과 자식 체인에서 \emph{Request}을 반영할 수 있다. 각 컨트랙트 별로 \emph{Requestable} 인터페이스를 개별적으로 구현하여 이더리움이 지향하는 General-purpose computing platform 을 플라즈마화(Plasmafy) 할 수 있다.
+\emph{Request}를 반영할 수 있는 컨트랙트는 \emph{Requestable} 하며, \emph{Requestable} 컨트랙트의 특정 함수를 호출함으로써 루트 체인과 자식 체인에서 \emph{Request}를 반영할 수 있다. 각 컨트랙트 별로 \emph{Requestable} 인터페이스를 개별적으로 구현하여 이더리움이 지향하는 General-purpose computing platform 을 플라즈마화(Plasmafy) 할 수 있다.
 
-오퍼레이터는 \emph{RootChain contract}가 \emph{Request}을 생성할 수 있도록 각 체인의 \emph{Requestable} 컨트랙트의 주소를 사전에 연결해야한다. 단, 각 체인의 \emph{Requestable} 컨트랙트는 반드시 동일한 \emph{codeHash} 가져야 하며, 이는 두 컨트랙트가 같은 Storage 레이아웃을 갖는다는 것을 의미한다.
+오퍼레이터는 \emph{RootChain contract}가 \emph{Request}를 생성할 수 있도록 각 체인의 \emph{Requestable} 컨트랙트의 주소를 사전에 연결해야한다. 단, 각 체인의 \emph{Requestable} 컨트랙트는 반드시 동일한 \emph{codeHash} 가져야 하며, 이는 두 컨트랙트가 같은 Storage 레이아웃을 갖는다는 것을 의미한다.
 
 \subsubsection{Request and Request Transaction}
 \begin{CJK}{UTF8}{mj}
@@ -242,7 +242,7 @@ Figure ~\ref{fig:simple-state-transition-diagram}는 이러한 \emph{RootChain c
 \item parameters: emph{Requestable}의 함수를 호출하기 위한 파라미터
 \end{itemize}
 
-\emph{RootChain contract}는 \emph{Request transaction}의 해시와 \emph{RB}의 $transactionsRoot$를 계산하여 \emph{RB}에 \emph{Request}이 반드시 포함될 수 있도록 강제할 수 있다. 또한 유저들은 \emph{RootChain contract}에서 \emph{Request} 데이터를 가져올 수 있기 때문에 \emph{RB}에 대해서는 오퍼레이터가 Block Withholding Attack 할 수 없다. 이는 \emph{EB} 또한 마찬가지이다.
+\emph{RootChain contract}는 \emph{Request transaction}의 해시와 \emph{RB}의 $transactionsRoot$를 계산하여 \emph{RB}에 \emph{Request}가 반드시 포함될 수 있도록 강제할 수 있다. 또한 유저들은 \emph{RootChain contract}에서 \emph{Request} 데이터를 가져올 수 있기 때문에 \emph{RB}에 대해서는 오퍼레이터가 Block Withholding Attack 할 수 없다. 이는 \emph{EB} 또한 마찬가지이다.
 \end{CJK}
 
 \subsubsection{Requestable Contract}
@@ -262,7 +262,7 @@ Figure ~\ref{fig:simple-state-transition-diagram}는 이러한 \emph{RootChain c
 \emph{RootChain contract}는 \emph{Enter request}를 각 체인에 배포된 \emph{Requestable contract}에 다음과 같이 반영한다.\\
 \\
 1. 사용자는 \emph{RootChain contract}으로 $RootChain.startEnter()$를 호출하는 트랜잭션을 전송한다. \\
-2. \emph{RootChain contract}는 \emph{Enter request}를 \emph{Requstable contract}에 적용한다. 이는 루트 체인에서 일어난다. 만약 이 과정에서 트랜잭션이 실패(reverted)된다면 \emph{Enter request}는 생성되지 않는다.\\
+2. \emph{RootChain contract}는 \emph{Enter request}를 \emph{Requestable contract}에 적용한다. 이는 루트 체인에서 일어난다. 만약 이 과정에서 트랜잭션이 실패(reverted)된다면 \emph{Enter request}는 생성되지 않는다.\\
 3. 2단계가 올바르게 진행되었다면, \emph{RootChain contract}는 \emph{Enter request}를 기록한다.\\
 4. \emph{Request Epoch}에서 오퍼레이터는 \emph{Request transaction}을 포함하여 \emph{Request Block}을 마이닝한다.\\
 5. \emph{Request transaction}이 자식 체인의 상태를 \emph{Enter request}에 따라 변경한다.
@@ -280,10 +280,10 @@ Figure ~\ref{fig:simple-state-transition-diagram}는 이러한 \emph{RootChain c
 \begin{CJK}{UTF8}{mj}
 \emph{RootChain contract}는 \emph{Exit request}를 각 체인에 배포된 \emph{Requestable contract}에 다음과 같이 반영한다. \\
 \\
-1. 사용자는 \emph{RootChain contract}으로 $RootChain.startExit()$를 호출하는 트랜잭션을 전송한다.\\
+1. 사용자는 \emph{RootChain contract}로 $RootChain.startExit()$를 호출하는 트랜잭션을 전송한다.\\
 2. \emph{Enter request}와는 다르게 \emph{Exit request}는 즉각적으로 기록되고 \emph{Request transaction}의 형태로 \emph{RB}에 포함된다. \\
 3. \emph{RB}에 대한 \emph{Challenge} Period가 종료된 이후 \emph{Exit request}에 대한 \emph{Challenge} Period가 시작된다. 만약 2단계의 \emph{Request transaction}이 실패되었다면 $RootChain.challengeExit()$ 함수를 통해 \emph{Exit Challenge} 할 수 있다. \\
-4. 만약 3단계의 \emph{Challenge}가 성공적으로 진행되지 않았다면, 유저가 $RootChain.finalizeRequest()$를 호출함으로써 \emph{Exit request}는 \emph{Finalize}된다. 해당 함수에서 \emph{Exit request}는 루트 체인에 배포된 \emph{Requestable contract}에 \emph{Request}을 반영한다.
+4. 만약 3단계의 \emph{Challenge}가 성공적으로 진행되지 않았다면, 유저가 $RootChain.finalizeRequest()$를 호출함으로써 \emph{Exit request}는 \emph{Finalize}된다. 해당 함수에서 \emph{Exit request}는 루트 체인에 배포된 \emph{Requestable contract}에 \emph{Request}를 반영한다.
 
 \begin{figure}[H]
 \centering
@@ -376,7 +376,7 @@ Plasma EVM의 작동은 \emph{Cycle}을 하나의 주기로 하여 이루어진�
 
 \subsubsection{Commit}
 \begin{CJK}{UTF8}{mj}
-\emph{Commit}은 오퍼레이터가 \emph{Pre-commit}과 \emph{DA-check}에서 제출된 \emph{Escape request}와 \emph{Undo request}를 반영하는 \emph{Escape block(EB)}를 제출하고, \emph{EB}를 기준으로 \emph{Pre-commit}단계에서 제출된 모든 블록들을 \emph{Rebase}하고 \emph{Pre-commit}된 블록의 \emph{stateRoot}와 \emph{receiptsRoot}를 제출하는 과정이다.
+\emph{Commit}은 오퍼레이터가 \emph{Pre-commit}과 \emph{DA-check}에서 제출된 \emph{Escape request}와 \emph{Undo request}를 반영하는 \emph{Escape block(EB)}을 제출하고, \emph{EB}를 기준으로 \emph{Pre-commit}단계에서 제출된 모든 블록들을 \emph{Rebase}하고 \emph{Pre-commit}된 블록의 \emph{stateRoot}와 \emph{receiptsRoot}를 제출하는 과정이다.
 
 이 때 \emph{EB}의 부모블록은 이전 \emph{Cycle}의 Commit된 마지막 블록이다. 단, \emph{Escape request}가 단 하나도 제출되지 않았을 경우, \emph{EB} 제출 과 \emph{Rebase}는 생략하고, \emph{Pre-commit} 단계에서 마이닝한 블록의 \emph{stateRoot}와 \emph{receiptsRoot}를 그대로 제출한다.
 
@@ -419,7 +419,7 @@ Plasma EVM의 작동은 \emph{Cycle}을 하나의 주기로 하여 이루어진�
 
 \subsection{Stage Period}
 \begin{CJK}{UTF8}{mj}
-\emph{Stage period}는 각 \emph{Stage}에 할당된 시간이다. \emph{Pre-commit period}과 \emph{Commit period}의 경우 이후 다룰 \emph{Halting condition}의 충족 기준이 되며, \emph{DA-check period} 와 \emph{Challenge period}는 단순히 해당 \emph{Stage} 기간이다.
+\emph{Stage period}는 각 \emph{Stage}에 할당된 시간이다. \emph{Pre-commit period}와 \emph{Commit period}의 경우 이후 다룰 \emph{Halting condition}의 충족 기준이 되며, \emph{DA-check period} 와 \emph{Challenge period}는 단순히 해당 \emph{Stage} 기간이다.
 
 모든 \emph{Stage period}는 \emph{RootChain contract} 배포시 오퍼레이터에 의해 결정된다. \emph{Pre-commit}과 \emph{Commit}은 \emph{Stage period}와 관계없이 각 \emph{Stage length}에 해당하는 \emph{Epoch}을 제출한 경우 완료될 수 있다. \emph{DA-check}와 \emph{Challenge}는 오직 \emph{Stage period} 이후에만 완료된다. 단, \emph{Challenge period} 의 경우 \emph{Computation Challenge}의 진행여부에 따라 연장될 수 있다.
 \end{CJK}
@@ -564,7 +564,7 @@ CREATE2를 이용하여 컨트랙트를 생성하는 Factory 컨트랙트를 루
 
 \section{Conclusion}
 \begin{CJK}{UTF8}{mj}
-Plasma EVM은 \emph{Request}, \emph{Request block}, \emph{Requestable contract}를 통해 일반화된 상태를 플라즈마 체인에서 다룰 수 있게 하였다. 챌린지는 항상 올바른 상태만이 루트체인에서 fianlzie될 수 있도록 보장한다. 무엇보다 일반화된 플라즈마의 치명적인 취약점이었던 DA문제를 Continuous Rebase를 통해 해결함으로써 어떠한 공격상황에서도 정직한 사용자들의 피해를 막을 수 있게 되었다. 하지만 \emph{Rebase}로 인한 Instant finality 보장 불가능과 같은 단점들은 여전히 해결해야 할 주요 과제이다.
+Plasma EVM은 \emph{Request}, \emph{Request block}, \emph{Requestable contract}를 통해 일반화된 상태를 플라즈마 체인에서 다룰 수 있게 하였다. 챌린지는 항상 올바른 상태만이 루트체인에서 Finalize될 수 있도록 보장한다. 무엇보다 일반화된 플라즈마의 치명적인 취약점이었던 DA문제를 Continuous Rebase를 통해 해결함으로써 어떠한 공격상황에서도 정직한 사용자들의 피해를 막을 수 있게 되었다. 하지만 \emph{Rebase}로 인한 Instant finality 보장 불가능과 같은 단점들은 여전히 해결해야 할 주요 과제이다.
 \end{CJK}
 
 \newpage
