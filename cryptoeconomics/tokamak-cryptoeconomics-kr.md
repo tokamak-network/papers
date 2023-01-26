@@ -121,7 +121,7 @@ Last updated: Jan. 26th. 2023
  
  스테이킹 V1에서 시뇨리지는 각 주체에게 다음과 같이 분배된다:
  
-**스테이커:** $$ (S \over T + W_S * (T-S\over T)) * Seig $$
+**스테이커:** $$ (S \over T + W_S * (T-S \over T)) * Seig $$
 **톤 다오:** $W_D$ * ($T-S\over T$) * $Seig$
 **sTOS 보유자:** $W_P$ * ($T-S\over T$) * $Seig$
 
