@@ -125,7 +125,7 @@ Last updated: Jan. 26th. 2023
 
 **톤 다오:** ${W_D} * {( { {T-S} \over T } )} * {Seig}$
 
-**sTOS 보유자:** $ W_P * {({{T-S}\over T})} * {Seig} $
+**sTOS 보유자:** $ {W_P} * { ({ {T-S} \over T }) } * {Seig} $
 
 - $T$: 톤 총 공급량
 - $S$: 스테이킹 총량
