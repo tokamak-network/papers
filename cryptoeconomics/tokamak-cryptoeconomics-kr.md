@@ -123,7 +123,7 @@ Last updated: Jan. 26th. 2023
  
 **스테이커:** $({{{S}\over T} + W_S * {{(T-S)}\over {T}}}) * {Seig}$
 
-**톤 다오:** ${W_D} * {({T-S}\over {T})} * {Seig}$
+**톤 다오:** ${W_D} * {( { {T-S} \over T } )} * {Seig}$
 
 **sTOS 보유자:** $W_P$ * ($T-S\over T$) * $Seig$
 
