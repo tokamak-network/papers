@@ -1,7 +1,6 @@
 # Tokamak layer 2(L2) Cryptoeconomics
 
 Ver. 1.0.1 
-Last updated: Jan. 26th. 2023
 
 # Authors
 
@@ -124,34 +123,34 @@ The current staking service provided by Tokamak Network is called TON staking V1
 
 In this version, seigniorage is distributed in the following manner:
  
-**Stakers:** ($S\over T$ + $W_S$ * ($T-S\over T$)) * $Seig$
-**TON DAO:** $W_D$ * ($T-S\over T$) * $Seig$
-**sTOS holders:** $W_P$ * ($T-S\over T$) * $Seig$
+**Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$ <br>
+**TON DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$ <br>
+**sTOS holders:** ${{W_P} * {{T-S}\over T} * {Seig}}$
 
 - $T$: Total TON supply
 - $S$: Total amount of TON staked
 - $Seig$: Seigniorage generated during a predetermined period
 - $W_S$, $W_D$, $W_P$: Seigniorage weights for stakers / TON DAO / sTOS holders
-($W_S$ + $W_D$ + $W_P$ $\leq$ 1)
+$({{W_S} + {W_D} + {W_P}} \leq 1)$
 
 If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all seigniorage will go to stakers.
 
-**Stakers:** ($S\over T$ + $1$ * ($T-S\over T$)) * $Seig$ = $Seig$
-**TON DAO:** $0$ * ($T-S\over T$) * $Seig$ = $0$
-**sTOS holders:** $0$ * ($T-S\over T$) * $Seig$ = $0$
+**Stakers:** ${({S\over T} + 1 * {{T-S}\over T}) * {Seig}}$ = $Seig$ <br>
+**TON DAO:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$ <br>
+**sTOS holders:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$
 
 ### 2.2.2. TON staking V2
 
 Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
 
 
-**Sequencer:** ($D+C\over T$) * $Seig$ = ($T_{L2}\over T$) * $Seig$
-**Stakers:** ($T-D-C\over T$) * $Seig$ = ($T-T_{L2}\over T$) * $Seig$ = ($T_{L1}\over T$) * $Seig$
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ <br> 
+**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
 
 - $D$: Total amount of TON deposited
 - $C$: Sequencer collateral
-- $T_{L2}$ ($\equiv$ $D+C$): L2 TON supply
-- $T_{L1}$ ($\equiv$ $T-D-C$ = $T-T_{L2}$): L1 TON supply
+- ${T_{L2} \equiv D+C}$: L2 TON supply
+- ${T_{L1} \equiv T-D-C = T-T_{L2}}$: L1 TON supply
 
 ## 2.3. Sustainable growth of L2
 
@@ -260,8 +259,8 @@ Determining the appropriate levels of rewards and punishments in the challenge i
 
 In the Super-Simple Model of Optimistic Rollup, where a unique verifier who is also a stakeholder in the rollup can initiate a challenge, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*L$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
 - $C$: Sequencer collateral; potential rewards for the verifier in the case of successful verification
 - $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
@@ -269,43 +268,43 @@ In the Super-Simple Model of Optimistic Rollup, where a unique verifier who is a
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
-The expected payoff of verification is greater than that of non-verification if $X$ > $VC\over(C+L+VR)$. Conversely, the verifiers' dilemma arises if $X$ $\le$ $VC\over(C+L+VR)$.
+The expected payoff of verification is greater than that of non-verification if $X$ > $VC\over{C+L+VR}$. Conversely, the verifiers' dilemma arises if $X$ $\le$ $VC\over{C+L+VR}$.
 
-Notably, It is difficult to completely eliminate the verifier's dilemma. For example, the dilemma will always occur if $VC \ge (C+L+VR)$ because $0\le X\le 1$ $\le$ $VC\over(C+L+VR)$. Conversly, a sequencer can find $X_{A}$ that meets $0<X_{A}$ $\le$ $VC\over(C+L+VR)$ if $VC<(C+L+VR)$, given that $VC$, $C$, $L$, $VR$ are not negative.
+Notably, It is difficult to completely eliminate the verifier's dilemma. For example, the dilemma will always occur if $VC \ge {C+L+VR}$ because $0\le X\le 1$ $\le$ $VC\over{C+L+VR}$. Conversly, a sequencer can find $X_A$ that meets $0 < {X_A} \le {{VC}\over{C+L+VR}}$ if $VC<{C+L+VR}$, given that $VC$, $C$, $L$, $VR$ are not negative.
 
-Having multiple verifiers does not significantly change the discussion. Assuming multiple verifiers can initiate challenges, the expected payoffs of verification and non-verification for a specific verifier are as follows ($C$ is evenly distributed among verifiers participating in the challenge):
+Having multiple verifiers does not significantly change the discussion. Assuming multiple verifiers can initiate challenges, the expected payoffs of verification and non-verification for a specific verifier are as follows (Here $C$ is evenly distributed among verifiers participating in the challenge):
 
-**Expected payoff of verification:** $X*C\over N$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*Y*L$ + $(1-X*Y)*VR$
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ <br>
+**Expected payoff of non-verification:** ${-X * Y * L + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
 - $Y$: Probability of no verifiers, except for the verifier him/herself, conducting verification
 
-If no other verifiers perform verification($N=1$, $Y=1$), the expected payoffs of verification and non-verification are as follows:
+If no other verifiers perform verification $(N=1, Y=1)$, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*L$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
-The verifier is incentivized to validate L2 transactions if $X$ > $VC\over(C+L+VR)$, as we assumed with a unique verifier.
+The verifier is incentivized to validate L2 transactions if $X$ > $VC\over{C+L+VR}$, as we assumed with a unique verifier.
 
-On the other hand, if all verifiers conduct verification($N$=Number of verifiers=$N_{v}$, $Y=0$), the expected payoffs of verification and non-verification are as follows:
+On the other hand, if all verifiers conduct verification $(N={검증자 수}={N_v}, Y=0)$, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** $X*C\over N_{v}$ + $VR$ - $VC$ 
-**Expected payoff of non-verification:** $VR$ 
+**Expected payoff of verification:** $X*C\over N_v$ + $VR$ - $VC$ <br>
+**Expected payoff of non-verification:** $VR$
 
 The verifier is more likely to conduct verification if $X$ > $N_{v} * VC\over C$.
 
-It can be inferred that the threshold value of X that would motivate some verifiers to conduct verification falls between $VC\over(C+L+VR)$ and $N_{v} * VC\over C$.
+It can be inferred that the threshold value of X that would motivate some verifiers to conduct verification falls between $VC\over{C+L+VR}$ and $N_{v} * VC\over C$.
 
 The conclusion can be summarized as follows:
 
 1. $X$ > $N_{v} * VC\over C$: All the verifiers conduct verification
-2. $VC\over(C+L+VR)$ < $X$ $\le$ $N_{v} * VC\over C$: Some verifiers may conduct verification
-3. $X$ $\le$ $VC\over(C+L+VR)$: No verifiers conduct verification
+2. $VC\over{C+L+VR}$ < $X$ $\le$ $N_{v} * VC\over C$: Some verifiers may conduct verification
+3. $X$ $\le$ $VC\over{C+L+VR}$: No verifiers conduct verification
 
-The verifiers' dilemma arises regardless of $X$ if $VC\over(C+L+VR)$ $\geq 1$, similar to the situation with a unique verifier. Moreover, even if $VC\over(C+L+VR)$ < $1$, it is also not possible to completely eliminate the dilemma as a sequencer can adjust $X$ to be less than or equal to $VC\over(C+L+VR)$.
+The verifiers' dilemma arises regardless of $X$ if $VC\over{C+L+VR}$ $\ge$ $1$, similar to the situation with a unique verifier. Moreover, even if $VC\over{C+L+VR}$ < $1$, it is also not possible to completely eliminate the dilemma as a sequencer can adjust $X$ to be less than or equal to $VC\over{C+L+VR}$.
 
-Therefore, the focus is on minimizing the maximum value of X that would discourage any verifiers from conducting verification($VC\over(C+L+VR)$ in the model above). The Tokamak Network aims to address this problem through staking and staking-based fast withdrawal mechanisms.
+Therefore, the focus is on minimizing the maximum value of X that would discourage any verifiers from conducting verification, which is ${{VC}\over{C+L+VR}}$ in the model above. The Tokamak Network aims to address this problem through staking and staking-based fast withdrawal mechanisms.
 
 ### 3.3.2. Mitigation of verifiers' dilemma
 
@@ -313,16 +312,16 @@ Therefore, the focus is on minimizing the maximum value of X that would discoura
 
 Assuming the unique verifier can initiate challenges, the expected payoffs of verification and non-verification in the Super-Simple Model of Optimistic Rollup are as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*L$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
-- $C$: Sequencer Collateral; potential rewards for the verifier in the case of successful verification
+- $C$: Sequencer collateral; potential rewards for the verifier in the case of successful verification
 - $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
 - $X$: Probability of attack by the sequencer
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
-It is economically rational for the verifier to validate L2 transactions if $X$ > $VC\over(C+L+VR)$. Conversely, the verifiers' dilemma arises if a sequencer reduces the $X$ to be less than or equal to $VC\over(C+L+VR)$. This remains the same in the case of multiple verifiers.
+It is economically rational for the verifier to validate L2 transactions if $X$ > $VC\over C+L+VR$. Conversely, the verifiers' dilemma arises if a sequencer reduces the $X$ to be less than or equal to $VC\over C+L+VR$. This remains the same in the case of multiple verifiers.
 
 #### 3.3.2.2. Staking verification model
 
@@ -330,48 +329,48 @@ It is economically rational for the verifier to validate L2 transactions if $X$ 
 
 With stakers now responsible for verification, meaning they become verifiers and can initiate challenges, the expected payoffs of verification and non-verification would change:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*A*S$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
 - $S$: Staked TON
 - $A$: Slashing rate of the staked TON
 
 The only difference is that we put $A*S$, not $L$, in the expected payoff of non-verification. We do not consider staking rewards as they are irrelevant in analyzing payoffs related to verification.
 
-The verifiers' dilemma occurs when $X$ $\le$ $VC\over C+A*S+VR$. Compared to the basic verification model, the staking verification model is more effective in mitigating the dilemma when $A*S>L$. It's worth noting that satisfying this inequality is realistic, as A is easier to control than L from the perspective of the protocol.
+The verifiers' dilemma occurs when $X \le {VC\over {C+A*S+VR}}$. Compared to the basic verification model, the staking verification model is more effective in mitigating the dilemma when $A * S$ > $L$. It's worth noting that satisfying this inequality is realistic, as $A$ is easier to control than $L$ from the perspective of the protocol.
 
 - **Multiple verfifiers**
 
-With multiple stakers as verifiers, the expected payoffs of verification and non-verification for a specific verifier can be calculated as follows:
+With multiple stakers as verifiers, the expected payoffs of verification and non-verification for a specific verifier can be calculated as follows(Here $C$ is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
 
-**Expected payoff of verification:** $X*C\over N$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*A*S$ + $(1-X*Y)*VR$ 
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
 - $Y$: Probability of no verifiers, except for the verifier him/herself, conducting verification
 
 It's worth noting that other verifiers cannot affect the outcome of a slashing event for a specific verifier. If the verifier fails to join a challenge, their staked TON will be slashed.
 
-When no other verifiers conduct verification($N=1$, $Y=1$), the expected payoffs of verification and non-verification can be calculated as follows:
+When no other verifiers conduct verification $(N=1, Y=1)$, the expected payoffs of verification and non-verification can be calculated as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*A*S$ + $(1-X)*VR$ 
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
-The verifier is incentivized to validate L2 transactions if $X$ > $VC\over C+A*S+VR$, similar to when there is only one verifier. 
+The verifier is incentivized to validate L2 transactions if $X > {VC\over {C+A*S+VR}}$, similar to when there is only one verifier. 
 
-On the other hand, when all the verifiers conduct verification($N$=Number of verifiers=$N_{v}$, $Y=0$), the expected payoffs of verification and non-verification can be calculated as follows:
+On the other hand, when all the verifiers conduct verification $(N={검증자 수}={N_v}, Y=0)$, the expected payoffs of verification and non-verification can be calculated as follows:
 
-**Expected payoff of verification:** $X*C\over N_{v}$ + $VR$ - $VC$ 
-**Expected payoff of non-verification:** -$X*A*S$ + $VR$
+**Expected payoff of verification:** ${{{X * C}\over {N_v}} + {VR} - {VC}}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + VR}$
 
-The expected payoff of verification is greater than that of non-verification if $X$ > $VC\over (C/N_{v})+A*S$.
+The expected payoff of verification is greater than that of non-verification if $X > {{VC}\over {{C/N_v}+A*S}}$.
 
-It can be inferred that the threshold value of X that incentivizes some verifiers to conduct verification is between $VC\over C+A*S+VR$ and $VC\over (C/N_{v})+A*S$.
+It can be inferred that the threshold value of X that incentivizes some verifiers to conduct verification is between $VC\over {C+A * S+VR}$ and $VC\over {C/N_v+A * S}$.
 
 The conclusion can be summarized as follows:
 
-1. $X$ > $VC\over (C/N_{v})+A*S$: All the verifiers conduct verification
-2. $VC\over C+A*S+VR$ < $X$ $\le$ $VC\over (C/N_{v})+A*S$: Some verifiers may conduct verification
+1. $X$ > $VC\over C/N_{v}+A*S$: All the verifiers conduct verification
+2. $VC\over {C+A * S+VR}$ < $X$ $\le$ $VC\over{C/N_v+A * S}$: Some verifiers may conduct verification
 3. $X$ $\le$ $VC\over C+A*S+VR$: No verifiers conducts verification
 
 Higher $A$ will force sequencers to lower $X$ in order to make the L2 environment more favorable for attacks.
@@ -382,21 +381,21 @@ Higher $A$ will force sequencers to lower $X$ in order to make the L2 environmen
 
 The expected payoffs of verification and non-verification are updated when stakers not only perform verification tasks in a challenge but also offer fast withdrawals:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$ 
-**Expected payoff of non-verification:** -$X*(A*S+FW)$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * ({A * S+FW})} + ({1-X}) * VR$
 
 - $FW$: Staked TON used for fast withdrawals
 
 Compared to the staking verification model, we add $FW$ to the expected payoff of non-verification. We do not consider fast withdrawal fees, such as staking rewards, because they are irrelevant in analyzing payoffs related to verification.
 
-The verifiers' dilemma occurs if $X$ $\le$ $C\over R+A*S+F+FW$. In this scenario, the staker offering fast withdrawal is more likely to conduct verification, as $FW$ lowers the expected payoff of non-verification. ($C\over R+A*S+F$ > $C\over R+A*S+F+FW$)
+The verifiers' dilemma occurs if $X$ $\le$ $VC\over C+A * S+VR+FW$. In this scenario, the staker offering fast withdrawal is more likely to conduct verification, as $FW$ lowers the expected payoff of non-verification. $({VC\over{C+A * S+VR}}>{VC\over{C+A * S+VR+FW}})$
 
 - **Multiple verifiers**
 
-With multiple stakers acting as verifiers, the expected payoffs of verification and non-verification for a staker offering fast withdrawals can be calculated as follows(C is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
+With multiple stakers acting as verifiers, the expected payoffs of verification and non-verification for a staker offering fast withdrawals can be calculated as follows(Here $C$ is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
 
-**Expected payoff of verification:** $X*C\over N$ + $VR$ - $VC$ 
-**Expected payoff of non-verification:** -$X*(A*S + FW)$ + $(1-X*Y)*VR$
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ <br>
+**Expected payoff of non-verification:** ${-X * ({A * S+FW}) + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
 - $Y$: Probability of no verifiers, except for the verifier him/herself, conducting verification
@@ -406,11 +405,10 @@ Other verifiers have little impact on the expected payoff of non-verification fo
 Using the same logic as previous models, the result can be summarized as follows:
 
 1. $X$ > $VC \over C/N_{v}+A*S+FW$: All the verifiers conduct verification
-2. $VC\over C+A*S+VR+FW$ < $X$ $\le$ $VC \over C/N_{v}+A*S+FW$: Some verifiers may conduct verification
+2. $VC\over C+A * S+VR+FW$ < $X$ $\le$ $VC \over C/N_{v}+A * S+FW$: Some verifiers may conduct verification
 3. $X$ $\le$ $VC\over C+A*S+VR+FW$: No verifiers conducts verification
 
-Compared to the staking verification model, the maximum value of X, at which no verifiers conduct verification, is smaller($VC\over C+A*S+VR$ > $VC\over C+A*S+VR+FW$). In addition, the minimum value of X that allows all verifiers to conduct verification has decreased($VC\over (C/N_{v})+A*S$ > $VC \over C/N_{v}+A*S+FW$).
-
+Compared to the staking verification model, the maximum value of $X$, at which no verifiers conduct verification, is smaller. $({VC\over{C+A * S+VR}}>{VC\over{C+A * S+VR+FW}})$ 
 
 #### 3.3.2.4. Comparison among models
 
@@ -460,20 +458,20 @@ We will use the following denotation in the example:
 
 Let's say a sequencer has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, $D$ = 0 TON, and $C$ = 20 TON, most of $Seig$ goes to stakers:
 
-**Sequencer:** ($D+C\over T$) * $Seig$ = $(0+20)\over 100$ * 10 = 2 TON
-**Stakers:** ($T-D-C\over T$) * $Seig$ = $(100-0-20)\over 100$ * 10 = 8 TON
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{0+20}\over 100} * 10$ = 2 TON <br>
+**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-0-20}\over 100} * 10$ = 8 TON
 
 If the sequencer draws more depositors to L2, and as a result, $D$ increases to 30 TON, $Seig$ is redistributed:
 
-**Sequencer:** ($D+C\over T$) * $Seig$ = $(30+20)\over 100$ * 10 = 5 TON
-**Stakers:** ($T-D-C\over T$) * $Seig$ = $(100-30-20)\over 100$ * 10 = 5 TON
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{30+20}\over 100} * 10$ = 5 TON <br>
+**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-30-20}\over 100} * 10$ = 5 TON
 
 As the L2 TVL grows from 20 TON to 50 TON, the seigniorage for the sequencer increases from 2 TON to 5 TON. 
 
 The sequencer will try to raise $D$ to 50 TON if the income generated from it (other than L2 transaction fees) is sufficient to cover L1 security fees.
 
-**Sequencer:** ($D+C\over T$) * $Seig$ = $(50+20)\over 100$ * 10 = 7 TON
-**Stakers:** ($T-D-C\over T$) * $Seig$ = $(100-50-20)\over 100$ * 10 = 3 TON
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7 TON <br>
+**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-50-20}\over 100} * 10$ = 3 TON
 
 An additional 2 TON is added to the seigniorage for the sequencer. Plus, the sequencer does not need to sell the native tokens from L2 transaction fees, thanks to the additional cash flow from increased deposits. This allows us to overcome the L2 fee token dilemma.
 
@@ -492,24 +490,24 @@ Let's think about a hypothetical L2 whose security relies on stakers A, B, and C
 
 If the sequencer executes an attack using invalid transactions, stakers can either ignore it or initiate a challenge. The change in assets of each entity would be as follows if no challenge occurs:
 
-**Sequencer:** 0 TON
-**Staker A:** -$S_{A}$ * $A$ = -200 * 30% = -60 TON
-**Staker B:** -$S_{B}$ * $A$ = -300 * 30% = -90 TON
-**Staker C:** -$S_{C}$ * $A$ = -500 * 30% = -150 TON
+**Sequencer:** 0 TON <br>
+**Staker A:** $-S_A * A$ = $-200 * 0.3$ = -60 TON <br>
+**Staker B:** $-S_B * A$ = $-300 * 0.3$ = -90 TON <br>
+**Staker C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker A runs a challenge and staker B supports it, while staker C does not participate in the challenge, the change in assets of each entity would be as follows:
 
-**Sequencer:** -$C$ = -1000 TON
-**Stkaer A:** +$C$ = +1000 TON
-**Staker B:** +0 TON
-**Staler C:** -$S_{C}$ * $A$ = -500*30% = -150 TON
+**Sequencer:** $-C$ = -1000 TON <br>
+**Stkaer A:** $+C$ = +1000 TON <br>
+**Staker B:** +0 TON <br>
+**Staler C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker C decides to join the challenge but chooses the wrong side, the bigger loss cannot be avoided:
 
-**Sequencer:** -$C$ = -1000 TON
-**Stkaer A:** +$C$ = +1000 TON
-**Staker B:** +0 TON
-**Staler C:** -$MinChal$ - $S_{C}$ * $A$ = -100 - 500*30% = -250 TON
+**Sequencer:** $-C$ = -1000 TON <br>
+**Stkaer A:** $+C$ = +1000 TON <br>
+**Staker B:** +0 TON <br>
+**Staler C:** $-MinChal - S_C * A$ = $-100 - (500 * 0.3)$ = -250 TON
 
 As you can see from the results, appropriate rewards and punishments can encourage behaviors that benefit the protocol. Firstly, it is possible to receive rewards if you can identify the malicious actions of a sequencer like staker A. Conversely, the stakes of all stakers can be slashed if no one initiates a challenge. Additionally, even if someone initiates a challenge, you can still lose a portion of your stake TON if you are absent from a challenge like staker C. Lastly, in the case of selecting the wrong side in a challenge, the worst outcome can occur.
 
@@ -521,8 +519,8 @@ We assume a unique verifier in the examples below to simplify the discussion. As
 
 The expected payoffs of verification and non-verification in Super-Simple Model in Optimistic Rollup are as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*L$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
 - $C$: Sequencer Collateral; potential rewards for the verifier in the case of successful verification
 - $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
@@ -530,20 +528,20 @@ The expected payoffs of verification and non-verification in Super-Simple Model 
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
-The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if $C=10$, $L=10$, $VC=20$, $VR=10$:
+The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if $C=10$, $L=10$, $VC=20$, and $VR=10$:
 
-**Expected payoff of verification:** $2\over 3$ * 10 + 10 - 20 = -$10\over 3$
-**Expected payoff of non-verification:** -$2\over 3$ * 10 + (1-$2\over 3$)*10 = -$10\over 3$
+**Expected payoff of verification:** ${2\over 3} * 10 + 10 - 20$ = $-{10\over 3}$ <br>
+**Expected payoff of non-verification:** $-{2\over 3} * 10 + ({1-{2\over 3}})*10$ = $-{10\over 3}$
 
 We can shrink the maximum value of $X$ that precipitates the verifiers' dilemma by increasing either $C$ or $L$. For instance, the value of $X$ that makes the expected payoff of verification and non-verification equal falls to $1\over 2$ if we double $C$:
 
-**Expected payoff of verification:** $1\over 2$ * 20 + 10 - 20 = 0
-**Expected payoff of non-verification:** -$1\over 2$ * 10 + (1-$1\over 2$)*10 = 0
+**Expected payoff of verification:** ${{1\over 2} * 20} + 10 - 20$ = 0 <br>
+**Expected payoff of non-verification:** $-{1\over 2} * 10 + ({1-{1\over 2}})*10$ = 0
 
 Similarly, the value of $X$ that makes the expected payoff of verification and non-verification equal falls to $1\over 2$ if we double $L$:
 
-**Expected payoff of verification:** $1\over 2$ * 10 + 10 - 20 = -5
-**Expected payoff of non-verification:** -$1\over 2$ * 20 + (1-$1\over 2$)*10 = -5
+**Expected payoff of verification:** ${{1\over 2} * 10} + 10 - 20$ = -5 <br>
+**Expected payoff of non-verification:** $-{1\over 2} * 20 + ({1-{1\over 2}})*10$ = -5
 
 Consequently, as $C$ or $L$ increases, the maximum value of $X$ that causes the verifiers' dilemma drops, making L2 safer. However, it can be difficult for the protocol to control $C$ or $L$.
 
@@ -551,21 +549,21 @@ Consequently, as $C$ or $L$ increases, the maximum value of $X$ that causes the 
 
 The expected payoffs of verification and non-verification get modified as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*A*S$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
 - $S$: Staked TON
 - $A$: Slahsing rate of the staked TON
 
-The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, and $S=100$($L=10=0.1*100=A*S$):
+The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, and $S=100$ $(L=10=0.1 * 100=A * S)$:
 
-**Expected payoff of verification:** $2\over 3$ * 10 + 10 - 20 = -$10\over 3$
-**Expected payoff of non-verification:** -$2\over 3$ * 0.1 * 100 + (1-$2 \over3$)*10 = -$10\over 3$
+**Expected payoff of verification:** ${{2\over 3} * 10} + 10 - 20$ = $-{10\over 3}$ <br>
+**Expected payoff of non-verification:** ${-{2\over 3} * 0.1 * 100} + ({1-{2\over 3}})*10$ = $-{10\over 3}$
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $1\over 2$ if we double $A$.
 
-**Expected payoff of verification:** $1\over 2$ * 10 + 10 - 20 = -5
-**Expected payoff of non-verification:** -$1\over 2$ * 0.2 * 100 + (1-$1 \over2$)*10 = -5
+**Expected payoff of verification:** ${{1\over 2} * 10} + 10 - 20$ = -5 <br>
+**Expected payoff of non-verification:** ${-{1\over 2} * 0.2 * 100} + ({1-{1\over 2}})*10$ = -5
 
 We have the same result as the basic verification model with $L=10$ and $L=20$. However, because $A$ is more easily controllable, it is much simpler to achieve an identical outcome.
 
@@ -573,24 +571,24 @@ We have the same result as the basic verification model with $L=10$ and $L=20$. 
 
 With stakers offering fast withdrawals, the expected payoffs of verification and non-verification are updated as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*(A*S+FW)$ + $(1-X)*VR$ 
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * ({A * S+FW})} + ({1-X}) * VR$
 
 - $FW$: Staked TON used for fast withdrawals
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 13$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, $S=100$, and $FW = 100$:
 
-**Expected payoff of verification:** $2\over 13$ * 10 + 10 - 20 = -$110\over 13$ 
-**Expected payoff of non-verification:** -$2\over 13$*(0.1 * 100 + 100) + (1-$2\over 13$)*10 = -$110\over 13$ 
+**Expected payoff of verification:** ${{2\over 13} * 10} + 10 - 20$ = $-{110\over 13}$ <br>
+**Expected payoff of non-verification:** ${-{2\over 13}*({0.1 * 100 + 100})} + ({1-{2\over 13}})*10$ = $-{110\over 13}$ 
 
-It is safer than the staking verification model($2\over 3$>$2\over 13$).
+It is safer than the staking verification model. $({2\over 3}>{2\over 13})$
 
-The value of $X$ that makes the expected payoff of verification and non-verification equal drops to $2\over 14$=$1 \over7$ if we double $A$:
+The value of $X$ that makes the expected payoff of verification and non-verification equal drops to ${2\over 14}={1\over 7}$ if we double $A$:
 
-**Expected payoff of verification:** $1\over 7$ * 10 + 10 - 20 = -$60\over 7$ 
-**Expected payoff of non-verification:** -$1\over 7$*(0.2 * 100 + 100) + (1-$1\over7$)*10 = -$60\over 7$
+**Expected payoff of verification:** ${{1\over 7} * 10} + 10 - 20$ = $-{60\over 7}$ <br>
+**Expected payoff of non-verification:** ${-{1\over 7}*({0.2 * 100 + 100})} + ({1-{1\over 7}})*10$ = $-{60\over 7}$
 
-Again, it is safer than the staking verification model($1\over 2$>$1\over 7$).
+Again, it is safer than the staking verification model. $({1\over 2}>{1\over 7})$
 
 #### 6.2.2.4. Comparison among models
 
@@ -599,7 +597,7 @@ Assuming $C=10$, $L=10$, $VC=20$, $VR=10$, $A=0.1$, $S=100$, and $FW = 100$, the
 
 |                                | Basic verification model |           Staking verification model           |      Staking & fast withdrawal verification model      |
 |:------------------------------:|:--------------:|:--------------------------------------:|:--------------------------------------:|
-| Maximum value of $X$ causing Verifiers' dilemma| $1\over 2$ |            $1\over 2$            |          $1\over 7$           |
+| Maximum value of $X$ causing verifiers' dilemma| $1\over 2$ |            $1\over 2$            |          $1\over 7$           |
 |                            |                | more controllable parameters | more controllable parameters |
 
 
