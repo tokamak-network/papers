@@ -1,6 +1,5 @@
 # Tokamak layer 2(L2) Cryptoeconomics
 
-Ver. 1.0.1 
 
 # Authors
 
@@ -31,7 +30,6 @@ Ver. 1.0.1
     3.1. Challenge
         3.1.1. Overview
         3.1.2. Procedure
-        3.1.3. Balanced staking incentive structure
 
     3.2. Fast Withdrawal
         3.2.1. Overview
