@@ -1,7 +1,5 @@
 # Tokamak layer 2(L2) Cryptoeconomics
 
-Ver. 1.0.1 
-Last updated: Jan. 26th. 2023
 
 # Authors
 
@@ -32,7 +30,6 @@ Last updated: Jan. 26th. 2023
     3.1. Challenge
         3.1.1. Overview
         3.1.2. Procedure
-        3.1.3. Balanced staking incentive structure
 
     3.2. Fast Withdrawal
         3.2.1. Overview
@@ -65,9 +62,9 @@ Last updated: Jan. 26th. 2023
 
 Layer 2 (L2) is a technology that emerged to complement the slower Layer 1 (L1) by processing transactions in L2 and relying on L1 for the validity of such transactions. Technologies such as Optimistic rollup, ZK (Zero-Knowledge) rollup, and Validium fall under this category. Currently, protocols that utilize Optimistic rollup like Arbitrum and Optimism hold about 80% of the L2 market. In Optimistic rollup, a bundle of L2 transactions is submitted to L1 and is considered valid unless users raise issues.
 
-The Tokamak Network, based on Optimism, aims to foster a stable environment for the creation of on-demand L2 blockchains. We have been focusing on maximizing the utilities of TON to be competitive compared to other protocols using Optimistic rollup. For example, in a previous study, we explored how newly issued TON can help with L2 growth and establish TON as an L2 fee token.
+The Tokamak Network, based on Optimism, aims to foster a stable environment for the creation of on-demand L2 blockchains. We have been focusing on maximizing the utilities of TON to be competitive compared to other protocols using Optimistic rollup. For example, in a previous study, we explored how newly issued TON can help with L2 growth and establish native tokens as an L2 fee token.
 
-In this paper, we will discuss further expanding the use of TON in the L2 environment by upgrading the existing staking service. As previously mentioned, TON seigniorage can facilitate L2 growth by rewarding sequencers' performances. It can alleviate the L2 fee token dilemma and thus lay the foundation for native tokens to be used as an L2 fee token. Consequently, L2 blockchains within the Tokamak Network can build independent economies and be on the path of sustainable growth. 
+In this paper, we will discuss further expanding the use of TON in the L2 environment by upgrading the existing staking service. As previously mentioned, TON seigniorage can facilitate L2 growth by rewarding sequencers' performances. It can alleviate the L2 fee token dilemma and thus lay the foundation for native tokens to be used as an L2 fee token. Consequently, L2 blockchains within the Tokamak Network can build independent economies and be on the path of sustainable growth. <br>
 Additionally, TON, as a medium of rewards and punishment in challenges and fast withdrawals, can encourage TON stakers to take responsibility for L2 security. With appropriate rewards and penalties in a challenge, a more balanced staking incentive structure will motivate stakers to actively engage in verification tasks. Moreover, if we add the fast withdrawal service offered by stakers, a more robust L2 environment can be formed by mitigating the verifiers' dilemma.
 
 
@@ -95,7 +92,7 @@ Additionally, TON, as a medium of rewards and punishment in challenges and fast 
 
 TON seigniorage acts as a catalyst for the growth of L2 in the Tokamak Network. The continuous expansion of L2 provides a foundation for the native token to be used as a fee token. 
 
-In summary, TON promotes sustainable growth of L2 blockchains by enabling them to establish an economy less reliant on external factors.
+In a nutshell, TON promotes sustainable growth of L2 blockchains by enabling them to establish an economy less reliant on external factors.
 
 ## 2.1. Seigniorage generation
 
@@ -124,34 +121,34 @@ The current staking service provided by Tokamak Network is called TON staking V1
 
 In this version, seigniorage is distributed in the following manner:
  
-**Stakers:** ($S\over T$ + $W_S$ * ($T-S\over T$)) * $Seig$
-**TON DAO:** $W_D$ * ($T-S\over T$) * $Seig$
-**sTOS holders:** $W_P$ * ($T-S\over T$) * $Seig$
+**Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$ <br>
+**TON DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$ <br>
+**sTOS holders:** ${{W_P} * {{T-S}\over T} * {Seig}}$
 
 - $T$: Total TON supply
 - $S$: Total amount of TON staked
 - $Seig$: Seigniorage generated during a predetermined period
 - $W_S$, $W_D$, $W_P$: Seigniorage weights for stakers / TON DAO / sTOS holders
-($W_S$ + $W_D$ + $W_P$ $\leq$ 1)
+$({{W_S} + {W_D} + {W_P}} \leq 1)$
 
 If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all seigniorage will go to stakers.
 
-**Stakers:** ($S\over T$ + $1$ * ($T-S\over T$)) * $Seig$ = $Seig$
-**TON DAO:** $0$ * ($T-S\over T$) * $Seig$ = $0$
-**sTOS holders:** $0$ * ($T-S\over T$) * $Seig$ = $0$
+**Stakers:** ${({S\over T} + 1 * {{T-S}\over T}) * {Seig}}$ = $Seig$ <br>
+**TON DAO:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$ <br>
+**sTOS holders:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$
 
 ### 2.2.2. TON staking V2
 
 Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
 
 
-**Sequencer:** ($D+C\over T$) * $Seig$ = ($T_{L2}\over T$) * $Seig$
-**Stakers:** ($T-D-C\over T$) * $Seig$ = ($T-T_{L2}\over T$) * $Seig$ = ($T_{L1}\over T$) * $Seig$
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ <br> 
+**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
 
 - $D$: Total amount of TON deposited
 - $C$: Sequencer collateral
-- $T_{L2}$ ($\equiv$ $D+C$): L2 TON supply
-- $T_{L1}$ ($\equiv$ $T-D-C$ = $T-T_{L2}$): L1 TON supply
+- ${T_{L2} \equiv D+C}$: L2 TON supply
+- ${T_{L1} \equiv T-D-C = T-T_{L2}}$: L1 TON supply
 
 ## 2.3. Sustainable growth of L2
 
@@ -187,7 +184,7 @@ Seigniorage distribution can alleviate this dilemma by encouraging sequencers to
 
 # 3. Verification economics
 
-In staking V2, TON contributes to not only the growth but also the security of L2. More specifically, it acts as a medium for rewards and punishment in challenges and helps to build a constant monitoring system by stakers. Furthermore, staking and staking-based fast withdrawals ameliorate the verifiers' dilemma and make L2 security even more robust.
+In staking V2, TON contributes to not only the growth but also the security of L2. More specifically, it acts as a medium for rewards and penalties in challenges and helps to build a constant monitoring system by stakers. Furthermore, staking and staking-based fast withdrawals ameliorate the verifiers' dilemma and make L2 security even more robust.
 
 
 ## 3.1. Challenge
@@ -232,10 +229,6 @@ In Tokamak Network, the challenge is expected to proceed as follows:
 - The sequencer will lose immediately if the following conditions hold:
     - No commits occur during DTD.
 
-### 3.1.3. Balanced staking incentive structure
-
-As you can see from the procedure, the Tokamak Network encourages stakers to become involved in the challenge with potential rewards and penalties. However, it tends to emphasize penalties more than rewards, aiming to balance the reward-focused approach of staking V1. In staking V2, stakers are given more responsibilities for L2 security, resulting in a balance between rewards and responsibilities.
-
 ## 3.2. Fast Withdrawal
 
 ### 3.2.1. Overview
@@ -256,12 +249,12 @@ As the current staking service is updated, staked TON, in addition to external l
 
 ### 3.3.1. Overview
 
-Determining the appropriate levels of rewards and punishments in the challenge is crucial, as the "verifier's dilemma" arises in this situation. The verifier's dilemma occurs when no one will validate L2 transactions if the expected benefit of verification is not greater than that of non-verification.
+Determining the appropriate levels of rewards and penalties in the challenge is crucial, as the "verifier's dilemma" arises in this situation. The verifier's dilemma occurs when no one will validate L2 transactions if the expected benefit of verification is not greater than that of non-verification.
 
 In the Super-Simple Model of Optimistic Rollup, where a unique verifier who is also a stakeholder in the rollup can initiate a challenge, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*L$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
 - $C$: Sequencer collateral; potential rewards for the verifier in the case of successful verification
 - $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
@@ -269,43 +262,41 @@ In the Super-Simple Model of Optimistic Rollup, where a unique verifier who is a
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
-The expected payoff of verification is greater than that of non-verification if $X$ > $VC\over(C+L+VR)$. Conversely, the verifiers' dilemma arises if $X$ $\le$ $VC\over(C+L+VR)$.
+The expected payoff of verification is greater than that of non-verification if $X$ > $VC\over{C+L+VR}$. Conversely, the verifiers' dilemma arises if $X$ $\le$ $VC\over{C+L+VR}$. Notably, It is difficult to completely eliminate the verifier's dilemma. For example, the dilemma will always occur if $VC \ge {C+L+VR}$ because $0\le X\le 1$ $\le$ $VC\over{C+L+VR}$. Conversly, a sequencer can find $X_A$ that meets $0 < {X_A} \le {{VC}\over{C+L+VR}}$ if $VC<{C+L+VR}$, given that $VC$, $C$, $L$, $VR$ are not negative.
 
-Notably, It is difficult to completely eliminate the verifier's dilemma. For example, the dilemma will always occur if $VC \ge (C+L+VR)$ because $0\le X\le 1$ $\le$ $VC\over(C+L+VR)$. Conversly, a sequencer can find $X_{A}$ that meets $0<X_{A}$ $\le$ $VC\over(C+L+VR)$ if $VC<(C+L+VR)$, given that $VC$, $C$, $L$, $VR$ are not negative.
+Having multiple verifiers does not significantly change the discussion. Assuming multiple verifiers can initiate challenges, the expected payoffs of verification and non-verification for a specific verifier are as follows (Here $C$ is evenly distributed among verifiers participating in the challenge):
 
-Having multiple verifiers does not significantly change the discussion. Assuming multiple verifiers can initiate challenges, the expected payoffs of verification and non-verification for a specific verifier are as follows ($C$ is evenly distributed among verifiers participating in the challenge):
-
-**Expected payoff of verification:** $X*C\over N$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*Y*L$ + $(1-X*Y)*VR$
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ <br>
+**Expected payoff of non-verification:** ${-X * Y * L + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
 - $Y$: Probability of no verifiers, except for the verifier him/herself, conducting verification
 
-If no other verifiers perform verification($N=1$, $Y=1$), the expected payoffs of verification and non-verification are as follows:
+If no other verifiers perform verification $(N=1, Y=1)$, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*L$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
-The verifier is incentivized to validate L2 transactions if $X$ > $VC\over(C+L+VR)$, as we assumed with a unique verifier.
+The verifier is incentivized to validate L2 transactions if $X$ > $VC\over{C+L+VR}$, as we assumed with a unique verifier.
 
-On the other hand, if all verifiers conduct verification($N$=Number of verifiers=$N_{v}$, $Y=0$), the expected payoffs of verification and non-verification are as follows:
+On the other hand, if all verifiers conduct verification $(N={NumberOfVerifiers}={N_v}, Y=0)$, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** $X*C\over N_{v}$ + $VR$ - $VC$ 
-**Expected payoff of non-verification:** $VR$ 
+**Expected payoff of verification:** $X*C\over N_v$ + $VR$ - $VC$ <br>
+**Expected payoff of non-verification:** $VR$
 
 The verifier is more likely to conduct verification if $X$ > $N_{v} * VC\over C$.
 
-It can be inferred that the threshold value of X that would motivate some verifiers to conduct verification falls between $VC\over(C+L+VR)$ and $N_{v} * VC\over C$.
+It can be inferred that the threshold value of X that would motivate some verifiers to conduct verification falls between $VC\over{C+L+VR}$ and $N_{v} * VC\over C$.
 
 The conclusion can be summarized as follows:
 
 1. $X$ > $N_{v} * VC\over C$: All the verifiers conduct verification
-2. $VC\over(C+L+VR)$ < $X$ $\le$ $N_{v} * VC\over C$: Some verifiers may conduct verification
-3. $X$ $\le$ $VC\over(C+L+VR)$: No verifiers conduct verification
+2. $VC\over{C+L+VR}$ < $X$ $\le$ $N_{v} * VC\over C$: Some verifiers may conduct verification
+3. $X$ $\le$ $VC\over{C+L+VR}$: No verifiers conduct verification
 
-The verifiers' dilemma arises regardless of $X$ if $VC\over(C+L+VR)$ $\geq 1$, similar to the situation with a unique verifier. Moreover, even if $VC\over(C+L+VR)$ < $1$, it is also not possible to completely eliminate the dilemma as a sequencer can adjust $X$ to be less than or equal to $VC\over(C+L+VR)$.
+The verifiers' dilemma arises regardless of $X$ if $VC\over{C+L+VR}$ $\ge$ $1$, similar to the situation with a unique verifier. Moreover, even if $VC\over{C+L+VR}$ < $1$, it is also not possible to completely eliminate the dilemma as a sequencer can adjust $X$ to be less than or equal to $VC\over{C+L+VR}$.
 
-Therefore, the focus is on minimizing the maximum value of X that would discourage any verifiers from conducting verification($VC\over(C+L+VR)$ in the model above). The Tokamak Network aims to address this problem through staking and staking-based fast withdrawal mechanisms.
+Therefore, the focus is on minimizing the maximum value of X that would discourage any verifiers from conducting verification, which is ${{VC}\over{C+L+VR}}$ in the model above. The Tokamak Network aims to address this problem through staking and staking-based fast withdrawal mechanisms.
 
 ### 3.3.2. Mitigation of verifiers' dilemma
 
@@ -313,16 +304,16 @@ Therefore, the focus is on minimizing the maximum value of X that would discoura
 
 Assuming the unique verifier can initiate challenges, the expected payoffs of verification and non-verification in the Super-Simple Model of Optimistic Rollup are as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*L$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
-- $C$: Sequencer Collateral; potential rewards for the verifier in the case of successful verification
+- $C$: Sequencer collateral; potential rewards for the verifier in the case of successful verification
 - $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
 - $X$: Probability of attack by the sequencer
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
-It is economically rational for the verifier to validate L2 transactions if $X$ > $VC\over(C+L+VR)$. Conversely, the verifiers' dilemma arises if a sequencer reduces the $X$ to be less than or equal to $VC\over(C+L+VR)$. This remains the same in the case of multiple verifiers.
+It is economically rational for the verifier to validate L2 transactions if $X$ > $VC\over C+L+VR$. Conversely, the verifiers' dilemma arises if a sequencer reduces the $X$ to be less than or equal to $VC\over C+L+VR$. This remains the same in the case of multiple verifiers.
 
 #### 3.3.2.2. Staking verification model
 
@@ -330,48 +321,48 @@ It is economically rational for the verifier to validate L2 transactions if $X$ 
 
 With stakers now responsible for verification, meaning they become verifiers and can initiate challenges, the expected payoffs of verification and non-verification would change:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*A*S$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
 - $S$: Staked TON
 - $A$: Slashing rate of the staked TON
 
 The only difference is that we put $A*S$, not $L$, in the expected payoff of non-verification. We do not consider staking rewards as they are irrelevant in analyzing payoffs related to verification.
 
-The verifiers' dilemma occurs when $X$ $\le$ $VC\over C+A*S+VR$. Compared to the basic verification model, the staking verification model is more effective in mitigating the dilemma when $A*S>L$. It's worth noting that satisfying this inequality is realistic, as A is easier to control than L from the perspective of the protocol.
+The verifiers' dilemma occurs when $X \le {VC\over {C+A*S+VR}}$. Compared to the basic verification model, the staking verification model is more effective in mitigating the dilemma when $A * S$ > $L$. It's worth noting that satisfying this inequality is realistic, as $A$ is easier to control than $L$ from the perspective of the protocol.
 
 - **Multiple verfifiers**
 
-With multiple stakers as verifiers, the expected payoffs of verification and non-verification for a specific verifier can be calculated as follows:
+With multiple stakers as verifiers, the expected payoffs of verification and non-verification for a specific verifier can be calculated as follows(Here $C$ is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
 
-**Expected payoff of verification:** $X*C\over N$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*A*S$ + $(1-X*Y)*VR$ 
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
 - $Y$: Probability of no verifiers, except for the verifier him/herself, conducting verification
 
 It's worth noting that other verifiers cannot affect the outcome of a slashing event for a specific verifier. If the verifier fails to join a challenge, their staked TON will be slashed.
 
-When no other verifiers conduct verification($N=1$, $Y=1$), the expected payoffs of verification and non-verification can be calculated as follows:
+When no other verifiers conduct verification $(N=1, Y=1)$, the expected payoffs of verification and non-verification can be calculated as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*A*S$ + $(1-X)*VR$ 
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
-The verifier is incentivized to validate L2 transactions if $X$ > $VC\over C+A*S+VR$, similar to when there is only one verifier. 
+The verifier is incentivized to validate L2 transactions if $X > {VC\over {C+A*S+VR}}$, similar to when there is only one verifier. 
 
-On the other hand, when all the verifiers conduct verification($N$=Number of verifiers=$N_{v}$, $Y=0$), the expected payoffs of verification and non-verification can be calculated as follows:
+On the other hand, when all the verifiers conduct verification $(N={NumberOfVerifiers}={N_v}, Y=0)$, the expected payoffs of verification and non-verification can be calculated as follows:
 
-**Expected payoff of verification:** $X*C\over N_{v}$ + $VR$ - $VC$ 
-**Expected payoff of non-verification:** -$X*A*S$ + $VR$
+**Expected payoff of verification:** ${{{X * C}\over {N_v}} + {VR} - {VC}}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + VR}$
 
-The expected payoff of verification is greater than that of non-verification if $X$ > $VC\over (C/N_{v})+A*S$.
+The expected payoff of verification is greater than that of non-verification if $X > {{VC}\over {{C/N_v}+A*S}}$.
 
-It can be inferred that the threshold value of X that incentivizes some verifiers to conduct verification is between $VC\over C+A*S+VR$ and $VC\over (C/N_{v})+A*S$.
+It can be inferred that the threshold value of X that incentivizes some verifiers to conduct verification is between $VC\over {C+A * S+VR}$ and $VC\over {C/N_v+A * S}$.
 
 The conclusion can be summarized as follows:
 
-1. $X$ > $VC\over (C/N_{v})+A*S$: All the verifiers conduct verification
-2. $VC\over C+A*S+VR$ < $X$ $\le$ $VC\over (C/N_{v})+A*S$: Some verifiers may conduct verification
+1. $X$ > $VC\over C/N_{v}+A*S$: All the verifiers conduct verification
+2. $VC\over {C+A * S+VR}$ < $X$ $\le$ $VC\over{C/N_v+A * S}$: Some verifiers may conduct verification
 3. $X$ $\le$ $VC\over C+A*S+VR$: No verifiers conducts verification
 
 Higher $A$ will force sequencers to lower $X$ in order to make the L2 environment more favorable for attacks.
@@ -382,21 +373,21 @@ Higher $A$ will force sequencers to lower $X$ in order to make the L2 environmen
 
 The expected payoffs of verification and non-verification are updated when stakers not only perform verification tasks in a challenge but also offer fast withdrawals:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$ 
-**Expected payoff of non-verification:** -$X*(A*S+FW)$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * ({A * S+FW})} + ({1-X}) * VR$
 
 - $FW$: Staked TON used for fast withdrawals
 
-Compared to the staking verification model, we add $FW$ to the expected payoff of non-verification. We do not consider fast withdrawal fees, such as staking rewards, because they are irrelevant in analyzing payoffs related to verification.
+Compared to the staking verification model, we add $FW$ to the expected payoff of non-verification. We do not consider fast withdrawal fees because they are irrelevant in analyzing payoffs related to verification.
 
-The verifiers' dilemma occurs if $X$ $\le$ $C\over R+A*S+F+FW$. In this scenario, the staker offering fast withdrawal is more likely to conduct verification, as $FW$ lowers the expected payoff of non-verification. ($C\over R+A*S+F$ > $C\over R+A*S+F+FW$)
+The verifiers' dilemma occurs if $X$ $\le$ $VC\over C+A * S+VR+FW$. In this scenario, the staker offering fast withdrawal is more likely to conduct verification, as $FW$ lowers the expected payoff of non-verification. $({VC\over{C+A * S+VR}}>{VC\over{C+A * S+VR+FW}})$
 
 - **Multiple verifiers**
 
-With multiple stakers acting as verifiers, the expected payoffs of verification and non-verification for a staker offering fast withdrawals can be calculated as follows(C is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
+With multiple stakers acting as verifiers, the expected payoffs of verification and non-verification for a staker offering fast withdrawals can be calculated as follows(Here $C$ is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
 
-**Expected payoff of verification:** $X*C\over N$ + $VR$ - $VC$ 
-**Expected payoff of non-verification:** -$X*(A*S + FW)$ + $(1-X*Y)*VR$
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ <br>
+**Expected payoff of non-verification:** ${-X * ({A * S+FW}) + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
 - $Y$: Probability of no verifiers, except for the verifier him/herself, conducting verification
@@ -406,11 +397,10 @@ Other verifiers have little impact on the expected payoff of non-verification fo
 Using the same logic as previous models, the result can be summarized as follows:
 
 1. $X$ > $VC \over C/N_{v}+A*S+FW$: All the verifiers conduct verification
-2. $VC\over C+A*S+VR+FW$ < $X$ $\le$ $VC \over C/N_{v}+A*S+FW$: Some verifiers may conduct verification
+2. $VC\over C+A * S+VR+FW$ < $X$ $\le$ $VC \over C/N_{v}+A * S+FW$: Some verifiers may conduct verification
 3. $X$ $\le$ $VC\over C+A*S+VR+FW$: No verifiers conducts verification
 
-Compared to the staking verification model, the maximum value of X, at which no verifiers conduct verification, is smaller($VC\over C+A*S+VR$ > $VC\over C+A*S+VR+FW$). In addition, the minimum value of X that allows all verifiers to conduct verification has decreased($VC\over (C/N_{v})+A*S$ > $VC \over C/N_{v}+A*S+FW$).
-
+Compared to the staking verification model, the maximum value of $X$, at which no verifiers conduct verification, is smaller. $({VC\over{C+A * S+VR}}>{VC\over{C+A * S+VR+FW}})$ 
 
 #### 3.3.2.4. Comparison among models
 
@@ -428,7 +418,7 @@ The staking verification model can more easily control verification incentives b
     
 ## 4.1. Sustainable growth of L2
 
-TON incentivizes sequencers to contribute to the growth of L2 both quantitatively and qualitatively. Sequencers aim to attract capital from a large number of users in order to maximize stable seigniorage revenue, resulting in the expansion of L2.
+TON incentivizes sequencers to contribute to the growth of L2 both quantitatively and qualitatively. Sequencers aim to attract capital from a large number of users in order to maximize stable seigniorage revenue, resulting in the expansion of L2. <br>
 Once the user base is established, L2 can generate a revenue stream other than transaction fees through discretionary fee policies or useful Dapps. L2 can use a native token as a fee token without falling into the L2 fee token dilemma if such an additional cash flow covers L1 security fees.
 
 As a result, L2 blockchains are able to build their economy with less influence from external factors.
@@ -443,8 +433,8 @@ Additionally, fast withdrawal by stakers can mitigate the verifiers' dilemma. Th
 
 We had assumed that there were no current technological means to prove the validity of L2 transactions. For example, using the fraud proof in Optimistic Rollup, the Tokamak Network will stimulate stakers to correct invalid transactions through challenges. However, as the validity proof (such as zero-knowledge proof) becomes more advanced, the verification process of L2 transactions will become simpler.
 
-This will impact the utilities of TON. Firstly, it is notable that fast withdrawals may become less necessary, as verification will take less time. Therefore, there will be no need to provide incentives for fast withdrawals. 
-On the other hand, regardless of the fraud proof or validity proof, challenges assisted by stakers can still be used. TON can keep contributing to L2 security as a medium for rewards and punishment in challenges. Furthermore, seigniorage distribution, which drives L2 expansion, is expected to maintain its role. TON seigniorage will be the foundation for sustainable growth of the L2 ecosystem by promoting both quantitative and qualitative growth of L2 and alleviating the L2 fee token dilemma.
+This will impact the utilities of TON. Firstly, it is notable that fast withdrawals may become less necessary, as verification will take less time. Therefore, there will be no need to provide incentives for fast withdrawals. <br>
+On the other hand, regardless of the fraud proof or validity proof, challenges assisted by stakers can still be used. TON can keep contributing to L2 security as a medium for rewards and penalties in challenges. Furthermore, seigniorage distribution, which drives L2 expansion, is expected to maintain its role. TON seigniorage will be the foundation for sustainable growth of the L2 ecosystem by promoting both quantitative and qualitative growth of L2 and alleviating the L2 fee token dilemma.
 
 # 6. Examples
 
@@ -460,20 +450,20 @@ We will use the following denotation in the example:
 
 Let's say a sequencer has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, $D$ = 0 TON, and $C$ = 20 TON, most of $Seig$ goes to stakers:
 
-**Sequencer:** ($D+C\over T$) * $Seig$ = $(0+20)\over 100$ * 10 = 2 TON
-**Stakers:** ($T-D-C\over T$) * $Seig$ = $(100-0-20)\over 100$ * 10 = 8 TON
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{0+20}\over 100} * 10$ = 2 TON <br>
+**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-0-20}\over 100} * 10$ = 8 TON
 
 If the sequencer draws more depositors to L2, and as a result, $D$ increases to 30 TON, $Seig$ is redistributed:
 
-**Sequencer:** ($D+C\over T$) * $Seig$ = $(30+20)\over 100$ * 10 = 5 TON
-**Stakers:** ($T-D-C\over T$) * $Seig$ = $(100-30-20)\over 100$ * 10 = 5 TON
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{30+20}\over 100} * 10$ = 5 TON <br>
+**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-30-20}\over 100} * 10$ = 5 TON
 
 As the L2 TVL grows from 20 TON to 50 TON, the seigniorage for the sequencer increases from 2 TON to 5 TON. 
 
 The sequencer will try to raise $D$ to 50 TON if the income generated from it (other than L2 transaction fees) is sufficient to cover L1 security fees.
 
-**Sequencer:** ($D+C\over T$) * $Seig$ = $(50+20)\over 100$ * 10 = 7 TON
-**Stakers:** ($T-D-C\over T$) * $Seig$ = $(100-50-20)\over 100$ * 10 = 3 TON
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7 TON <br>
+**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-50-20}\over 100} * 10$ = 3 TON
 
 An additional 2 TON is added to the seigniorage for the sequencer. Plus, the sequencer does not need to sell the native tokens from L2 transaction fees, thanks to the additional cash flow from increased deposits. This allows us to overcome the L2 fee token dilemma.
 
@@ -492,26 +482,26 @@ Let's think about a hypothetical L2 whose security relies on stakers A, B, and C
 
 If the sequencer executes an attack using invalid transactions, stakers can either ignore it or initiate a challenge. The change in assets of each entity would be as follows if no challenge occurs:
 
-**Sequencer:** 0 TON
-**Staker A:** -$S_{A}$ * $A$ = -200 * 30% = -60 TON
-**Staker B:** -$S_{B}$ * $A$ = -300 * 30% = -90 TON
-**Staker C:** -$S_{C}$ * $A$ = -500 * 30% = -150 TON
+**Sequencer:** 0 TON <br>
+**Staker A:** $-S_A * A$ = $-200 * 0.3$ = -60 TON <br>
+**Staker B:** $-S_B * A$ = $-300 * 0.3$ = -90 TON <br>
+**Staker C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker A runs a challenge and staker B supports it, while staker C does not participate in the challenge, the change in assets of each entity would be as follows:
 
-**Sequencer:** -$C$ = -1000 TON
-**Stkaer A:** +$C$ = +1000 TON
-**Staker B:** +0 TON
-**Staler C:** -$S_{C}$ * $A$ = -500*30% = -150 TON
+**Sequencer:** $-C$ = -1000 TON <br>
+**Stkaer A:** $+C$ = +1000 TON <br>
+**Staker B:** +0 TON <br>
+**Staler C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker C decides to join the challenge but chooses the wrong side, the bigger loss cannot be avoided:
 
-**Sequencer:** -$C$ = -1000 TON
-**Stkaer A:** +$C$ = +1000 TON
-**Staker B:** +0 TON
-**Staler C:** -$MinChal$ - $S_{C}$ * $A$ = -100 - 500*30% = -250 TON
+**Sequencer:** $-C$ = -1000 TON <br>
+**Stkaer A:** $+C$ = +1000 TON <br>
+**Staker B:** +0 TON <br>
+**Staler C:** $-MinChal - S_C * A$ = $-100 - (500 * 0.3)$ = -250 TON
 
-As you can see from the results, appropriate rewards and punishments can encourage behaviors that benefit the protocol. Firstly, it is possible to receive rewards if you can identify the malicious actions of a sequencer like staker A. Conversely, the stakes of all stakers can be slashed if no one initiates a challenge. Additionally, even if someone initiates a challenge, you can still lose a portion of your stake TON if you are absent from a challenge like staker C. Lastly, in the case of selecting the wrong side in a challenge, the worst outcome can occur.
+As you can see from the results, appropriate rewards and punishments can encourage behaviors that benefit the protocol. Firstly, it is possible to receive rewards if you can identify the malicious actions of a sequencer like staker A. Conversely, the stakes of all stakers can be slashed if no one initiates a challenge. Additionally, even if someone initiates a challenge, you can still lose a portion of your stake TON if you are absent from a challenge like staker C. Lastly, in the case of selecting the wrong side in a challenge, consequences can be even more serious.
 
 ### 6.2.2. Verifiers' dilemma
 
@@ -521,8 +511,8 @@ We assume a unique verifier in the examples below to simplify the discussion. As
 
 The expected payoffs of verification and non-verification in Super-Simple Model in Optimistic Rollup are as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*L$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
 - $C$: Sequencer Collateral; potential rewards for the verifier in the case of successful verification
 - $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
@@ -530,20 +520,20 @@ The expected payoffs of verification and non-verification in Super-Simple Model 
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
-The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if $C=10$, $L=10$, $VC=20$, $VR=10$:
+The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if $C=10$, $L=10$, $VC=20$, and $VR=10$:
 
-**Expected payoff of verification:** $2\over 3$ * 10 + 10 - 20 = -$10\over 3$
-**Expected payoff of non-verification:** -$2\over 3$ * 10 + (1-$2\over 3$)*10 = -$10\over 3$
+**Expected payoff of verification:** ${2\over 3} * 10 + 10 - 20$ = $-{10\over 3}$ <br>
+**Expected payoff of non-verification:** $-{2\over 3} * 10 + ({1-{2\over 3}})*10$ = $-{10\over 3}$
 
 We can shrink the maximum value of $X$ that precipitates the verifiers' dilemma by increasing either $C$ or $L$. For instance, the value of $X$ that makes the expected payoff of verification and non-verification equal falls to $1\over 2$ if we double $C$:
 
-**Expected payoff of verification:** $1\over 2$ * 20 + 10 - 20 = 0
-**Expected payoff of non-verification:** -$1\over 2$ * 10 + (1-$1\over 2$)*10 = 0
+**Expected payoff of verification:** ${{1\over 2} * 20} + 10 - 20$ = 0 <br>
+**Expected payoff of non-verification:** $-{1\over 2} * 10 + ({1-{1\over 2}})*10$ = 0
 
 Similarly, the value of $X$ that makes the expected payoff of verification and non-verification equal falls to $1\over 2$ if we double $L$:
 
-**Expected payoff of verification:** $1\over 2$ * 10 + 10 - 20 = -5
-**Expected payoff of non-verification:** -$1\over 2$ * 20 + (1-$1\over 2$)*10 = -5
+**Expected payoff of verification:** ${{1\over 2} * 10} + 10 - 20$ = -5 <br>
+**Expected payoff of non-verification:** $-{1\over 2} * 20 + ({1-{1\over 2}})*10$ = -5
 
 Consequently, as $C$ or $L$ increases, the maximum value of $X$ that causes the verifiers' dilemma drops, making L2 safer. However, it can be difficult for the protocol to control $C$ or $L$.
 
@@ -551,21 +541,21 @@ Consequently, as $C$ or $L$ increases, the maximum value of $X$ that causes the 
 
 The expected payoffs of verification and non-verification get modified as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*A*S$ + $(1-X)*VR$
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
 - $S$: Staked TON
 - $A$: Slahsing rate of the staked TON
 
-The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, and $S=100$($L=10=0.1*100=A*S$):
+The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, and $S=100$ $(L=10=0.1 * 100=A * S)$:
 
-**Expected payoff of verification:** $2\over 3$ * 10 + 10 - 20 = -$10\over 3$
-**Expected payoff of non-verification:** -$2\over 3$ * 0.1 * 100 + (1-$2 \over3$)*10 = -$10\over 3$
+**Expected payoff of verification:** ${{2\over 3} * 10} + 10 - 20$ = $-{10\over 3}$ <br>
+**Expected payoff of non-verification:** ${-{2\over 3} * 0.1 * 100} + ({1-{2\over 3}})*10$ = $-{10\over 3}$
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $1\over 2$ if we double $A$.
 
-**Expected payoff of verification:** $1\over 2$ * 10 + 10 - 20 = -5
-**Expected payoff of non-verification:** -$1\over 2$ * 0.2 * 100 + (1-$1 \over2$)*10 = -5
+**Expected payoff of verification:** ${{1\over 2} * 10} + 10 - 20$ = -5 <br>
+**Expected payoff of non-verification:** ${-{1\over 2} * 0.2 * 100} + ({1-{1\over 2}})*10$ = -5
 
 We have the same result as the basic verification model with $L=10$ and $L=20$. However, because $A$ is more easily controllable, it is much simpler to achieve an identical outcome.
 
@@ -573,24 +563,24 @@ We have the same result as the basic verification model with $L=10$ and $L=20$. 
 
 With stakers offering fast withdrawals, the expected payoffs of verification and non-verification are updated as follows:
 
-**Expected payoff of verification:** $X*C$ + $VR$ - $VC$
-**Expected payoff of non-verification:** -$X*(A*S+FW)$ + $(1-X)*VR$ 
+**Expected payoff of verification:** ${X * C + VR - VC}$ <br>
+**Expected payoff of non-verification:** ${-X * ({A * S+FW})} + ({1-X}) * VR$
 
 - $FW$: Staked TON used for fast withdrawals
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 13$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, $S=100$, and $FW = 100$:
 
-**Expected payoff of verification:** $2\over 13$ * 10 + 10 - 20 = -$110\over 13$ 
-**Expected payoff of non-verification:** -$2\over 13$*(0.1 * 100 + 100) + (1-$2\over 13$)*10 = -$110\over 13$ 
+**Expected payoff of verification:** ${{2\over 13} * 10} + 10 - 20$ = $-{110\over 13}$ <br>
+**Expected payoff of non-verification:** ${-{2\over 13}*({0.1 * 100 + 100})} + ({1-{2\over 13}})*10$ = $-{110\over 13}$ 
 
-It is safer than the staking verification model($2\over 3$>$2\over 13$).
+It is safer than the staking verification model. $({2\over 3}>{2\over 13})$
 
-The value of $X$ that makes the expected payoff of verification and non-verification equal drops to $2\over 14$=$1 \over7$ if we double $A$:
+The value of $X$ that makes the expected payoff of verification and non-verification equal drops to ${2\over 14}={1\over 7}$ if we double $A$:
 
-**Expected payoff of verification:** $1\over 7$ * 10 + 10 - 20 = -$60\over 7$ 
-**Expected payoff of non-verification:** -$1\over 7$*(0.2 * 100 + 100) + (1-$1\over7$)*10 = -$60\over 7$
+**Expected payoff of verification:** ${{1\over 7} * 10} + 10 - 20$ = $-{60\over 7}$ <br>
+**Expected payoff of non-verification:** ${-{1\over 7}*({0.2 * 100 + 100})} + ({1-{1\over 7}})*10$ = $-{60\over 7}$
 
-Again, it is safer than the staking verification model($1\over 2$>$1\over 7$).
+Again, it is safer than the staking verification model. $({1\over 2}>{1\over 7})$
 
 #### 6.2.2.4. Comparison among models
 
@@ -599,7 +589,7 @@ Assuming $C=10$, $L=10$, $VC=20$, $VR=10$, $A=0.1$, $S=100$, and $FW = 100$, the
 
 |                                | Basic verification model |           Staking verification model           |      Staking & fast withdrawal verification model      |
 |:------------------------------:|:--------------:|:--------------------------------------:|:--------------------------------------:|
-| Maximum value of $X$ causing Verifiers' dilemma| $1\over 2$ |            $1\over 2$            |          $1\over 7$           |
+| Maximum value of $X$ causing verifiers' dilemma| $1\over 2$ |            $1\over 2$            |          $1\over 7$           |
 |                            |                | more controllable parameters | more controllable parameters |
 
 
@@ -616,7 +606,7 @@ https://medium.com/onther-tech/optimistics-not-secure-enough-than-you-think-46bf
 
 This Economic paper and other documents distributed in relation hereto are used for the development and application of the Tokamak Network, and the material contained herein is for informational purposes only and may change in the future. Accordingly, please read this entire section carefully. If you are in any doubt as to the action you should take, please consult your legal, financial, tax or other professional advisor(s).
 
-### 1.1 Legal Statement
+### 8.1.1. Legal Statement
 
 (a) This Economic paper (“Economic paper”), in its current form, is circulated for general information purposes only in relation to the protocol and applications described in the Economic paper (“Protocol”) as presently conceived and is subject to review and revision. Please note that this Economic paper is a work in progress and the information in this Economic paper is current only as of the date on the cover hereof. Thereafter, the information, including information concerning Tokamak Network Pte Ltd’s (the “Company”) intentions, business operations and financial condition (if applicable) may have changed. We reserve the right to change, modify, add or delete parts of this Economic paper or website without notice for any reason or at any time.
 
@@ -638,13 +628,13 @@ This Economic paper and other documents distributed in relation hereto are used 
 
 (j) Where you wish to or have purchased any Token, the Tokens are not to be construed, interpreted, classified or treated as: (a) any kind of currency other than cryptocurrency; (b) debentures, stocks or shares issued by any entity; (c) rights, options or derivatives in respect of such debentures, stocks or shares; (d) rights under a contract for differences or under any other contract with the purpose or pretended purpose to secure a profit or avoid a loss; or (e) units or derivatives in a collective investment scheme or business trust, or any other type of securities.
 
-### 1.2 Restrictions on Distribution and Dissemination
+### 8.1.2. Restrictions on Distribution and Dissemination
 
 (a) The distribution or dissemination of this Economic paper or any part thereof may be prohibited or restricted by the laws or regulatory requirements of any jurisdiction. In the case where any restriction applies, you are to inform yourself about, to obtain legal and other relevant advice on, and to observe, any restrictions which are applicable to your possession of this Economic paper or such part thereof (as the case may be) at your own expense and without liability to the Company or its representatives, agents, and related companies (“Affiliates”).
 
 (b) Persons to whom a copy of this Economic paper has been distributed or disseminated, provided access to or who otherwise have the Economic paper in their possession shall not circulate it to any other persons, reproduce or otherwise distribute this Economic paper or any information contained herein for any purpose whatsoever nor permit or cause the same to occur.
 
-### 1.3 Disclaimer of Liability
+### 8.1.3. Disclaimer of Liability
 
 (a) The Token, the Protocol and related services provided by the Company and its affiliates are provided on an “as is” and “as available” basis. The Company and its Affiliates do not grant any warranties or make any representation, express or implied or otherwise, as to the accessibility, quality, suitability, accuracy, adequacy, or completeness of the Token, the Protocol or any related services provided by the Company and its Affiliates, and expressly disclaim any liability for errors, delays, or omissions in, or for any action taken in reliance on, the Token, the Protocol and related services provided by the Company and its Affiliates.
 
@@ -652,7 +642,7 @@ This Economic paper and other documents distributed in relation hereto are used 
 
 (c) To the maximum extent permitted by the applicable laws and regulations, the Company and its Affiliates shall not be liable for any indirect, special, incidental, consequential or other losses of any kind, in tort, contract or otherwise (including but not limited to loss of revenue, income or profits, and loss of use or data), arising out of or in connection with any acceptance of or reliance on this Economic paper or any part thereof by you.
 
-### 1.4 Cautionary Note on Forward-Looking Statements
+### 8.1.4. Cautionary Note on Forward-Looking Statements
 
 (a) Certain information set forth in this Economic paper includes forward-looking information regarding the future of the project, future events and projections. These statements are not statements of historical fact and may be identified by but not limited to words and phrases such as “will”, “estimate”, “believe”, “expect”, project”, “anticipate”, or words of similar meaning. Such forward-looking statements are also included in other publicly available materials such as presentations, interviews, videos etc., information contained in this Economic paper constitutes forward-looking statements including but not limited to future results, performance, or achievements of the Company or its Affiliates.
 
@@ -660,7 +650,7 @@ This Economic paper and other documents distributed in relation hereto are used 
 
 (c) As of the date of this Economic paper, the Protocol has not been completed and is not fully operational. Any description pertaining to and regarding the Protocol is made on the basis that the Protocol will be completed and be fully operational. However, this paragraph shall in no way be construed as providing any form of guarantee or assurance that the Protocol will eventually be completed or be fully operational.
 
-### 1.5 Potential Risks
+### 8.1.5. Potential Risks
 
 By purchasing, holding and using the Tokens, you expressly acknowledge and assume the risks set out in this section if any of these risks and uncertainties develops into actual events, the business, financial condition, results of operations and prospects of the Company or its Affiliates may be materially and adversely affected. In such cases, you may lose all or part of the value of the Token.
 
@@ -689,17 +679,21 @@ Blockchain address(es) are designed to be secured. However, in the event that th
 **(d) There is no assurance of any success of the Protocol and the Company and its Affiliates may cease the development, launch and operation of the Protocol.**
 
 I. The value of, and demand for, the Tokens hinges heavily on the performance of the Protocol. There is no assurance that the Protocol will gain traction after its launch and achieve any commercial success. The Protocol has not been fully developed, finalized and integrated and is subject to further changes, updates and adjustments prior to its launch. Such changes may result in unexpected and unforeseen effects on its projected appeal to users, and hence impact its success. There are no guarantees that the process for creating the Tokens will be uninterrupted or error-free.
+
 II. While the Company has made every effort to provide a realistic estimate, there is also no assurance that the any cryptocurrencies raised in the sale of Tokens will be sufficient for the development and integration of the Protocol. For the foregoing or any other reason, the development and integration of the Protocol may not be completed and there is no assurance that its systems, protocols or products will be launched at all. As such, distributed Tokens may hold little or no worth or value.
+
 III. Additional reasons which may result in the termination of the development, launch or operation of the Protocol includes, but is not limited to, (aa) an unfavorable fluctuation in the value of cryptographic and fiat currencies, (bb) the inability of the Company and its Affiliates to establish the Protocol or the Tokens’ utility or to resolve technical problems and issues faced in relation to the development or operation of the Protocol or the Token, the failure of commercial relationships, (cc) intellectual property disputes during development or operation, and (dd) changes in the future capital needs of the Company or its Affiliates and the availability of financing and capital to fund such needs. For the aforesaid and other reasons, the Protocol may no longer be a viable project and may be dissolved or not launched, negatively impacting the Protocol and the potential utility and value of issued TON Tokens.
 
 **(e) There may be lack of demand for the Protocol and the services provided, which would impact the value of the Tokens**
 
-I. There is a risk that upon launching of the Protocol, there is a lack of interest from consumers, merchants, advertisers, and other key participants for the Protocol and the services, and that there may be limited interest and therefore use of the Protocol and the Tokens. Such a lack of interest could impact the operation of the Protocol and the uses or potential value of the Tokens. 
+I. There is a risk that upon launching of the Protocol, there is a lack of interest from consumers, merchants, advertisers, and other key participants for the Protocol and the services, and that there may be limited interest and therefore use of the Protocol and the Tokens. Such a lack of interest could impact the operation of the Protocol and the uses or potential value of the Tokens.
+
 II. There is a risk of competition from alternative platforms/protocols that may have been established, or even from existing businesses which would target any segment of the potential users of the Protocol fulfilling similar demands, e.g. corporations targeting advertisers seeking purchase consumer data and market analysis. Therefore, in the event that the competition results in a lack of interest and demand for the Protocol, the services and the Tokens, the operation of the Protocol and Token value may be negatively impacted. r specialist as necessary before deciding whether to purchase TON tokens or participate in the Tokamak Network project.
 
 **(f) The Company and its Affiliates may experience system failures, unplanned interruptions in its network or services, hardware or software defects, security breaches or other causes that could adversely affect the Company or its Affiliates’ infrastructure network, or the Protocol**
 
 I. The Company and its Affiliates are unable to anticipate or detect when there would be occurrences of hacks, cyber-attacks, mining attacks (including but not limited to double-spend attacks, majority mining power attacks and “selfish-mining” attacks), distributed denials of service or errors, vulnerabilities or defects in the Protocol, the Tokens, or any technology (including but not limited to smart contract technology) on which the Company, its Affiliates, the Protocol, the Tokens, rely on or the Ethereum Blockchain or any other blockchain. Such events may include, for example, flaws in programming or source code leading to exploitation or abuse thereof. The Company and its Affiliates may not be able to detect such issues in a timely manner, and may not have sufficient resources to efficiently cope with multiple service incidents happening simultaneously or in rapid succession.
+
 II. Although the Company and its Affiliates will be taking steps against malicious attacks on its appliances or its infrastructure, which are critical for the maintenance of the Protocol and its other services, there can be no assurance that cyber-attacks, such as distributed denials of service, will not be attempted in the future, and that any of such security measures will be effective. Any significant breach of security measures or other disruptions resulting in a compromise of the usability, stability and security of the Company and its Affiliates’ network or services, including the Protocol.
 
 #### Risks Relating to the Participation in the Sale of Tokens
@@ -730,15 +724,21 @@ As part of any Token sales, the verification processes and the subsequent operat
 **(a) General global market and economic conditions may have an adverse impact on the Company and its Affiliates’ operations and the use of the Protocol.**
 
 I. The Company and its Affiliates could be affected by general global economic and market conditions. Challenging economic conditions worldwide have from time to time, contributed, and may continue to contribute, to slowdowns in the information technology industry at large. Weakness in the economy may have a negative effect on the Company and its Affiliates’ business strategies, results of operations and prospects.
+
 II. Suppliers on which the Protocol relies for servers, bandwidth, location and other services could also be negatively impacted by economic conditions that, in turn, could have a negative impact on the Company and its Affiliates’ operations or expenses.
+
 III. There can be no assurance, therefore, that current economic conditions or worsening economic conditions or a prolonged or recurring recession will not have a significant adverse impact on the Company and its Affiliates’ business strategies, results of operations and prospects and hence the Protocol, which may in turn impact the value of the Tokens.
 
 **(b) The regulatory regime governing blockchain technologies, cryptocurrencies, Tokens, offering of Tokens, and the Protocol remain uncertain, and any changes, regulations or policies may materially adversely affect the development of the Protocol and the utility of the Tokens**
 
 I. Regulation of the Tokens, the offer and sale of Tokens, cryptocurrencies, blockchain technologies, and cryptocurrency exchanges is currently undeveloped or underdeveloped and likely to rapidly evolve. Such regulation also varies significantly among different jurisdictions, and is hence subject to significant uncertainty. The various legislative and executive bodies in different jurisdictions may in the future adopt laws, regulations, guidance, or other actions, which may severely impact the development and growth of the Protocol, the adoption and utility of the Tokens or the issue, offer, and sale of the Tokens by the Company. Failure by the Company and its Affiliates or users of the Protocol to comply with any laws, rules and regulations, some of which may not exist yet or are subject to interpretation and may be subject to change, could result in a variety of adverse consequences against the Company and its Affiliates, including civil penalties and fines.
+
 II. Blockchain networks also face an uncertain regulatory landscape in many foreign jurisdictions. Various jurisdictions may, in the near future, adopt laws, regulations or directives that affect the Protocol, and therefore, the value of the Tokens. Such laws, regulations or directives may directly and negatively impact the operations of the Company and its Affiliates. The effect of any future regulatory change is impossible to predict, but such change could be substantial and could materially adverse to the development and growth of the Protocol and the adoption and utility of the Tokens.
+
 III. To the extent that the Company and its Affiliates may be required to obtain licenses, permits and/or approvals (collectively, the “Regulatory Approvals”) to carry out its business, including that of the creation of the Tokens and the development and operation of the Protocol, but are unable to obtain such Regulatory Approvals or if such Regulatory Approvals are not renewed or revoked for whatever reason by the relevant authorities, the business of the Company and its Affiliates may be adversely affected.
+
 IV. There is no assurance that more stringent requirements will not be imposed upon the Company and its Affiliates by the relevant authorities in the future, or that the Company and its Affiliates will be able to adapt in a timely manner to changing regulatory requirements. These additional or more stringent regulations may restrict the Company and its Affiliates’ ability to operate its business and the Company and its Affiliates may face actions for non-compliance if it fails to comply with any of such requirements.
+
 V. Further, should the costs (financial or otherwise) of complying with such newly implemented regulations exceed a certain threshold, maintaining the Protocol may no longer be commercially viable and the Company and its Affiliates may opt to discontinue the Protocol and/or the Tokens. Further, it is difficult to predict how or whether governments or regulatory authorities may implement any changes to laws and regulations affecting distributed ledger technology and its applications, including the Protocol and the Tokens. The Company and its Affiliates may also have to cease operations in a jurisdiction that makes it illegal to operate in such jurisdiction, or make it commercially unviable or undesirable to obtain the necessary regulatory approval(s) to operate in such jurisdiction. In scenarios such as the foregoing, the distributed Tokens may hold little or no worth or value.
 
 **(c) There may be risks relating to acts of God, natural disasters, epidemics, pandemics, wars, terrorist attacks, riots, civil commotions widespread communicable diseases and other events beyond the control of the Company and its Affiliates**
@@ -746,12 +746,13 @@ V. Further, should the costs (financial or otherwise) of complying with such new
 Any sale of the Tokens and the performance of the Company, its Affiliates and/or the Protocol’s activities may be interrupted, suspended or delayed due to acts of God, natural disasters, wars, terrorist attacks, riots, civil commotions, widespread communicable diseases, epidemics, pandemics and other events beyond the control of the Company and its Affiliates. Such events could also lead to uncertainty in the economic outlook of global markets and there is no assurance that such markets will not be affected, or that recovery from the global financial crisis would continue. In such events, the Company and its Affiliates’ business strategies, results of operations and outlook may be materially and adversely affected, and the demand for and use of the Tokens and the Protocol may be materially affected. Further, if an outbreak of such infectious or communicable diseases occurs in any of the countries in which the Company, its Affiliates, and the participants of the Protocol have operations in the future, market sentiment could be adversely affected and this may have a negative impact on the Protocol and its community.
 
 **(d) Blockchain and cryptocurrencies, including the Tokens are a relatively new and dynamic technology. In addition to the risks highlighted herein, there are other risks associated with the purchase of, holding and use of the Tokens, including those that we cannot anticipate. Such risks may further materialize as unanticipated variations or combinations of the risks discussed herein.**
-### 1.6 No Further Information or Update 
+
+### 8.1.6. No Further Information or Update 
 
 No person has been or is authorized to give any information or representation not contained in this Economic paper in connection with the Tokens, the Protocol, the Company or its Affiliates and their respective businesses and operations, and, if given, such information or representation must not be relied upon as having been authorized by or on behalf of the Company or its Affiliates.
 
-### 1.7 Language 
+### 8.1.7. Language 
 This Economic paper may be translated into other languages. If any disagreement should arise due to different language translations, the version in English will prevail.
 
-### 1.8 Advice 
+### 8.1.8. Advice 
 No information in this Economic paper should be considered to be business, legal, financial or tax advice regarding the Token, the Protocol, the Company or its Affiliates. You should consult your own legal, financial, tax or other professional advisor(s) regarding the Token, the Company or its Affiliates and their respective businesses and operations. You should be aware that you may be required to bear the financial risk of any purchase of the Tokens for an indefinite period of time.
