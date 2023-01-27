@@ -1,6 +1,5 @@
 # 토카막 레이어 2 암호경제(Tokamak layer 2 Cryptoeconomics)
 
-Ver. 1.0.1 
 
 # 저자(Authors)
 
@@ -31,7 +30,6 @@ Ver. 1.0.1
     3.1. 챌린지(Challenge)
         3.1.1. 개요(Overview)
         3.1.2. 절차(Procedure)
-        3.1.3. 균형잡힌 스테이킹 인센티브 체계(Balanced staking incentive structure)
 
     3.2. 빠른 출금(Fast Withdrawal)
         3.2.1. 개요(Overview)
