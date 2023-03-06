@@ -98,16 +98,14 @@ In a nutshell, TON promotes sustainable growth of L2 blockchains by enabling the
 
 3.92 TON is issued for every block on Ethereum. Notably, as of the Merge (September 15th, 2022), the Ethereum block creation time changed, and the annual amount of newly issued TON or annual seigniorage was affected accordingly. Before the Merge, given the average 13 seconds for Ethereum block creation time, seigniorage worth approximately 9,509,317 TON was generated. However, since the Merge reduced the block creation time to 12 seconds, the seigniorage increased to 10,301,760 TON after the Merge.
 
-Given the initial issuance of 50,000,000 TON, the initial inflation is about 19.0% (9,509,317 / 50,000,000). The inflation drops to approximately 7.3% after 10 years and 1.9% after 50 years. This means that the seigniorage generation logic aims to expand the ecosystem by increasing the value of TON rather than increasing the TON supply.
+Given the initial issuance of 50,000,000 TON, the initial inflation is about 19.0% (9,509,317 / 50,000,000). The inflation drops to approximately 7.3% after 10 years and 1.9% after 50 years.
 
 
 ![](https://i.ibb.co/Zx7MmL7/2023-01-15-10-26-12.png)
 
 ## 2.2. Seigniorage distribution
 
-Distributing seigniorage refers to distributing newly issued TON to eligible entities, which helps balance the benefits and losses of an increased TON supply. More specifically, the amount of seigniorage received determines one's share of the benefits from the increased value of TON and the losses from the dilution of TON.
-
-Therefore, distributing seigniorage based on contributions to the value of TON is ideal. For example, sequencers that attract a large amount of capital to L2 can increase the value of TON. The Tokamak Network aims to achieve this by improving its staking service and modifying its seigniorage distribution mechanism.
+Distributing seigniorage refers to distributing newly issued TON to eligible entities, which helps balance the benefits and losses of an increased TON supply. 
 
 
 > We assume the following properties to simplify the discussion:
