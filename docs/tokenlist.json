@@ -1,0 +1,148 @@
+{
+  "tokens": [
+    {
+      "id": "ethereum",
+      "chainId": 5,
+      "address": null,
+      "name": "ETH",
+      "symbol": "ETH",
+      "decimals": 18,
+      "iconURL": "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=010",
+      "extensions": {
+        "optimismBridgeAddress": "0x7377F3D0F64d7a54Cf367193eb74a052ff8578FD"
+      }
+    },
+    {
+      "id": "ethereum",
+      "chainId": 5050,
+      "address": null,
+      "name": "ETH",
+      "symbol": "ETH",
+      "decimals": 18,
+      "iconURL": "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=010",
+      "extensions": {
+        "optimismBridgeAddress": "0x4200000000000000000000000000000000000010"
+      }
+    },
+    {
+      "id": "tokamak-network",
+      "chainId": 5,
+      "address": "0x68c1F9620aeC7F2913430aD6daC1bb16D8444F00",
+      "name": "TON",
+      "symbol": "TON",
+      "decimals": 18,
+      "iconURL": "/logos/tokamak-symbol.svg",
+      "extensions": {
+        "optimismBridgeAddress": "0x7377F3D0F64d7a54Cf367193eb74a052ff8578FD"
+      }
+    },
+    {
+      "id": "tokamak-network",
+      "chainId": 5050,
+      "address": "0x7c6b91D9Be155A6Db01f749217d76fF02A7227F2",
+      "name": "TON",
+      "symbol": "TON",
+      "decimals": 18,
+      "iconURL": "/logos/tokamak-symbol.svg",
+      "extensions": {
+        "optimismBridgeAddress": "0x4200000000000000000000000000000000000010"
+      }
+    },
+    {
+      "id": "tonstarter",
+      "chainId": 5,
+      "address": "0x67F3bE272b1913602B191B3A68F7C238A2D81Bb9",
+      "name": "TOS",
+      "symbol": "TOS",
+      "decimals": 18,
+      "iconURL": "/logos/tos_symbol.svg",
+      "extensions": {
+        "optimismBridgeAddress": "0x7377F3D0F64d7a54Cf367193eb74a052ff8578FD"
+      }
+    },
+    {
+      "id": "tonstarter",
+      "chainId": 5050,
+      "address": "0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb",
+      "name": "TOS",
+      "symbol": "TOS",
+      "decimals": 18,
+      "iconURL": "/logos/tos_symbol.svg",
+      "extensions": {
+        "optimismBridgeAddress": "0x4200000000000000000000000000000000000010"
+      }
+    },
+    {
+      "id": "usd-coin",
+      "chainId": 5,
+      "address": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+      "name": "USDC",
+      "symbol": "USDC",
+      "decimals": 18,
+      "iconURL": "/logos/usdc-logo.svg",
+      "extensions": {
+        "optimismBridgeAddress": "0x7377F3D0F64d7a54Cf367193eb74a052ff8578FD"
+      }
+    },
+    {
+      "id": "usd-coin",
+      "chainId": 5050,
+      "address": "0x713733bda7F5f9C15fd164242dF4d6292B412bAE",
+      "name": "USDC",
+      "symbol": "USDC",
+      "decimals": 18,
+      "iconURL": "/logos/usdc-logo.svg",
+      "extensions": {
+        "optimismBridgeAddress": "0x4200000000000000000000000000000000000010"
+      }
+    },
+    {
+      "id": "aura",
+      "chainId": 5,
+      "address": "0x80Eea029B5Cdb8A215Ae78e20B4fF81607F44A38",
+      "name": "AURA",
+      "symbol": "AURA",
+      "decimals": 18,
+      "iconURL": "/logos/AURA_symbol.png",
+      "extensions": {
+        "optimismBridgeAddress": "0x7377F3D0F64d7a54Cf367193eb74a052ff8578FD"
+      }
+    },
+    {
+      "id": "aura",
+      "chainId": 5050,
+      "address": "0x3e7eF8f50246f725885102E8238CBba33F276747",
+      "name": "AURA",
+      "symbol": "AURA",
+      "decimals": 18,
+      "iconURL": "/logos/AURA_symbol.png",
+      "extensions": {
+        "optimismBridgeAddress": "0x4200000000000000000000000000000000000010"
+      }
+    },
+    {
+      "id": "lyda",
+      "chainId": 5,
+      "address": "0x51C5E2D3dc8Ee66Dffdb1747dEB20d6b326E8bF2",
+      "name": "LYDA",
+      "symbol": "LYDA",
+      "decimals": 18,
+      "iconURL": "/logos/tos_symbol.svg",
+      "extensions": {
+        "optimismBridgeAddress": "0x7377F3D0F64d7a54Cf367193eb74a052ff8578FD"
+      }
+    },
+    {
+      "id": "lyda",
+      "chainId": 5050,
+      "address": "0x3bB4445D30AC020a84c1b5A8A2C6248ebC9779D0",
+      "name": "LYDA",
+      "symbol": "LYDA",
+      "decimals": 18,
+      "iconURL": "/logos/tos_symbol.svg",
+      "extensions": {
+        "optimismBridgeAddress": "0x4200000000000000000000000000000000000010"
+      }
+    }
+  ]
+}
