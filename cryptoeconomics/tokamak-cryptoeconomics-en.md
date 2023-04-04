@@ -1,5 +1,10 @@
 # Tokamak layer 2(L2) Cryptoeconomics
 
+<br>
+
+*Note: If the materials on Tokamak Network other than the white paper conflict with the white paper, the white paper should take priority. The "white paper" is this paper or "Tokamak layer 2(L2) Cryptoeconomics."*
+
+<br>
 
 # Authors
 
@@ -70,7 +75,7 @@ Additionally, TON, as a medium of rewards and punishment in challenges and fast 
 
 # 1. Terminology
 
-- **Staking**: Action of transferring tokens to the staking contract and obtaining interest. In the note, we discuss L1 staking only.
+- **Staking**: Action of transferring tokens to the corresponding contract to ensure the network security in exchange for obtaining seigniorage. In the note, we discuss L1 staking only.
 - **Unstaking**: Action of retrieving staked tokens
 - **Seigniorage**: Difference between the nominal value and issuance costs of a currency; TON seigniorage is essentially the same as the amount of TON newly issued, given the zero issuance costs.
 - **inflation**: Amount of currency newly issued / Total amount of currency issued
