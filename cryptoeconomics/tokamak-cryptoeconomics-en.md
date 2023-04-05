@@ -70,7 +70,7 @@ Additionally, TON, as a medium of rewards and punishment in challenges and fast 
 
 # 1. Terminology
 
-- **Staking**: Action of transferring tokens to the staking contract and obtaining interest. In the note, we discuss L1 staking only.
+- **Staking**: Action of transferring tokens to the corresponding contract to ensure the network security in exchange for obtaining seigniorage. In the note, we discuss L1 staking only.
 - **Unstaking**: Action of retrieving staked tokens
 - **Seigniorage**: Difference between the nominal value and issuance costs of a currency; TON seigniorage is essentially the same as the amount of TON newly issued, given the zero issuance costs.
 - **inflation**: Amount of currency newly issued / Total amount of currency issued
@@ -602,7 +602,7 @@ https://medium.com/onther-tech/optimistics-not-secure-enough-than-you-think-46bf
 
 ## 8.1. Disclaimer
 
-This Economic paper and other documents distributed in relation hereto are used for the development and application of the Tokamak Network, and the material contained herein is for informational purposes only and may change in the future. Accordingly, please read this entire section carefully. If you are in any doubt as to the action you should take, please consult your legal, financial, tax or other professional advisor(s).
+This Economic paper and other documents distributed in relation hereto are used for the development and application of the Tokamak Network, and the material contained herein is for informational purposes only and may change in the future. Accordingly, please read this entire section carefully. If you are in any doubt as to the action you should take, please consult your legal, financial, tax or other professional advisor(s). 
 
 ### 8.1.1. Legal Statement
 
@@ -625,6 +625,8 @@ This Economic paper and other documents distributed in relation hereto are used 
 (i) References to specific companies and platforms in the Economic paper are for general reference and/or comparison purposes only. The use of the name of the enterprise or platforms and registered trademarks does not signify affiliation or endorsement of the party concerned.
 
 (j) Where you wish to or have purchased any Token, the Tokens are not to be construed, interpreted, classified or treated as: (a) any kind of currency other than cryptocurrency; (b) debentures, stocks or shares issued by any entity; (c) rights, options or derivatives in respect of such debentures, stocks or shares; (d) rights under a contract for differences or under any other contract with the purpose or pretended purpose to secure a profit or avoid a loss; or (e) units or derivatives in a collective investment scheme or business trust, or any other type of securities.
+
+(k) If the materials on Tokamak Network other than the Economic paper conflict with it, the Economic paper should take priority.
 
 ### 8.1.2. Restrictions on Distribution and Dissemination
 
