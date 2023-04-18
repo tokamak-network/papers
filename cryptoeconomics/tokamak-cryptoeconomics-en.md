@@ -9,6 +9,8 @@
 
 # Contents
 
+**Backround summary**
+
 **0. TL;DR**
 
 **1. Terminology**
@@ -57,6 +59,130 @@
     
     8.1. Disclaimer
 
+
+# Background summary
+
+1. Tokamak Network Pte. Ltd. (the “Company”) has developed a protocol utilizing the Layer 2 (L2)
+Optimistic Rollup scaling solution that will resolve the scalability problems of decentralized
+applications in Ethereum (L1) (“Tokamak Network”). The Tokamak Network will also provide an
+environment that will allow easy deployment of applications that was not possible to implement on the
+Ethereum blockchain due to its inherent performance and functional limitations.<br><br>
+
+2. The Tokamak Network has the following features/functions:<br>
+
+    **Overview**
+    
+    a. It is a L2 protocol designed to address the scalability problems of the Ethereum blockchain
+    (due to a limited number of transactions per second and gas costs) by allowing users to first
+    process transactions off the Ethereum chain, and subsequently have the transactions
+    published on-chain in batches.<br>
+    
+    **Block verification**
+    
+    b. Under the Optimistic Rollup approach, users submit transactions to “Sequencers” (as
+    defined in Section 1 below), which are nodes responsible for processing transactions on the
+    optimistic rollup. The Sequencer aggregates transactions, compresses the underlying data,
+    and publishes the block on Ethereum.
+    
+    c. Sequencers are required to lock as “Sequencer collateral” (as defined in Section 1 below) a
+    certain minimum number of Tokens (as further described below) as a form of a bond to dis-
+    incentivize dishonesty as such bond can be slashed if the Sequencer posts an invalid block
+    or builds on an old-but-invalid block (even if their block is valid). Sequencers are rewarded by
+    the Tokamak Network with seigniorage (i.e. newly minted Tokens) for their services, the
+    quantum of awards being in proportion to the growth of the corresponding L2 (growth being
+    calculated on the basis of the growth of the total supply of Tokens on the Tokamak Network).
+    However, in addition to seigniorage, different Sequencers may have different fee policies for
+    how they are to be remunerated by users for their services (for example, in Tokens or in other
+    cryptocurrencies).
+    
+    d. Under the Optimistic Rollup approach, after a rollup batch of transactions are submitted by an
+    Sequencer for publishing on the Ethereum blockchain, there is a time window/challenge
+    period (called the “DTD”, as defined in Section 1 below) of 7 to 14 days where users can
+    “Challenge” (as defined in Section 1 below) the results of a transaction by computing fraud
+    proofs (subject to them also providing Tokens in the form of “minimum challenge costs” (as
+    described in Section 3.1.2 below). In the event where a particular Sequencer is Challenged,
+    depending on whether the batch was validly submitted, the Sequencer or the challenger will
+    lose their Sequencer collateral or minimum challenge costs respectively, and the winning
+    party will obtain the losing party’s slashed Tokens.
+    
+    e. Users who are not Sequencers nor challengers (i.e. they themselves are not involved in
+    either providing the service of processing transactions or computing fraud proofs), can also
+    take part the block verification process by “supporting” the Sequencer or a challenger through
+    similarly submitting Tokens to be locked up as minimum challenge costs, and in doing so can
+    share in the rewards (i.e, seigniorage and/or slashed Tokens) and penalties (i.e the risk of
+    slashing in the event of an invalid challenge/submission) which would have been obtained by
+    the Sequencer or challenger respectively for their participation in block verification activities.
+    For the avoidance of doubt, the act of “supporting” the Sequencer or the challenger is a
+    proactive step a user has to take. A user can remain a passive Tokenholder on the Tokamak
+    Network and not participate as a supporter in any of the challenges. The Tokens submitted to
+    be locked up in this matter are intended to be for the purposes of encouraging active
+    participation in the Tokamak Network and will not be used or monetized by the Company
+    during such period that they are locked up.
+
+    f. Notwithstanding the above, to encourage active participation on the Tokamak Network’s
+    block verification activities, if a user on the Tokamak Network has staked Tokens but does
+    not participate in such block verification process (i.e. not operating as a Sequencer, a
+    challenger, or supporting either of them in a challenge), a portion of their staked Tokens will
+    be slashed.<br>
+    
+    **Fast withdrawals and liquidity providers**
+    
+    g. As part of the Optimistic Rollup protocol, in order to have transferred assets from L1 into L2,
+    a user would have had to transfer its L1 assets to a token bridge, which is a smart contract
+    that will lock the asset and communicate with a L2 – based Sequencer for such Sequencer to
+    then relay the instructions to a token bridge on L2 to mint a corresponding amount of the
+    same asset (in a wrapped form) on the L2 layer.
+    
+    h. If a user initiates a transaction to withdraw assets locked on the Ethereum layer (L1), the
+    reverse process occurs. The user will deposit the corresponding L2 assets and submit a
+    withdrawal request to the L2 token bridge, which will then have to be processed by the
+    Sequencer (and would be subject to the abovementioned DTD period). If there is no
+    successful Challenge during the DTD period, the withdrawal request will be relayed by the
+    Sequencer to the L1 token bridge where the relevant assets will be released on the L1 layer
+    and the corresponding assets on the L2 token bridge will be burnt.
+    
+    i. Due to the above DTD period, the Tokamak Network permits users to act as fast withdrawal
+    service providers who can who can take over as the recipient on the pending withdrawal
+    request and pay the user on the L1 layer (in exchange for a fee), to enable a user to quickly
+    exit the L2 without waiting through the challenge period. The Company itself does not carry
+    out the role of a fast withdrawal service provider.
+    
+    j. In support of the above, other than being able to act as fast withdrawal service providers
+    themselves, users may also stake Tokens on the L1 layer to provide liquidity to the
+    abovementioned fast withdrawal service providers, who may develop their own remuneration
+    structures for rewarding stakers.<br><br>
+
+3. The Tokens is the native token of the Tokamak Network. It can be used for the following purposes:<br>
+    a. Potentially as fees payable to Sequencers on the Tokamak Network;<br>
+    b. To be provided as Sequencer collateral and/or minimum challenge costs, in relation to block
+    verification processes (either as a Sequencer, a challenger, or a user supporting either of
+    them in challenges)<br>
+    c. To be used by a user to provide fast withdrawal services, or staked on the L1 layer to other
+    fast withdrawal service providers.<br><br>
+
+4. Tokens were previously available for purchase directly from the Company during a token generation
+event which is no longer running. However, they are currently obtainable by users of the Tokamak
+Network solely (i) through rewards by participating in the block verification processes (either as an
+Sequencer, a challenger, or a user supporting either of them); and (ii) by purchasing them from a
+third-party cryptocurrency exchange, to the extent that Tokens are made available on such third-party
+cryptocurrency exchanges. <br><br>
+
+5. Tokens cannot be redeemed or sold to the Company in exchange for fiat or other forms of
+cryptocurrencies. <br><br>
+
+6. A holder of a Token, by virtue of owning a Token, will not have any direct or indirect ownership of the
+assets of the Company. <br><br>
+
+7. While Tokens grant certain voting rights to holders, these rights will be limited to the elections and
+proposals conducted on-chain (“On-chain Voting Rights”) and are not the same rights given to
+members/shareholders of the Company, or voting rights concerning the management decisions of the
+Company (for example, decisions relating to changes in share capital, directors, the constitution, or
+dividends of the Company) nor any rights to the profit or revenue of the Tokamak Network or the
+Company. The On-chain Voting Rights shall be limited to voting on matters related to: (i) network
+upgrades and improvements; (ii) community proposals to allocate funds or resources to specific
+projects or initiatives of the Tokamak Network; (iii) changes to the Tokamak Network protocol; (iv)
+inclusion of support of other tokens on the Tokamak Network; and (v) changes to the governance
+structure of the Tokamak Network. <br><br>
 
 # 0. TL;DR
 
@@ -214,13 +340,13 @@ In Tokamak Network, the challenge is expected to proceed as follows:
     - There is no change in the assets of stakers supporting the challenger. However, depending on the situation, they may get a part of the sequencer collateral.
     - The sequencer gets disqualified.
     - Stakers supporting the sequencer lose the minimum collateral costs and have their stakes slashed. 
-    - The stakers not participating in the challenge get their stakes slashed.
+    - The stakers not participating in the challenge get a portion of their stakes slashed.
 
 - If the sequencer wins:
     - There is no change in the assets of the sequencer.
     - There is no change in the assets of the stakers supporting the sequencer. 
     - The challenger and stakers supporting the challenger lose the minimum collateral costs, and their stakes get cut. 
-    - There is no change in the assets of the stakers not participating in the challenge.
+    - The stakers not participating in the challenge get a portion of their stakes slashed.
         
 **5. Others**
 
