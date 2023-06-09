@@ -66,16 +66,16 @@
 Optimistic Rollup scaling solution that will resolve the scalability problems of decentralized
 applications in Ethereum (L1) (“Tokamak Network”). The Tokamak Network will also provide an
 environment that will allow easy deployment of applications that was not possible to implement on the
-Ethereum blockchain due to its inherent performance and functional limitations.\hfill\break\hfill\break
+Ethereum blockchain due to its inherent performance and functional limitations.</br></br>
 
-2. The Tokamak Network has the following features/functions:\hfill\break
+2. The Tokamak Network has the following features/functions:</br>
 
     **Overview**
     
     a. It is a L2 protocol designed to address the scalability problems of the Ethereum blockchain
     (due to a limited number of transactions per second and gas costs) by allowing users to first
     process transactions off the Ethereum chain, and subsequently have the transactions
-    published on-chain in batches.\hfill\break
+    published on-chain in batches.</br>
     
     **Block verification**
     
@@ -123,7 +123,7 @@ Ethereum blockchain due to its inherent performance and functional limitations.\
     block verification activities, if a user on the Tokamak Network has staked Tokens but does
     not participate in such block verification process (i.e. not operating as a Sequencer, a
     challenger, or supporting either of them in a challenge), a portion of their staked Tokens will
-    be slashed.\hfill\break
+    be slashed.</br>
     
     **Fast withdrawals and liquidity providers**
     
@@ -150,28 +150,28 @@ Ethereum blockchain due to its inherent performance and functional limitations.\
     j. In support of the above, other than being able to act as fast withdrawal service providers
     themselves, users may also stake Tokens on the L1 layer to provide liquidity to the
     abovementioned fast withdrawal service providers, who may develop their own remuneration
-    structures for rewarding stakers.\hfill\break\hfill\break
+    structures for rewarding stakers.</br></br>
 
-3. The Tokens is the native token of the Tokamak Network. It can be used for the following purposes:\hfill\break
-    a. Potentially as fees payable to Sequencers on the Tokamak Network;\hfill\break
+3. The Tokens is the native token of the Tokamak Network. It can be used for the following purposes:</br>
+    a. Potentially as fees payable to Sequencers on the Tokamak Network;</br>
     b. To be provided as Sequencer collateral and/or minimum challenge costs, in relation to block
     verification processes (either as a Sequencer, a challenger, or a user supporting either of
-    them in challenges)\hfill\break
+    them in challenges)</br>
     c. To be used by a user to provide fast withdrawal services, or staked on the L1 layer to other
-    fast withdrawal service providers.\hfill\break\hfill\break
+    fast withdrawal service providers.</br></br>
 
 4. Tokens were previously available for purchase directly from the Company during a token generation
 event which is no longer running. However, they are currently obtainable by users of the Tokamak
 Network solely (i) through rewards by participating in the block verification processes (either as an
 Sequencer, a challenger, or a user supporting either of them); and (ii) by purchasing them from a
 third-party cryptocurrency exchange, to the extent that Tokens are made available on such third-party
-cryptocurrency exchanges. \hfill\break\hfill\break
+cryptocurrency exchanges. </br></br>
 
 5. Tokens cannot be redeemed or sold to the Company in exchange for fiat or other forms of
-cryptocurrencies. \hfill\break\hfill\break
+cryptocurrencies. </br></br>
 
 6. A holder of a Token, by virtue of owning a Token, will not have any direct or indirect ownership of the
-assets of the Company. \hfill\break\hfill\break
+assets of the Company. </br></br>
 
 7. While Tokens grant certain voting rights to holders, these rights will be limited to the elections and
 proposals conducted on-chain (“On-chain Voting Rights”) and are not the same rights given to
@@ -182,7 +182,7 @@ Company. The On-chain Voting Rights shall be limited to voting on matters relate
 upgrades and improvements; (ii) community proposals to allocate funds or resources to specific
 projects or initiatives of the Tokamak Network; (iii) changes to the Tokamak Network protocol; (iv)
 inclusion of support of other tokens on the Tokamak Network; and (v) changes to the governance
-structure of the Tokamak Network. \hfill\break\hfill\break
+structure of the Tokamak Network. </br></br>
 
 # 0. TL;DR
 
@@ -190,7 +190,7 @@ Layer 2 (L2) is a technology that emerged to complement the slower Layer 1 (L1) 
 
 The Tokamak Network, based on Optimism, aims to foster a stable environment for the creation of on-demand L2 blockchains. We have been focusing on maximizing the utilities of TON to be competitive compared to other protocols using Optimistic rollup. For example, in a previous study, we explored how newly issued TON can help with L2 growth and establish native tokens as an L2 fee token.
 
-In this paper, we will discuss further expanding the use of TON in the L2 environment by upgrading the existing staking service. As previously mentioned, TON seigniorage can facilitate L2 growth by rewarding sequencers' performances. It can alleviate the L2 fee token dilemma and thus lay the foundation for native tokens to be used as an L2 fee token. Consequently, L2 blockchains within the Tokamak Network can build independent economies and be on the path of sustainable growth. \hfill\break
+In this paper, we will discuss further expanding the use of TON in the L2 environment by upgrading the existing staking service. As previously mentioned, TON seigniorage can facilitate L2 growth by rewarding sequencers' performances. It can alleviate the L2 fee token dilemma and thus lay the foundation for native tokens to be used as an L2 fee token. Consequently, L2 blockchains within the Tokamak Network can build independent economies and be on the path of sustainable growth. </br>
 Additionally, TON, as a medium of rewards and punishment in challenges and fast withdrawals, can encourage TON stakers to take responsibility for L2 security. With appropriate rewards and penalties in a challenge, a more balanced staking incentive structure will motivate stakers to actively engage in verification tasks. Moreover, if we add the fast withdrawal service offered by stakers, a more robust L2 environment can be formed by mitigating the verifiers' dilemma.
 
 
@@ -245,8 +245,8 @@ The current staking service provided by Tokamak Network is called TON staking V1
 
 In this version, seigniorage is distributed in the following manner:
  
-**Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$ \hfill\break
-**TON DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$ \hfill\break
+**Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$ </br>
+**TON DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$ </br>
 **sTOS holders:** ${{W_P} * {{T-S}\over T} * {Seig}}$
 
 - $T$: Total TON supply
@@ -257,8 +257,8 @@ $({{W_S} + {W_D} + {W_P}} \leq 1)$
 
 If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all seigniorage will go to stakers.
 
-**Stakers:** ${({S\over T} + 1 * {{T-S}\over T}) * {Seig}}$ = $Seig$ \hfill\break
-**TON DAO:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$ \hfill\break
+**Stakers:** ${({S\over T} + 1 * {{T-S}\over T}) * {Seig}}$ = $Seig$ </br>
+**TON DAO:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$ </br>
 **sTOS holders:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$
 
 ### 2.2.2. TON staking V2
@@ -266,7 +266,7 @@ If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all s
 Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
 
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ \hfill\break 
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
 **Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
 
 - $D$: Total amount of TON deposited
@@ -377,7 +377,7 @@ Determining the appropriate levels of rewards and penalties in the challenge is 
 
 In the Super-Simple Model of Optimistic Rollup, where a unique verifier who is also a stakeholder in the rollup can initiate a challenge, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
 - $C$: Sequencer collateral; potential rewards for the verifier in the case of successful verification
@@ -390,7 +390,7 @@ The expected payoff of verification is greater than that of non-verification if 
 
 Having multiple verifiers does not significantly change the discussion. Assuming multiple verifiers can initiate challenges, the expected payoffs of verification and non-verification for a specific verifier are as follows (Here $C$ is evenly distributed among verifiers participating in the challenge):
 
-**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ \hfill\break
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ </br>
 **Expected payoff of non-verification:** ${-X * Y * L + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
@@ -398,14 +398,14 @@ Having multiple verifiers does not significantly change the discussion. Assuming
 
 If no other verifiers perform verification $(N=1, Y=1)$, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
 The verifier is incentivized to validate L2 transactions if $X$ > $VC\over{C+L+VR}$, as we assumed with a unique verifier.
 
 On the other hand, if all verifiers conduct verification $(N={NumberOfVerifiers}={N_v}, Y=0)$, the expected payoffs of verification and non-verification are as follows:
 
-**Expected payoff of verification:** $X*C\over N_v$ + $VR$ - $VC$ \hfill\break
+**Expected payoff of verification:** $X*C\over N_v$ + $VR$ - $VC$ </br>
 **Expected payoff of non-verification:** $VR$
 
 The verifier is more likely to conduct verification if $X$ > $N_{v} * VC\over C$.
@@ -428,7 +428,7 @@ Therefore, the focus is on minimizing the maximum value of X that would discoura
 
 Assuming the unique verifier can initiate challenges, the expected payoffs of verification and non-verification in the Super-Simple Model of Optimistic Rollup are as follows:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
 - $C$: Sequencer collateral; potential rewards for the verifier in the case of successful verification
@@ -445,7 +445,7 @@ It is economically rational for the verifier to validate L2 transactions if $X$ 
 
 With stakers now responsible for verification, meaning they become verifiers and can initiate challenges, the expected payoffs of verification and non-verification would change:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
 - $S$: Staked TON
@@ -459,7 +459,7 @@ The verifiers' dilemma occurs when $X \le {VC\over {C+A*S+VR}}$. Compared to the
 
 With multiple stakers as verifiers, the expected payoffs of verification and non-verification for a specific verifier can be calculated as follows(Here $C$ is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
 
-**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ \hfill\break
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ </br>
 **Expected payoff of non-verification:** ${-X * A * S + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
@@ -469,14 +469,14 @@ It's worth noting that other verifiers cannot affect the outcome of a slashing e
 
 When no other verifiers conduct verification $(N=1, Y=1)$, the expected payoffs of verification and non-verification can be calculated as follows:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
 The verifier is incentivized to validate L2 transactions if $X > {VC\over {C+A*S+VR}}$, similar to when there is only one verifier. 
 
 On the other hand, when all the verifiers conduct verification $(N={NumberOfVerifiers}={N_v}, Y=0)$, the expected payoffs of verification and non-verification can be calculated as follows:
 
-**Expected payoff of verification:** ${{{X * C}\over {N_v}} + {VR} - {VC}}$ \hfill\break
+**Expected payoff of verification:** ${{{X * C}\over {N_v}} + {VR} - {VC}}$ </br>
 **Expected payoff of non-verification:** ${-X * A * S + VR}$
 
 The expected payoff of verification is greater than that of non-verification if $X > {{VC}\over {{C/N_v}+A*S}}$.
@@ -497,7 +497,7 @@ Higher $A$ will force sequencers to lower $X$ in order to make the L2 environmen
 
 The expected payoffs of verification and non-verification are updated when stakers not only perform verification tasks in a challenge but also offer fast withdrawals:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * ({A * S+FW})} + ({1-X}) * VR$
 
 - $FW$: Staked TON used for fast withdrawals
@@ -510,7 +510,7 @@ The verifiers' dilemma occurs if $X$ $\le$ $VC\over C+A * S+VR+FW$. In this scen
 
 With multiple stakers acting as verifiers, the expected payoffs of verification and non-verification for a staker offering fast withdrawals can be calculated as follows(Here $C$ is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
 
-**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ \hfill\break
+**Expected payoff of verification:** ${{{X * C}\over N} + {VR} - {VC}}$ </br>
 **Expected payoff of non-verification:** ${-X * ({A * S+FW}) + ({1-X * Y}) * VR}$
 
 - $N$: Number of verifiers conducting verification including the verifier him/herself
@@ -542,7 +542,7 @@ The staking verification model can more easily control verification incentives b
     
 ## 4.1. Sustainable growth of L2
 
-TON incentivizes sequencers to contribute to the growth of L2 both quantitatively and qualitatively. Sequencers aim to attract capital from a large number of users in order to maximize stable seigniorage revenue, resulting in the expansion of L2. \hfill\break
+TON incentivizes sequencers to contribute to the growth of L2 both quantitatively and qualitatively. Sequencers aim to attract capital from a large number of users in order to maximize stable seigniorage revenue, resulting in the expansion of L2. </br>
 Once the user base is established, L2 can generate a revenue stream other than transaction fees through discretionary fee policies or useful Dapps. L2 can use a native token as a fee token without falling into the L2 fee token dilemma if such an additional cash flow covers L1 security fees.
 
 As a result, L2 blockchains are able to build their economy with less influence from external factors.
@@ -557,7 +557,7 @@ Additionally, fast withdrawal by stakers can mitigate the verifiers' dilemma. Th
 
 We had assumed that there were no current technological means to prove the validity of L2 transactions. For example, using the fraud proof in Optimistic Rollup, the Tokamak Network will stimulate stakers to correct invalid transactions through challenges. However, as the validity proof (such as zero-knowledge proof) becomes more advanced, the verification process of L2 transactions will become simpler.
 
-This will impact the utilities of TON. Firstly, it is notable that fast withdrawals may become less necessary, as verification will take less time. Therefore, there will be no need to provide incentives for fast withdrawals. \hfill\break
+This will impact the utilities of TON. Firstly, it is notable that fast withdrawals may become less necessary, as verification will take less time. Therefore, there will be no need to provide incentives for fast withdrawals. </br>
 On the other hand, regardless of the fraud proof or validity proof, challenges assisted by stakers can still be used. TON can keep contributing to L2 security as a medium for rewards and penalties in challenges. Furthermore, seigniorage distribution, which drives L2 expansion, is expected to maintain its role. TON seigniorage will be the foundation for sustainable growth of the L2 ecosystem by promoting both quantitative and qualitative growth of L2 and alleviating the L2 fee token dilemma.
 
 # 6. Examples
@@ -574,19 +574,19 @@ We will use the following denotation in the example:
 
 Let's say a sequencer has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, $D$ = 0 TON, and $C$ = 20 TON, most of $Seig$ goes to stakers:
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{0+20}\over 100} * 10$ = 2 TON \hfill\break
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{0+20}\over 100} * 10$ = 2 TON </br>
 **Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-0-20}\over 100} * 10$ = 8 TON
 
 If the sequencer draws more depositors to L2, and as a result, $D$ increases to 30 TON, $Seig$ is redistributed:
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{30+20}\over 100} * 10$ = 5 TON \hfill\break
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{30+20}\over 100} * 10$ = 5 TON </br>
 **Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-30-20}\over 100} * 10$ = 5 TON
 
 As the L2 TVL grows from 20 TON to 50 TON, the seigniorage for the sequencer increases from 2 TON to 5 TON. 
 
 The sequencer will try to raise $D$ to 50 TON if the income generated from it (other than L2 transaction fees) is sufficient to cover L1 security fees.
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7 TON \hfill\break
+**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7 TON </br>
 **Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-50-20}\over 100} * 10$ = 3 TON
 
 An additional 2 TON is added to the seigniorage for the sequencer. Plus, the sequencer does not need to sell the native tokens from L2 transaction fees, thanks to the additional cash flow from increased deposits. This allows us to overcome the L2 fee token dilemma.
@@ -606,23 +606,23 @@ Let's think about a hypothetical L2 whose security relies on stakers A, B, and C
 
 If the sequencer executes an attack using invalid transactions, stakers can either ignore it or initiate a challenge. The change in assets of each entity would be as follows if no challenge occurs:
 
-**Sequencer:** 0 TON \hfill\break
-**Staker A:** $-S_A * A$ = $-200 * 0.3$ = -60 TON \hfill\break
-**Staker B:** $-S_B * A$ = $-300 * 0.3$ = -90 TON \hfill\break
+**Sequencer:** 0 TON </br>
+**Staker A:** $-S_A * A$ = $-200 * 0.3$ = -60 TON </br>
+**Staker B:** $-S_B * A$ = $-300 * 0.3$ = -90 TON </br>
 **Staker C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker A runs a challenge and staker B supports it, while staker C does not participate in the challenge, the change in assets of each entity would be as follows:
 
-**Sequencer:** $-C$ = -1000 TON \hfill\break
-**Stkaer A:** $+C$ = +1000 TON \hfill\break
-**Staker B:** +0 TON \hfill\break
+**Sequencer:** $-C$ = -1000 TON </br>
+**Stkaer A:** $+C$ = +1000 TON </br>
+**Staker B:** +0 TON </br>
 **Staler C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker C decides to join the challenge but chooses the wrong side, the bigger loss cannot be avoided:
 
-**Sequencer:** $-C$ = -1000 TON \hfill\break
-**Stkaer A:** $+C$ = +1000 TON \hfill\break
-**Staker B:** +0 TON \hfill\break
+**Sequencer:** $-C$ = -1000 TON </br>
+**Stkaer A:** $+C$ = +1000 TON </br>
+**Staker B:** +0 TON </br>
 **Staler C:** $-MinChal - S_C * A$ = $-100 - (500 * 0.3)$ = -250 TON
 
 As you can see from the results, appropriate rewards and punishments can encourage behaviors that benefit the protocol. Firstly, it is possible to receive rewards if you can identify the malicious actions of a sequencer like staker A. Conversely, the stakes of all stakers can be slashed if no one initiates a challenge. Additionally, even if someone initiates a challenge, you can still lose a portion of your stake TON if you are absent from a challenge like staker C. Lastly, in the case of selecting the wrong side in a challenge, consequences can be even more serious.
@@ -635,7 +635,7 @@ We assume a unique verifier in the examples below to simplify the discussion. As
 
 The expected payoffs of verification and non-verification in Super-Simple Model in Optimistic Rollup are as follows:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
 - $C$: Sequencer Collateral; potential rewards for the verifier in the case of successful verification
@@ -646,17 +646,17 @@ The expected payoffs of verification and non-verification in Super-Simple Model 
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if $C=10$, $L=10$, $VC=20$, and $VR=10$:
 
-**Expected payoff of verification:** ${2\over 3} * 10 + 10 - 20$ = $-{10\over 3}$ \hfill\break
+**Expected payoff of verification:** ${2\over 3} * 10 + 10 - 20$ = $-{10\over 3}$ </br>
 **Expected payoff of non-verification:** $-{2\over 3} * 10 + ({1-{2\over 3}})*10$ = $-{10\over 3}$
 
 We can shrink the maximum value of $X$ that precipitates the verifiers' dilemma by increasing either $C$ or $L$. For instance, the value of $X$ that makes the expected payoff of verification and non-verification equal falls to $1\over 2$ if we double $C$:
 
-**Expected payoff of verification:** ${{1\over 2} * 20} + 10 - 20$ = 0 \hfill\break
+**Expected payoff of verification:** ${{1\over 2} * 20} + 10 - 20$ = 0 </br>
 **Expected payoff of non-verification:** $-{1\over 2} * 10 + ({1-{1\over 2}})*10$ = 0
 
 Similarly, the value of $X$ that makes the expected payoff of verification and non-verification equal falls to $1\over 2$ if we double $L$:
 
-**Expected payoff of verification:** ${{1\over 2} * 10} + 10 - 20$ = -5 \hfill\break
+**Expected payoff of verification:** ${{1\over 2} * 10} + 10 - 20$ = -5 </br>
 **Expected payoff of non-verification:** $-{1\over 2} * 20 + ({1-{1\over 2}})*10$ = -5
 
 Consequently, as $C$ or $L$ increases, the maximum value of $X$ that causes the verifiers' dilemma drops, making L2 safer. However, it can be difficult for the protocol to control $C$ or $L$.
@@ -665,7 +665,7 @@ Consequently, as $C$ or $L$ increases, the maximum value of $X$ that causes the 
 
 The expected payoffs of verification and non-verification get modified as follows:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
 - $S$: Staked TON
@@ -673,12 +673,12 @@ The expected payoffs of verification and non-verification get modified as follow
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, and $S=100$ $(L=10=0.1 * 100=A * S)$:
 
-**Expected payoff of verification:** ${{2\over 3} * 10} + 10 - 20$ = $-{10\over 3}$ \hfill\break
+**Expected payoff of verification:** ${{2\over 3} * 10} + 10 - 20$ = $-{10\over 3}$ </br>
 **Expected payoff of non-verification:** ${-{2\over 3} * 0.1 * 100} + ({1-{2\over 3}})*10$ = $-{10\over 3}$
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $1\over 2$ if we double $A$.
 
-**Expected payoff of verification:** ${{1\over 2} * 10} + 10 - 20$ = -5 \hfill\break
+**Expected payoff of verification:** ${{1\over 2} * 10} + 10 - 20$ = -5 </br>
 **Expected payoff of non-verification:** ${-{1\over 2} * 0.2 * 100} + ({1-{1\over 2}})*10$ = -5
 
 We have the same result as the basic verification model with $L=10$ and $L=20$. However, because $A$ is more easily controllable, it is much simpler to achieve an identical outcome.
@@ -687,21 +687,21 @@ We have the same result as the basic verification model with $L=10$ and $L=20$. 
 
 With stakers offering fast withdrawals, the expected payoffs of verification and non-verification are updated as follows:
 
-**Expected payoff of verification:** ${X * C + VR - VC}$ \hfill\break
+**Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * ({A * S+FW})} + ({1-X}) * VR$
 
 - $FW$: Staked TON used for fast withdrawals
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 13$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, $S=100$, and $FW = 100$:
 
-**Expected payoff of verification:** ${{2\over 13} * 10} + 10 - 20$ = $-{110\over 13}$ \hfill\break
+**Expected payoff of verification:** ${{2\over 13} * 10} + 10 - 20$ = $-{110\over 13}$ </br>
 **Expected payoff of non-verification:** ${-{2\over 13}*({0.1 * 100 + 100})} + ({1-{2\over 13}})*10$ = $-{110\over 13}$ 
 
 It is safer than the staking verification model. $({2\over 3}>{2\over 13})$
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal drops to ${2\over 14}={1\over 7}$ if we double $A$:
 
-**Expected payoff of verification:** ${{1\over 7} * 10} + 10 - 20$ = $-{60\over 7}$ \hfill\break
+**Expected payoff of verification:** ${{1\over 7} * 10} + 10 - 20$ = $-{60\over 7}$ </br>
 **Expected payoff of non-verification:** ${-{1\over 7}*({0.2 * 100 + 100})} + ({1-{1\over 7}})*10$ = $-{60\over 7}$
 
 Again, it is safer than the staking verification model. $({1\over 2}>{1\over 7})$
