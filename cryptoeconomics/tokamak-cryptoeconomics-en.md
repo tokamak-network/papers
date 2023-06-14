@@ -79,40 +79,40 @@ Ethereum blockchain due to its inherent performance and functional limitations.<
     
     **Block verification**
     
-    b. Under the Optimistic Rollup approach, users submit transactions to “Sequencers” (as
+    b. Under the Optimistic Rollup approach, users submit transactions to “L2 Operator” (as
     defined in Section 1 below), which are nodes responsible for processing transactions on the
-    optimistic rollup. The Sequencer aggregates transactions, compresses the underlying data,
+    optimistic rollup. L2 Operator aggregates transactions, compresses the underlying data,
     and publishes the block on Ethereum.
     
-    c. Sequencers are required to lock as “Sequencer collateral” (as defined in Section 1 below) a
+    c. L2 Operators are required to lock as “L2 Operator collateral” (as defined in Section 1 below) a
     certain minimum number of Tokens (as further described below) as a form of a bond to dis-
-    incentivize dishonesty as such bond can be slashed if the Sequencer posts an invalid block
-    or builds on an old-but-invalid block (even if their block is valid). Sequencers are rewarded by
-    the Tokamak Network with seigniorage (i.e. newly minted Tokens) for their services, the
+    incentivize dishonesty as such bond can be slashed if L2 Operator posts an invalid block
+    or builds on an old-but-invalid block (even if their block is valid). L2 Operators are rewarded by 
+    Tokamak Network with seigniorage (i.e. newly minted Tokens) for their services, the
     quantum of awards being in proportion to the growth of the corresponding L2 (growth being
     calculated on the basis of the growth of the total supply of Tokens on the Tokamak Network).
-    However, in addition to seigniorage, different Sequencers may have different fee policies for
+    However, in addition to seigniorage, different L2 Operators may have different fee policies for
     how they are to be remunerated by users for their services (for example, in Tokens or in other
     cryptocurrencies).
     
     d. Under the Optimistic Rollup approach, after a rollup batch of transactions are submitted by an
-    Sequencer for publishing on the Ethereum blockchain, there is a time window/challenge
+    L2 Operator for publishing on the Ethereum blockchain, there is a time window/challenge
     period (called the “DTD”, as defined in Section 1 below) of 7 to 14 days where users can
     “Challenge” (as defined in Section 1 below) the results of a transaction by computing fraud
     proofs (subject to them also providing Tokens in the form of “minimum challenge costs” (as
-    described in Section 3.1.2 below). In the event where a particular Sequencer is Challenged,
-    depending on whether the batch was validly submitted, the Sequencer or the challenger will
-    lose their Sequencer collateral or minimum challenge costs respectively, and the winning
+    described in Section 3.1.2 below). In the event where a particular L2 Operator is Challenged,
+    depending on whether the batch was validly submitted, L2 Operator or the challenger will
+    lose their L2 Operator collateral or minimum challenge costs respectively, and the winning
     party will obtain the losing party’s slashed Tokens.
     
-    e. Users who are not Sequencers nor challengers (i.e. they themselves are not involved in
+    e. Users who are not L2 Operators nor challengers (i.e. they themselves are not involved in
     either providing the service of processing transactions or computing fraud proofs), can also
-    take part the block verification process by “supporting” the Sequencer or a challenger through
+    take part the block verification process by “supporting” L2 Operator or a challenger through
     similarly submitting Tokens to be locked up as minimum challenge costs, and in doing so can
     share in the rewards (i.e, seigniorage and/or slashed Tokens) and penalties (i.e the risk of
     slashing in the event of an invalid challenge/submission) which would have been obtained by
-    the Sequencer or challenger respectively for their participation in block verification activities.
-    For the avoidance of doubt, the act of “supporting” the Sequencer or the challenger is a
+    the L2 Operator or challenger respectively for their participation in block verification activities.
+    For the avoidance of doubt, the act of “supporting” the L2 Operator or the challenger is a
     proactive step a user has to take. A user can remain a passive Tokenholder on the Tokamak
     Network and not participate as a supporter in any of the challenges. The Tokens submitted to
     be locked up in this matter are intended to be for the purposes of encouraging active
@@ -121,7 +121,7 @@ Ethereum blockchain due to its inherent performance and functional limitations.<
 
     f. Notwithstanding the above, to encourage active participation on the Tokamak Network’s
     block verification activities, if a user on the Tokamak Network has staked Tokens but does
-    not participate in such block verification process (i.e. not operating as a Sequencer, a
+    not participate in such block verification process (i.e. not operating as a L2 Operator, a
     challenger, or supporting either of them in a challenge), a portion of their staked Tokens will
     be slashed.</br>
     
@@ -129,16 +129,16 @@ Ethereum blockchain due to its inherent performance and functional limitations.<
     
     g. As part of the Optimistic Rollup protocol, in order to have transferred assets from L1 into L2,
     a user would have had to transfer its L1 assets to a token bridge, which is a smart contract
-    that will lock the asset and communicate with a L2 – based Sequencer for such Sequencer to
+    that will lock the asset and communicate with a L2 – based L2 Operator for such L2 Operator to
     then relay the instructions to a token bridge on L2 to mint a corresponding amount of the
     same asset (in a wrapped form) on the L2 layer.
     
     h. If a user initiates a transaction to withdraw assets locked on the Ethereum layer (L1), the
     reverse process occurs. The user will deposit the corresponding L2 assets and submit a
     withdrawal request to the L2 token bridge, which will then have to be processed by the
-    Sequencer (and would be subject to the abovementioned DTD period). If there is no
+    L2 Operator (and would be subject to the abovementioned DTD period). If there is no
     successful Challenge during the DTD period, the withdrawal request will be relayed by the
-    Sequencer to the L1 token bridge where the relevant assets will be released on the L1 layer
+    L2 Operator to the L1 token bridge where the relevant assets will be released on the L1 layer
     and the corresponding assets on the L2 token bridge will be burnt.
     
     i. Due to the above DTD period, the Tokamak Network permits users to act as fast withdrawal
@@ -153,9 +153,9 @@ Ethereum blockchain due to its inherent performance and functional limitations.<
     structures for rewarding stakers.</br></br>
 
 3. The Tokens is the native token of the Tokamak Network. It can be used for the following purposes:</br>
-    a. Potentially as fees payable to Sequencers on the Tokamak Network;</br>
-    b. To be provided as Sequencer collateral and/or minimum challenge costs, in relation to block
-    verification processes (either as a Sequencer, a challenger, or a user supporting either of
+    a. Potentially as fees payable to L2 Operators on the Tokamak Network;</br>
+    b. To be provided as L2 Operator collateral and/or minimum challenge costs, in relation to block
+    verification processes (either as a L2 Operator, a challenger, or a user supporting either of
     them in challenges)</br>
     c. To be used by a user to provide fast withdrawal services, or staked on the L1 layer to other
     fast withdrawal service providers.</br></br>
@@ -163,7 +163,7 @@ Ethereum blockchain due to its inherent performance and functional limitations.<
 4. Tokens were previously available for purchase directly from the Company during a token generation
 event which is no longer running. However, they are currently obtainable by users of the Tokamak
 Network solely (i) through rewards by participating in the block verification processes (either as an
-Sequencer, a challenger, or a user supporting either of them); and (ii) by purchasing them from a
+L2 Operator, a challenger, or a user supporting either of them); and (ii) by purchasing them from a
 third-party cryptocurrency exchange, to the extent that Tokens are made available on such third-party
 cryptocurrency exchanges. </br></br>
 
@@ -190,7 +190,7 @@ Layer 2 (L2) is a technology that emerged to complement the slower Layer 1 (L1) 
 
 The Tokamak Network, based on Optimism, aims to foster a stable environment for the creation of on-demand L2 blockchains. We have been focusing on maximizing the utilities of TON to be competitive compared to other protocols using Optimistic rollup. For example, in a previous study, we explored how newly issued TON can help with L2 growth and establish native tokens as an L2 fee token.
 
-In this paper, we will discuss further expanding the use of TON in the L2 environment by upgrading the existing staking service. As previously mentioned, TON seigniorage can facilitate L2 growth by rewarding sequencers' performances. It can alleviate the L2 fee token dilemma and thus lay the foundation for native tokens to be used as an L2 fee token. Consequently, L2 blockchains within the Tokamak Network can build independent economies and be on the path of sustainable growth. </br>
+In this paper, we will discuss further expanding the use of TON in the L2 environment by upgrading the existing staking service. As previously mentioned, TON seigniorage can facilitate L2 growth by rewarding L2 Operator's performances. It can alleviate the L2 fee token dilemma and thus lay the foundation for native tokens to be used as an L2 fee token. Consequently, L2 blockchains within the Tokamak Network can build independent economies and be on the path of sustainable growth. </br>
 Additionally, TON, as a medium of rewards and punishment in challenges and fast withdrawals, can encourage TON stakers to take responsibility for L2 security. With appropriate rewards and penalties in a challenge, a more balanced staking incentive structure will motivate stakers to actively engage in verification tasks. Moreover, if we add the fast withdrawal service offered by stakers, a more robust L2 environment can be formed by mitigating the verifiers' dilemma.
 
 
@@ -201,8 +201,8 @@ Additionally, TON, as a medium of rewards and punishment in challenges and fast 
 - **Seigniorage**: Difference between the nominal value and issuance costs of a currency; TON seigniorage is essentially the same as the amount of TON newly issued, given the zero issuance costs.
 - **inflation**: Amount of currency newly issued / Total amount of currency issued
 - **Deposit**: Action of transferring the balance of tokens in L1 into L2
-- **Sequencer**: Entity who processes L2 transactions, creates L2 blocks, and submits relevant data to L1 
-- **Sequencer collateral**: Assets locked by sequencers as a collateral when opening L2
+- **L2 Operator**: Entity who processes L2 transactions, creates L2 blocks, and submits relevant data to L1 
+- **L2 Operator collateral**: Assets locked by L2 Operators as a collateral when opening L2
 - **Challenge**: Action of verifying L2 transaction data submitted to L1 by any entity during DTD
 - **DTD(Dispute Time Delay)**: Period during which any entity can verify L2 transaction data submitted to L1
 - **Withdraw**: Action of transferring the balance of tokens in L2 into L1
@@ -263,14 +263,14 @@ If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all s
 
 ### 2.2.2. TON staking V2
 
-Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
+Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a L2 Operator will be able to receive seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
 
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
+**L2 Operator:** ${{{D+C}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
 **Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
 
 - $D$: Total amount of TON deposited
-- $C$: Sequencer collateral
+- $C$: L2 Operator collateral
 - ${T_{L2} \equiv D+C}$: L2 TON supply
 - ${T_{L1} \equiv T-D-C = T-T_{L2}}$: L1 TON supply
 
@@ -280,17 +280,17 @@ TON seigniorage allows for the sustainable growth of L2 by facilitating its expa
 
 ### 2.3.1. Quantative/Qualitative growth of L2
 
-#### 2.3.1.1. Quantitative growth of L2 <=> increased seigniorage for sequencers
+#### 2.3.1.1. Quantitative growth of L2 <=> increased seigniorage for L2 Operators
 
-Sequencers are motivated to increase seigniorage revenue by increasing deposits and collateral, which can result in significant growth of L2 as evidenced by the increase in Total Value Locked (TVL).
+L2 Operators are motivated to increase seigniorage revenue by increasing deposits and collateral, which can result in significant growth of L2 as evidenced by the increase in Total Value Locked (TVL).
 
-#### 2.3.1.2. Qualitative growth of L2 <=> Qualitative improvement of seigniorage for sequencers
+#### 2.3.1.2. Qualitative growth of L2 <=> Qualitative improvement of seigniorage for L2 Operators
 
-The quality of seigniorage is also crucial. For example, if the seigniorage comes from only one depositor, it can be inherently unstable, as the revenue for the sequencer will drop significantly if the depositor withdraws.
+The quality of seigniorage is also crucial. For example, if the seigniorage comes from only one depositor, it can be inherently unstable, as the revenue for the L2 Operator will drop significantly if the depositor withdraws.
 
 This is also related to the qualitative growth of L2. When liquidity is concentrated among a small number of depositors, it can discourage transactions, making L2 less attractive for users.
 
-Therefore, sequencers will aim to bring more users to L2 to improve the quality of seigniorage revenue, which in turn leads to the qualitative growth of L2.
+Therefore, L2 Operators will aim to bring more users to L2 to improve the quality of seigniorage revenue, which in turn leads to the qualitative growth of L2.
 
 ### 2.3.2. Alleviation of L2 fee token dilemma
 
@@ -303,7 +303,7 @@ We can address the long-term issue in L2, known as the "L2 fee token dilemma," b
 
 For example, the demand for TON can significantly increase when it is used as an L2 fee token, as users need TON for every transaction on L2. However, this is only one side of the coin. When L2 submits transaction data to L1 for security, a certain fee is incurred, and the fee can only be paid in ETH. This creates the L2 fee token dilemma as TON from L2 transaction fees may have to be sold to pay for L1 security fees.
 
-Seigniorage distribution can alleviate this dilemma by encouraging sequencers to attract users to L2. Sequencers, driven by the potential seigniorage revenue, will bring users to L2, creating opportunities to diversify revenue streams such as through flexible fee policies or useful Dapps. As a result, sequencers will be able to cover L1 security fees without selling the native tokens (TON in this example) from L2 transaction fees.
+Seigniorage distribution can alleviate this dilemma by encouraging L2 Operators to attract users to L2. L2 Operators, driven by the potential seigniorage revenue, will bring users to L2, creating opportunities to diversify revenue streams such as through flexible fee policies or useful Dapps. As a result, L2 Operators will be able to cover L1 security fees without selling the native tokens (TON in this example) from L2 transaction fees.
 
 
 # 3. Verification economics
@@ -315,7 +315,7 @@ In staking V2, TON contributes to not only the growth but also the security of L
 
 ### 3.1.1. Overview
 
-The security of the L2 layer heavily relies on a sequencer. In contrast to the L1, whose security is guaranteed by powerful economic incentives and multiple validators, the L2 is more vulnerable to attacks. Sequencers store L2 transaction data on the L1 to mitigate such instability. The challenge process ensures the validity of the data before it is committed to the L1. Anyone can challenge or raise issues against L2 transaction data during DTD.
+The security of the L2 layer heavily relies on the L2 Operators. In contrast to the L1, whose security is guaranteed by powerful economic incentives and multiple validators, the L2 is more vulnerable to attacks. L2 Operators store L2 transaction data on the L1 to mitigate such instability. The challenge process ensures the validity of the data before it is committed to the L1. Anyone can challenge or raise issues against L2 transaction data during DTD.
 
 However, relying solely on the generosity of random entities for security can be inherently unstable. Therefore, the upgraded staking service will include appropriate rewards and penalties to incentivize stakers to be deeply involved in challenges.
 
@@ -323,34 +323,34 @@ However, relying solely on the generosity of random entities for security can be
 
 In Tokamak Network, the challenge is expected to proceed as follows:
 
-**1. A sequencer submits the L2 block to L1.**
+**1. L2 Operator submits the L2 block to L1.**
 
-**2. After setting the 'minimum challenge costs' as collateral, a challenger engages in a Q&A process with the sequencer to verify the block.**
+**2. After setting the 'minimum challenge costs' as collateral, a challenger engages in a Q&A process with the L2 Operator to verify the block.**
 - The entity that gives the wrong answer or fails to respond within a predetermined period loses.
 - It takes 7 to 14 days(equal to or slightly shorter than DTD).
 
 **3. Non-challenger stakers can also participate in the challenge(Group Challenge).**
 - It is possible to join the group challenge with the minimum challenge costs as collateral.
-- Stakers can support either the challenger or the sequencer. 
+- Stakers can support either the challenger or the L2 Operator. 
 
 **4. Results**
 
 - If the challenger wins:
-    - The challenger inherits the rights of the sequencer(including sequencer collateral). 
-    - There is no change in the assets of stakers supporting the challenger. However, depending on the situation, they may get a part of the sequencer collateral.
-    - The sequencer gets disqualified.
-    - Stakers supporting the sequencer lose the minimum collateral costs and have their stakes slashed. 
+    - The challenger inherits the rights of the L2 Operator(including L2 Operator collateral). 
+    - There is no change in the assets of stakers supporting the challenger. However, depending on the situation, they may get a part of the L2 Operator collateral.
+    - The L2 Operator gets disqualified.
+    - Stakers supporting the L2 Operator lose the minimum collateral costs and have their stakes slashed. 
     - The stakers not participating in the challenge get a portion of their stakes slashed.
 
-- If the sequencer wins:
-    - There is no change in the assets of the sequencer.
-    - There is no change in the assets of the stakers supporting the sequencer. 
+- If the L2 Operator wins:
+    - There is no change in the assets of the L2 Operator.
+    - There is no change in the assets of the stakers supporting the L2 Operator. 
     - The challenger and stakers supporting the challenger lose the minimum collateral costs, and their stakes get cut. 
     - The stakers not participating in the challenge get a portion of their stakes slashed.
         
 **5. Others**
 
-- The sequencer will lose immediately if the following conditions hold:
+- The L2 Operator will lose immediately if the following conditions hold:
     - No commits occur during DTD.
 
 ## 3.2. Fast Withdrawal
@@ -380,13 +380,13 @@ In the Super-Simple Model of Optimistic Rollup, where a unique verifier who is a
 **Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
-- $C$: Sequencer collateral; potential rewards for the verifier in the case of successful verification
-- $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
-- $X$: Probability of attack by the sequencer
+- $C$: L2 Operator collateral; potential rewards for the verifier in the case of successful verification
+- $L$: Assets deposited by the verifier in roll-up; potential rewards for L2 Operator in the case of failed verification.
+- $X$: Probability of attack by the L2 Operator
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
-The expected payoff of verification is greater than that of non-verification if $X$ > $VC\over{C+L+VR}$. Conversely, the verifiers' dilemma arises if $X$ $\le$ $VC\over{C+L+VR}$. Notably, It is difficult to completely eliminate the verifier's dilemma. For example, the dilemma will always occur if $VC \ge {C+L+VR}$ because $0\le X\le 1$ $\le$ $VC\over{C+L+VR}$. Conversly, a sequencer can find $X_A$ that meets $0 < {X_A} \le {{VC}\over{C+L+VR}}$ if $VC<{C+L+VR}$, given that $VC$, $C$, $L$, $VR$ are not negative.
+The expected payoff of verification is greater than that of non-verification if $X$ > $VC\over{C+L+VR}$. Conversely, the verifiers' dilemma arises if $X$ $\le$ $VC\over{C+L+VR}$. Notably, It is difficult to completely eliminate the verifier's dilemma. For example, the dilemma will always occur if $VC \ge {C+L+VR}$ because $0\le X\le 1$ $\le$ $VC\over{C+L+VR}$. Conversly, a L2 Operator can find $X_A$ that meets $0 < {X_A} \le {{VC}\over{C+L+VR}}$ if $VC<{C+L+VR}$, given that $VC$, $C$, $L$, $VR$ are not negative.
 
 Having multiple verifiers does not significantly change the discussion. Assuming multiple verifiers can initiate challenges, the expected payoffs of verification and non-verification for a specific verifier are as follows (Here $C$ is evenly distributed among verifiers participating in the challenge):
 
@@ -418,7 +418,7 @@ The conclusion can be summarized as follows:
 2. $VC\over{C+L+VR}$ < $X$ $\le$ $N_{v} * VC\over C$: Some verifiers may conduct verification
 3. $X$ $\le$ $VC\over{C+L+VR}$: No verifiers conduct verification
 
-The verifiers' dilemma arises regardless of $X$ if $VC\over{C+L+VR}$ $\ge$ $1$, similar to the situation with a unique verifier. Moreover, even if $VC\over{C+L+VR}$ < $1$, it is also not possible to completely eliminate the dilemma as a sequencer can adjust $X$ to be less than or equal to $VC\over{C+L+VR}$.
+The verifiers' dilemma arises regardless of $X$ if $VC\over{C+L+VR}$ $\ge$ $1$, similar to the situation with a unique verifier. Moreover, even if $VC\over{C+L+VR}$ < $1$, it is also not possible to completely eliminate the dilemma as a L2 Operator can adjust $X$ to be less than or equal to $VC\over{C+L+VR}$.
 
 Therefore, the focus is on minimizing the maximum value of X that would discourage any verifiers from conducting verification, which is ${{VC}\over{C+L+VR}}$ in the model above. The Tokamak Network aims to address this problem through staking and staking-based fast withdrawal mechanisms.
 
@@ -431,13 +431,13 @@ Assuming the unique verifier can initiate challenges, the expected payoffs of ve
 **Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
-- $C$: Sequencer collateral; potential rewards for the verifier in the case of successful verification
-- $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
-- $X$: Probability of attack by the sequencer
+- $C$: L2 Operator collateral; potential rewards for the verifier in the case of successful verification
+- $L$: Assets deposited by the verifier in roll-up; potential rewards for L2 Operator in the case of failed verification.
+- $X$: Probability of attack by the L2 Operator
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
-It is economically rational for the verifier to validate L2 transactions if $X$ > $VC\over C+L+VR$. Conversely, the verifiers' dilemma arises if a sequencer reduces the $X$ to be less than or equal to $VC\over C+L+VR$. This remains the same in the case of multiple verifiers.
+It is economically rational for the verifier to validate L2 transactions if $X$ > $VC\over C+L+VR$. Conversely, the verifiers' dilemma arises if a L2 Operator reduces the $X$ to be less than or equal to $VC\over C+L+VR$. This remains the same in the case of multiple verifiers.
 
 #### 3.3.2.2. Staking verification model
 
@@ -489,7 +489,7 @@ The conclusion can be summarized as follows:
 2. $VC\over {C+A * S+VR}$ < $X$ $\le$ $VC\over{C/N_v+A * S}$: Some verifiers may conduct verification
 3. $X$ $\le$ $VC\over C+A*S+VR$: No verifiers conducts verification
 
-Higher $A$ will force sequencers to lower $X$ in order to make the L2 environment more favorable for attacks.
+Higher $A$ will force L2 Operators to lower $X$ in order to make the L2 environment more favorable for attacks.
 
 #### 3.3.2.3. Staking & fast withdrawal verification model
 
@@ -542,7 +542,7 @@ The staking verification model can more easily control verification incentives b
     
 ## 4.1. Sustainable growth of L2
 
-TON incentivizes sequencers to contribute to the growth of L2 both quantitatively and qualitatively. Sequencers aim to attract capital from a large number of users in order to maximize stable seigniorage revenue, resulting in the expansion of L2. </br>
+TON incentivizes L2 Operators to contribute to the growth of L2 both quantitatively and qualitatively. L2 Operators aim to attract capital from a large number of users in order to maximize stable seigniorage revenue, resulting in the expansion of L2. </br>
 Once the user base is established, L2 can generate a revenue stream other than transaction fees through discretionary fee policies or useful Dapps. L2 can use a native token as a fee token without falling into the L2 fee token dilemma if such an additional cash flow covers L1 security fees.
 
 As a result, L2 blockchains are able to build their economy with less influence from external factors.
@@ -570,26 +570,26 @@ We will use the following denotation in the example:
 - $S$: Total amount of TON staked
 - $Seig$: Seigniorage generated during a predetermined period
 - $D$: Total amount of TON deposited
-- $C$: Sequencer Collateral
+- $C$: L2 Operator Collateral
 
-Let's say a sequencer has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, $D$ = 0 TON, and $C$ = 20 TON, most of $Seig$ goes to stakers:
+Let's say a L2 Operator has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, $D$ = 0 TON, and $C$ = 20 TON, most of $Seig$ goes to stakers:
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{0+20}\over 100} * 10$ = 2 TON </br>
+**L2 Operator:** ${{{D+C}\over T} * {Seig}}$ = ${{0+20}\over 100} * 10$ = 2 TON </br>
 **Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-0-20}\over 100} * 10$ = 8 TON
 
-If the sequencer draws more depositors to L2, and as a result, $D$ increases to 30 TON, $Seig$ is redistributed:
+If the L2 Operator draws more depositors to L2, and as a result, $D$ increases to 30 TON, $Seig$ is redistributed:
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{30+20}\over 100} * 10$ = 5 TON </br>
+**L2 Operator:** ${{{D+C}\over T} * {Seig}}$ = ${{30+20}\over 100} * 10$ = 5 TON </br>
 **Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-30-20}\over 100} * 10$ = 5 TON
 
-As the L2 TVL grows from 20 TON to 50 TON, the seigniorage for the sequencer increases from 2 TON to 5 TON. 
+As the L2 TVL grows from 20 TON to 50 TON, the seigniorage for the L2 Operator increases from 2 TON to 5 TON. 
 
-The sequencer will try to raise $D$ to 50 TON if the income generated from it (other than L2 transaction fees) is sufficient to cover L1 security fees.
+The L2 Operator will try to raise $D$ to 50 TON if the income generated from it (other than L2 transaction fees) is sufficient to cover L1 security fees.
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7 TON </br>
+**L2 Operator:** ${{{D+C}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7 TON </br>
 **Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-50-20}\over 100} * 10$ = 3 TON
 
-An additional 2 TON is added to the seigniorage for the sequencer. Plus, the sequencer does not need to sell the native tokens from L2 transaction fees, thanks to the additional cash flow from increased deposits. This allows us to overcome the L2 fee token dilemma.
+An additional 2 TON is added to the seigniorage for the L2 Operator. Plus, the L2 Operator does not need to sell the native tokens from L2 transaction fees, thanks to the additional cash flow from increased deposits. This allows us to overcome the L2 fee token dilemma.
 
 
 ## 6.2. Verification economics
@@ -604,28 +604,28 @@ We will use the folliwng denotation in the example:
 
 Let's think about a hypothetical L2 whose security relies on stakers A, B, and C. We assume $C$ = 1000 TON, $S_{A}$ = 200 TON, $S_{B}$ = 300 TON, $S_{C}$ = 500 TON, $MinChal$ = 100 TON, and $A$ = 30%.
 
-If the sequencer executes an attack using invalid transactions, stakers can either ignore it or initiate a challenge. The change in assets of each entity would be as follows if no challenge occurs:
+If the L2 Operator executes an attack using invalid transactions, stakers can either ignore it or initiate a challenge. The change in assets of each entity would be as follows if no challenge occurs:
 
-**Sequencer:** 0 TON </br>
+**L2 Operator:** 0 TON </br>
 **Staker A:** $-S_A * A$ = $-200 * 0.3$ = -60 TON </br>
 **Staker B:** $-S_B * A$ = $-300 * 0.3$ = -90 TON </br>
 **Staker C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker A runs a challenge and staker B supports it, while staker C does not participate in the challenge, the change in assets of each entity would be as follows:
 
-**Sequencer:** $-C$ = -1000 TON </br>
+**L2 Operator:** $-C$ = -1000 TON </br>
 **Stkaer A:** $+C$ = +1000 TON </br>
 **Staker B:** +0 TON </br>
 **Staler C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker C decides to join the challenge but chooses the wrong side, the bigger loss cannot be avoided:
 
-**Sequencer:** $-C$ = -1000 TON </br>
+**L2 Operator:** $-C$ = -1000 TON </br>
 **Stkaer A:** $+C$ = +1000 TON </br>
 **Staker B:** +0 TON </br>
 **Staler C:** $-MinChal - S_C * A$ = $-100 - (500 * 0.3)$ = -250 TON
 
-As you can see from the results, appropriate rewards and punishments can encourage behaviors that benefit the protocol. Firstly, it is possible to receive rewards if you can identify the malicious actions of a sequencer like staker A. Conversely, the stakes of all stakers can be slashed if no one initiates a challenge. Additionally, even if someone initiates a challenge, you can still lose a portion of your stake TON if you are absent from a challenge like staker C. Lastly, in the case of selecting the wrong side in a challenge, consequences can be even more serious.
+As you can see from the results, appropriate rewards and punishments can encourage behaviors that benefit the protocol. Firstly, it is possible to receive rewards if you can identify the malicious actions of a L2 Operator like staker A. Conversely, the stakes of all stakers can be slashed if no one initiates a challenge. Additionally, even if someone initiates a challenge, you can still lose a portion of your stake TON if you are absent from a challenge like staker C. Lastly, in the case of selecting the wrong side in a challenge, consequences can be even more serious.
 
 ### 6.2.2. Verifiers' dilemma
 
@@ -638,9 +638,9 @@ The expected payoffs of verification and non-verification in Super-Simple Model 
 **Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
-- $C$: Sequencer Collateral; potential rewards for the verifier in the case of successful verification
-- $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
-- $X$: Probability of attack by the sequencer
+- $C$: L2 Operator Collateral; potential rewards for the verifier in the case of successful verification
+- $L$: Assets deposited by the verifier in roll-up; potential rewards for L2 Operator in the case of failed verification.
+- $X$: Probability of attack by the L2 Operator
 - $VC$: Verification costs
 - $VR$: Revenue from a unit of verification; benefits from safe L2 networks
 
