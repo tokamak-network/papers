@@ -614,16 +614,16 @@ If the sequencer executes an attack using invalid transactions, stakers can eith
 If staker A runs a challenge and staker B supports it, while staker C does not participate in the challenge, the change in assets of each entity would be as follows:
 
 **Sequencer:** $-C$ = -1000 TON </br>
-**Stkaer A:** $+C$ = +1000 TON </br>
+**Staker A:** $+C$ = +1000 TON </br>
 **Staker B:** +0 TON </br>
-**Staler C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
+**Staker C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
 
 If staker C decides to join the challenge but chooses the wrong side, the bigger loss cannot be avoided:
 
 **Sequencer:** $-C$ = -1000 TON </br>
-**Stkaer A:** $+C$ = +1000 TON </br>
+**Staker A:** $+C$ = +1000 TON </br>
 **Staker B:** +0 TON </br>
-**Staler C:** $-MinChal - S_C * A$ = $-100 - (500 * 0.3)$ = -250 TON
+**Staker C:** $-MinChal - S_C * A$ = $-100 - (500 * 0.3)$ = -250 TON
 
 As you can see from the results, appropriate rewards and punishments can encourage behaviors that benefit the protocol. Firstly, it is possible to receive rewards if you can identify the malicious actions of a sequencer like staker A. Conversely, the stakes of all stakers can be slashed if no one initiates a challenge. Additionally, even if someone initiates a challenge, you can still lose a portion of your stake TON if you are absent from a challenge like staker C. Lastly, in the case of selecting the wrong side in a challenge, consequences can be even more serious.
 
