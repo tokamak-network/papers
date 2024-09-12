@@ -1,4 +1,4 @@
-# Tokamak layer 2(L2) Cryptoeconomics
+# Tokamak Layer 2 (L2) Cryptoeconomics
 
 
 # Authors
@@ -9,7 +9,7 @@
 
 # Contents
 
-**Backround summary**
+**Background summary**
 
 **0. TL;DR**
 
@@ -24,7 +24,7 @@
         2.2.2 TON staking V2
     
     2.3. Sustainable growth of L2
-        2.3.1 Quantative/Qualitative growth of L2
+        2.3.1 Quantitative/Qualitative growth of L2
         2.3.2 Alleviation of L2 fee token dilemma
 
 **3. Verification economics**
@@ -37,14 +37,14 @@
         3.2.1. Overview
         3.2.2. Source of liquidity
         
-    3.3. Verifiers' Dillema
+    3.3. Verifiers' Dilemma
         3.3.1. Overview
-        3.3.2. Mitigation of verifiers' Dillema
+        3.3.2. Mitigation of verifiers' Dilemma
 
 
 **4. Utilities of TON**
     
-    4.1. Sustainbale growth of L2    
+    4.1. Sustainable growth of L2    
     
     4.2. Enhanced L2 security    
     
@@ -113,7 +113,7 @@ Ethereum blockchain due to its inherent performance and functional limitations.<
     slashing in the event of an invalid challenge/submission) which would have been obtained by
     the Sequencer or challenger respectively for their participation in block verification activities.
     For the avoidance of doubt, the act of “supporting” the Sequencer or the challenger is a
-    proactive step a user has to take. A user can remain a passive Tokenholder on the Tokamak
+    proactive step a user has to take. A user can remain a passive Token holder on the Tokamak
     Network and not participate as a supporter in any of the challenges. The Tokens submitted to
     be locked up in this matter are intended to be for the purposes of encouraging active
     participation in the Tokamak Network and will not be used or monetized by the Company
@@ -245,20 +245,20 @@ The current staking service provided by Tokamak Network is called TON staking V1
 
 In this version, seigniorage is distributed in the following manner:
  
-**Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$ </br>
-**TON DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$ </br>
+**Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$
+**Tokamak Network DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$
 **sTOS holders:** ${{W_P} * {{T-S}\over T} * {Seig}}$
 
 - $T$: Total TON supply
-- $S$: Total amount of TON staked
+- $S$: Total amount of TON staked. Sequencer's collateral is staked as well.
 - $Seig$: Seigniorage generated during a predetermined period
 - $W_S$, $W_D$, $W_P$: Seigniorage weights for stakers / TON DAO / sTOS holders
 $({{W_S} + {W_D} + {W_P}} \leq 1)$
 
 If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all seigniorage will go to stakers.
 
-**Stakers:** ${({S\over T} + 1 * {{T-S}\over T}) * {Seig}}$ = $Seig$ </br>
-**TON DAO:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$ </br>
+**Stakers:** ${({S\over T} + 1 * {{T-S}\over T}) * {Seig}}$ = $Seig$
+**Tokamak Network DAO:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$
 **sTOS holders:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$
 
 ### 2.2.2. TON staking V2
@@ -266,19 +266,18 @@ If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all s
 Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
 
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
-**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
+**Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
+**Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
 
-- $D$: Total amount of TON deposited
-- $C$: Sequencer collateral
-- ${T_{L2} \equiv D+C}$: L2 TON supply
-- ${T_{L1} \equiv T-D-C = T-T_{L2}}$: L1 TON supply
+- $D$: Total amount of TON deposited to L2.
+- ${T_{L2} \equiv D}$: L2 TON supply
+- ${T_{L1} \equiv T-D = T-T_{L2}}$: L1 TON supply
 
 ## 2.3. Sustainable growth of L2
 
 TON seigniorage allows for the sustainable growth of L2 by facilitating its expansion and alleviating the L2 fee token dilemma.
 
-### 2.3.1. Quantative/Qualitative growth of L2
+### 2.3.1. Quantitative/Qualitative growth of L2
 
 #### 2.3.1.1. Quantitative growth of L2 <=> increased seigniorage for sequencers
 
@@ -294,7 +293,7 @@ Therefore, sequencers will aim to bring more users to L2 to improve the quality 
 
 ### 2.3.2. Alleviation of L2 fee token dilemma
 
-> The section refers to https://github.com/Onther-Tech/economics/blob/main/Tokamaklayer2.md.
+> The section refers to https://github.com/tokamak-network/economics/blob/main/Tokamaklayer2.md.
 
 We can address the long-term issue in L2, known as the "L2 fee token dilemma," by promoting both quantitative and qualitative growth of L2.
 
@@ -369,7 +368,7 @@ As the current staking service is updated, staked TON, in addition to external l
 
 ## 3.3. Verifiers' dilemma
 
-> The section refers to Super-Simple Model in Optimistic Rollup in https://medium.com/onther-tech/optimistics-not-secure-enough-than-you-think-46bf93d80292.
+> The section refers to Super-Simple Model in Optimistic Rollup in https://medium.com/tokamak-network/optimistics-not-secure-enough-than-you-think-46bf93d80292.
 
 ### 3.3.1. Overview
 
@@ -455,7 +454,7 @@ The only difference is that we put $A*S$, not $L$, in the expected payoff of non
 
 The verifiers' dilemma occurs when $X \le {VC\over {C+A*S+VR}}$. Compared to the basic verification model, the staking verification model is more effective in mitigating the dilemma when $A * S$ > $L$. It's worth noting that satisfying this inequality is realistic, as $A$ is easier to control than $L$ from the perspective of the protocol.
 
-- **Multiple verfifiers**
+- **Multiple verifiers**
 
 With multiple stakers as verifiers, the expected payoffs of verification and non-verification for a specific verifier can be calculated as follows(Here $C$ is evenly distributed among the challenger and the non-challenger stakers joining the group challenge):
 
@@ -574,20 +573,20 @@ We will use the following denotation in the example:
 
 Let's say a sequencer has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, $D$ = 0 TON, and $C$ = 20 TON, most of $Seig$ goes to stakers:
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{0+20}\over 100} * 10$ = 2 TON </br>
-**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-0-20}\over 100} * 10$ = 8 TON
+**Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{0}\over 100} * 10$ = 0 TON
+**Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{100-0}\over 100} * 10$ = 10 TON
 
 If the sequencer draws more depositors to L2, and as a result, $D$ increases to 30 TON, $Seig$ is redistributed:
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{30+20}\over 100} * 10$ = 5 TON </br>
-**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-30-20}\over 100} * 10$ = 5 TON
+**Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{30}\over 100} * 10$ = 3 TON
+**Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{100-30}\over 100} * 10$ = 7 TON
 
 As the L2 TVL grows from 20 TON to 50 TON, the seigniorage for the sequencer increases from 2 TON to 5 TON. 
 
 The sequencer will try to raise $D$ to 50 TON if the income generated from it (other than L2 transaction fees) is sufficient to cover L1 security fees.
 
-**Sequencer:** ${{{D+C}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7 TON </br>
-**Stakers:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-50-20}\over 100} * 10$ = 3 TON
+**Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{50}\over 100} * 10$ = 5 TON
+**Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{100-50}\over 100} * 10$ = 3 TON
 
 An additional 2 TON is added to the seigniorage for the sequencer. Plus, the sequencer does not need to sell the native tokens from L2 transaction fees, thanks to the additional cash flow from increased deposits. This allows us to overcome the L2 fee token dilemma.
 
@@ -596,33 +595,30 @@ An additional 2 TON is added to the seigniorage for the sequencer. Plus, the seq
 
 ### 6.2.1. Challenge
 
-We will use the folliwng denotation in the example:
-- $C$: Sequncer Collateral
+We will use the following denotation in the example:
+- $C$: Sequencer's collateral, in staked TON. 
 - $S_{A}$, $S_{B}$, $S_{C}$: TON staked by staker A, B, and C, respectively
-- $MinChal$: Mininum challege costs
+- $MinChal$: Minimum challenge costs
 - $A$: Slashing rate
 
 Let's think about a hypothetical L2 whose security relies on stakers A, B, and C. We assume $C$ = 1000 TON, $S_{A}$ = 200 TON, $S_{B}$ = 300 TON, $S_{C}$ = 500 TON, $MinChal$ = 100 TON, and $A$ = 30%.
 
 If the sequencer executes an attack using invalid transactions, stakers can either ignore it or initiate a challenge. The change in assets of each entity would be as follows if no challenge occurs:
-
-**Sequencer:** 0 TON </br>
-**Staker A:** $-S_A * A$ = $-200 * 0.3$ = -60 TON </br>
-**Staker B:** $-S_B * A$ = $-300 * 0.3$ = -90 TON </br>
-**Staker C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
+**Sequencer:** No change
+**Staker A:** $-S_A * A = -200 * 0.3 = -60$ TON
+**Staker B:** $-S_B * A = -300 * 0.3 = -90$ TON
+**Staker C:** $-S_C * A = -500 * 0.3 = -150$ TON
 
 If staker A runs a challenge and staker B supports it, while staker C does not participate in the challenge, the change in assets of each entity would be as follows:
-
-**Sequencer:** $-C$ = -1000 TON </br>
-**Staker A:** $+C$ = +1000 TON </br>
-**Staker B:** +0 TON </br>
-**Staker C:** $-S_C * A$ = $-500 * 0.3$ = -150 TON
+**Sequencer:** $-C = -1000$ TON
+**Staker A:** $C = +1000$ TON
+**Staker B:** No change
+**Staker C:** $-S_C * A = -500 * 0.3 = -150$ TON
 
 If staker C decides to join the challenge but chooses the wrong side, the bigger loss cannot be avoided:
-
-**Sequencer:** $-C$ = -1000 TON </br>
-**Staker A:** $+C$ = +1000 TON </br>
-**Staker B:** +0 TON </br>
+**Sequencer:** $-C$ = -1000 TON
+**Staker A:** $+C$ = +1000 TON
+**Staker B:** No change
 **Staker C:** $-MinChal - S_C * A$ = $-100 - (500 * 0.3)$ = -250 TON
 
 As you can see from the results, appropriate rewards and punishments can encourage behaviors that benefit the protocol. Firstly, it is possible to receive rewards if you can identify the malicious actions of a sequencer like staker A. Conversely, the stakes of all stakers can be slashed if no one initiates a challenge. Additionally, even if someone initiates a challenge, you can still lose a portion of your stake TON if you are absent from a challenge like staker C. Lastly, in the case of selecting the wrong side in a challenge, consequences can be even more serious.
@@ -669,7 +665,7 @@ The expected payoffs of verification and non-verification get modified as follow
 **Expected payoff of non-verification:** ${-X * A * S + ({1-X}) * VR}$
 
 - $S$: Staked TON
-- $A$: Slahsing rate of the staked TON
+- $A$: Slashing rate of the staked TON
 
 The value of $X$ that makes the expected payoff of verification and non-verification equal is $2\over 3$ if we assume $C=10$, $VC=20$, $VR=10$, $A=0.1$, and $S=100$ $(L=10=0.1 * 100=A * S)$:
 
@@ -719,9 +715,9 @@ Assuming $C=10$, $L=10$, $VC=20$, $VR=10$, $A=0.1$, $S=100$, and $FW = 100$, the
 
 # 7. References
 
-https://github.com/Onther-Tech/economics/blob/main/Tokamaklayer2.md
+https://github.com/tokamak-network/economics/blob/main/Tokamaklayer2.md
 
-https://medium.com/onther-tech/optimistics-not-secure-enough-than-you-think-46bf93d80292
+https://medium.com/tokamak-network/optimistics-not-secure-enough-than-you-think-46bf93d80292
 
 
 # 8. Appendix

@@ -1,4 +1,4 @@
-# 토카막 레이어 2 암호경제(Tokamak layer 2 Cryptoeconomics)
+# 토카막 레이어 2 암호경제(Tokamak Layer 2 Cryptoeconomics)
 
 
 # 저자(Authors)
@@ -24,7 +24,7 @@
         2.2.2. 톤 스테이킹 V2(TON staking V2)
     
     2.3. 레이어 2의 지속가능한 성장(Sustainable growth of L2)
-        2.3.1. 레이어 2의 양적/질적 성장(Quantative/Qualitative growth of L2)
+        2.3.1. 레이어 2의 양적/질적 성장(Quantitative/Qualitative growth of L2)
         2.3.2. 레이어 2 수수료 토큰 딜레마 완화(Alleviation of L2 fee token dilemma)
 
 **3. 검증 경제(Verification economics)**
@@ -37,13 +37,13 @@
         3.2.1. 개요(Overview)
         3.2.2. 자금 원천(Source of liquidity)
         
-    3.3. 검증자의 딜레마(Verifiers' Dillema)
+    3.3. 검증자의 딜레마(Verifiers' Dilemma)
         3.3.1. 개요(Overview)
-        3.3.2. 검증자의 딜레마 완화(Mitigation of verifiers' Dillema)
+        3.3.2. 검증자의 딜레마 완화(Mitigation of verifiers' Dilemma)
 
 **4. 톤의 유용성(Utilities of TON)**
 
-    4.1. 레이어 2의 지속가능한 성장(Sustainbale growth of L2)
+    4.1. 레이어 2의 지속가능한 성장(Sustainable growth of L2)
    
     4.2. 레이어 2의 보안성 제고(Enhanced L2 security)
 
@@ -198,20 +198,19 @@ $({{W_S} + {W_D} + {W_P}} \leq 1)$
 
 레이어 2 환경이 확립되면 스테이킹 V1이 스테이킹 V2로 업그레이드될 것이다. 스테이킹 V2에서의 시뇨리지 분배에서 달라지는 점은 시퀀서가 레이어 2 성장에 비례해 시뇨리지 수익을 얻을 수 있다는 것이다. 예를 들어, $Seig$ 를 다음과 같이 분배할 수 있다:
 
-**시퀀서:** ${{{D+C}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
-**스테이커:** ${{{T-D-C}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
+**시퀀서:** ${{{D}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
+**스테이커:** ${{{T-D}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
 
 - $D$: 예치금 총량
-- $C$: 시퀀서 담보금
-- ${T_{L2} \equiv D+C}$: 레이어 2 톤 공급량 
-- ${T_{L1} \equiv T-D-C = T-T_{L2}}$: 레이어 1 톤 공급량
+- ${T_{L2} \equiv D}$: 레이어 2 톤 공급량 
+- ${T_{L1} \equiv T-D = T-T_{L2}}$: 레이어 1 톤 공급량
 
 
 ## 2.3. 레이어 2의 지속가능한 성장(Sustainable growth of L2)
 
 톤 시뇨리지는 레이어 2의 외연 확장을 촉진하는 동시에 레이어 2 수수료 토큰 딜레마를 완화함으로써 레이어 2가 지속가능한 성장을 구가하게 해준다.
 
-### 2.3.1. 레이어 2의 양적/질적 성장(Quantative/Qualitative growth of L2)
+### 2.3.1. 레이어 2의 양적/질적 성장(Quantitative/Qualitative growth of L2)
 
 #### 2.3.1.1. 레이어 2의 양적 성장 <=> 시퀀서 시뇨리지의 양적 증가
 
@@ -228,7 +227,7 @@ $({{W_S} + {W_D} + {W_P}} \leq 1)$
 
 ### 2.3.2. 레이어 2 수수료 토큰 딜레마 완화(Alleviation of L2 fee token dilemma)
 
-> 해당 섹션은 https://github.com/Onther-Tech/economics/blob/main/Tokamaklayer2.md 를 참고하고 있다.
+> 해당 섹션은 https://github.com/tokamak-network/economics/blob/main/Tokamaklayer2.md 를 참고하고 있다.
 
 레이어 2가 시뇨리지에 힘입어 양적/질적 성장을 이룩하면 레이어 2의 고질적 문제가 해결될 수 있다. 그 '고질적 문제'란 바로 '레이어 2 수수료 토큰 딜레마'다.
 
@@ -302,7 +301,7 @@ $({{W_S} + {W_D} + {W_P}} \leq 1)$
 
 ## 3.3. 검증자의 딜레마(Verifiers' dilemma)
 
-> 해당 섹션은 https://medium.com/onther-tech/optimistics-not-secure-enough-than-you-think-46bf93d80292 다루는 Super-Simple Model in Optimistic Rollup 을 차용한다.
+> 해당 섹션은 https://medium.com/tokamak-network/optimistics-not-secure-enough-than-you-think-46bf93d80292 다루는 Super-Simple Model in Optimistic Rollup 을 차용한다.
 
 ### 3.3.1. 개요(Overview)
 
@@ -499,27 +498,26 @@ $({VC\over{C+A * S+VR}}>{VC\over{C+A * S+VR+FW}})$
 
 해당 예시에서는 다음과 같은 기호를 사용할 것이다:
 - $T$: 톤 총 공급량
-- $S$: 스테이킹 총량
+- $S$: 스테이킹 총량. 시퀀서 담보금도 여기에 포함됨.
 - $Seig$: 일정 기간 동안 발생한 시뇨리지
 - $D$: 예치금 총량
-- $C$: 시퀀서 담보금
 
-이제 막 레이어 2를 개설한 시퀀서를 생각해보자. 예를 들어, $Seig$ = 10톤, $T$ = 100톤, $D$ = 0톤, $C$ = 20톤일 경우, $Seig$ 는 대부분 스테이커에게 귀속된다:
+이제 막 레이어 2를 개설한 시퀀서를 생각해보자. 예를 들어, $Seig$ = 10톤, $T$ = 100톤, $D$ = 0톤일 경우, $Seig$ 는 스테이커에게 귀속된다:
 
-**시퀀서:** ${{{D+C}\over T} * {Seig}}$ = ${{0+20}\over 100} * 10$ = 2톤 </br>
-**스테이커:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-0-20}\over 100} * 10$ = 8톤
+**시퀀서:** ${{{D}\over T} * {Seig}}$ = ${{0}\over 100} * 10$ = 0톤 </br>
+**스테이커:** ${{{T}\over T} * {Seig}}$ = ${{100}\over 100} * 10$ = 10톤
 
 만약 시퀀서가 수취하는 $Seig$ 을 늘리기 위해 더 많은 예치자를 모집해 $D$ 가 30톤까지 늘어나면 $Seig$ 는 시퀀서와 스테이커에게 다음과 같이 재분배된다:
 
-**시퀀서:** ${{{D+C}\over T} * {Seig}}$ = ${{30+20}\over 100} * 10$ = 5톤 </br>
-**스테이커:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-30-20}\over 100} * 10$ = 5톤
+**시퀀서:** ${{{D}\over T} * {Seig}}$ = ${{30}\over 100} * 10$ = 3톤 </br>
+**스테이커:** ${{{T-D}\over T} * {Seig}}$ = ${{100-30}\over 100} * 10$ = 7톤
 
 레이어 2 TVL이 20톤에서 50톤으로 증가하면서 시퀀서에게 돌아가는 $Seig$ 역시 2톤에서 5톤으로 늘어났다.
 
 만약 50톤의 예치금이 L1 보안 수수료를 충당할 만큼 레이어 2 트랜잭션 수수료 외의 추가 수입을 창출한다면 시퀀서는 $D$ 를 50톤까지 키우려고 노력할 것이다:
 
-**시퀀서:** ${{{D+C}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7톤 </br>
-**스테이커:** ${{{T-D-C}\over T} * {Seig}}$ = ${{100-50-20}\over 100} * 10$ = 3톤
+**시퀀서:** ${{{D}\over T} * {Seig}}$ = ${{50+20}\over 100} * 10$ = 7톤 </br>
+**스테이커:** ${{{T-D}\over T} * {Seig}}$ = ${{100-50}\over 100} * 10$ = 5톤
 
 시퀀서가 수취하는 $Seig$ 가 5톤에서 7톤으로 더욱 증가했다. 또한, 50톤의 $D$ 를 기반으로 레이어 2 트랜잭션 수수료 외의 현금 흐름이 발생해 더 이상 수수료로 받은 네이티브 토큰을 팔 이유가 없어졌다. 레이어 2 수수료 토큰 딜레마를 피해갈 수 있는 것이다.
 
@@ -656,9 +654,9 @@ $C=10$, $L=10$, $VC=20$, $VR=10$, $A=0.1$, $S=100$, $FW = 100$ 을 가정할 때
 
 # 7. 참고 문헌(References)
 
-https://github.com/Onther-Tech/economics/blob/main/Tokamaklayer2.md
+https://github.com/tokamak-network/economics/blob/main/Tokamaklayer2.md
 
-https://medium.com/onther-tech/optimistics-not-secure-enough-than-you-think-46bf93d80292
+https://medium.com/tokamak-network/optimistics-not-secure-enough-than-you-think-46bf93d80292
 
 
 # 8. 부록(Appendix)
