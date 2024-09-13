@@ -99,7 +99,7 @@ Ethereum blockchain due to its inherent performance and functional limitations.<
     Sequencer for publishing on the Ethereum blockchain, there is a time window/challenge
     period (called the “DTD”, as defined in Section 1 below) of 7 to 14 days where users can
     “Challenge” (as defined in Section 1 below) the results of a transaction by computing fraud
-    proofs (subject to them also providing Tokens in the form of “minimum challenge costs” (as
+    proofs, subject to them also providing Tokens in the form of “minimum challenge costs” (as
     described in Section 3.1.2 below). In the event where a particular Sequencer is Challenged,
     depending on whether the batch was validly submitted, the Sequencer or the challenger will
     lose their Sequencer collateral or minimum challenge costs respectively, and the winning
@@ -235,22 +235,19 @@ Distributing seigniorage refers to distributing newly issued TON to eligible ent
 
 
 > We assume the following properties to simplify the discussion:
-> 
 > 1. Seigniorage is distributed periodically.
 > 2. Only one L2 exists.
 
 ### 2.2.1. TON staking V1
-
-The current staking service provided by Tokamak Network is called TON staking V1. 
-
-In this version, seigniorage is distributed in the following manner:
+The first TON staking service provided by Tokamak Network is called TON staking V1. 
+The sequencer must stake a specific amount of TON as collateral. This collateral cannot be withdrawn but will earn staking rewards and will be used in the challenge mechanism once it becomes available. The TON seigniorage is distributed in the following manner:
  
 **Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$
 **Tokamak Network DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$
 **sTOS holders:** ${{W_P} * {{T-S}\over T} * {Seig}}$
 
 - $T$: Total TON supply
-- $S$: Total amount of TON staked. Sequencer's collateral is staked as well.
+- $S$: Total amount of TON staked.
 - $Seig$: Seigniorage generated during a predetermined period
 - $W_S$, $W_D$, $W_P$: Seigniorage weights for stakers / TON DAO / sTOS holders
 $({{W_S} + {W_D} + {W_P}} \leq 1)$
@@ -262,9 +259,7 @@ If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all s
 **sTOS holders:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$
 
 ### 2.2.2. TON staking V2
-
-Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
-
+Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive additional seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
 
 **Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
 **Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
@@ -569,7 +564,7 @@ We will use the following denotation in the example:
 - $S$: Total amount of TON staked
 - $Seig$: Seigniorage generated during a predetermined period
 - $D$: Total amount of TON deposited
-- $C$: Sequencer Collateral
+- $C$: Sequencer's collateral, in staked TON. 
 
 Let's say a sequencer has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, $D$ = 0 TON, and $C$ = 20 TON, most of $Seig$ goes to stakers:
 
@@ -634,7 +629,7 @@ The expected payoffs of verification and non-verification in Super-Simple Model 
 **Expected payoff of verification:** ${X * C + VR - VC}$ </br>
 **Expected payoff of non-verification:** ${-X * L + ({1-X}) * VR}$
 
-- $C$: Sequencer Collateral; potential rewards for the verifier in the case of successful verification
+- $C$: Sequencer Collateral in staked TON; potential rewards for the verifier in the case of successful verification
 - $L$: Assets deposited by the verifier in roll-up; potential rewards for sequencer in the case of failed verification.
 - $X$: Probability of attack by the sequencer
 - $VC$: Verification costs
@@ -714,10 +709,8 @@ Assuming $C=10$, $L=10$, $VC=20$, $VR=10$, $A=0.1$, $S=100$, and $FW = 100$, the
 
 
 # 7. References
-
-https://github.com/tokamak-network/economics/blob/main/Tokamaklayer2.md
-
-https://medium.com/tokamak-network/optimistics-not-secure-enough-than-you-think-46bf93d80292
+- https://github.com/tokamak-network/economics/blob/main/Tokamaklayer2.md
+- https://medium.com/tokamak-network/optimistics-not-secure-enough-than-you-think-46bf93d80292
 
 
 # 8. Appendix
