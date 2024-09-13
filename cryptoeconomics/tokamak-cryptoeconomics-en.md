@@ -201,7 +201,7 @@ Additionally, TON, as a medium of rewards and punishment in challenges and fast 
 - **Seigniorage**: Difference between the nominal value and issuance costs of a currency; TON seigniorage is essentially the same as the amount of TON newly issued, given the zero issuance costs.
 - **inflation**: Amount of currency newly issued / Total amount of currency issued
 - **Deposit**: Action of transferring the balance of tokens in L1 into L2
-- **Sequencer**: Entity who processes L2 transactions, creates L2 blocks, and submits relevant data to L1 
+- **Sequencer**: Entity who processes L2 transactions, creates L2 blocks, and rollups relevant data to L1 
 - **Sequencer collateral**: Assets locked by sequencers as a collateral when opening L2
 - **Challenge**: Action of verifying L2 transaction data submitted to L1 by any entity during DTD
 - **DTD(Dispute Time Delay)**: Period during which any entity can verify L2 transaction data submitted to L1
@@ -239,8 +239,7 @@ Distributing seigniorage refers to distributing newly issued TON to eligible ent
 > 2. Only one L2 exists.
 
 ### 2.2.1. TON staking V1
-The first TON staking service provided by Tokamak Network is called TON staking V1. 
-The sequencer must stake a specific amount of TON as collateral. This collateral cannot be withdrawn but will earn staking rewards and will be used in the challenge mechanism once it becomes available. The TON seigniorage is distributed in the following manner:
+Tokamak Network's first TON staking service is called TON staking V1. The sequencer must stake a specific amount of TON as collateral. This collateral cannot be withdrawn but will earn staking rewards and will be used in the challenge mechanism once it becomes available. The TON seigniorage is distributed in the following manner:
  
 **Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$
 **Tokamak Network DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$
@@ -295,9 +294,9 @@ We can address the long-term issue in L2, known as the "L2 fee token dilemma," b
 ![](https://i.ibb.co/DkvWY9J/2023-01-16-2-42-15.png)
 (*Source: How to unravel fee token dilemma in layer 2 by Wyatt Park*)
 
-For example, the demand for TON can significantly increase when it is used as an L2 fee token, as users need TON for every transaction on L2. However, this is only one side of the coin. When L2 submits transaction data to L1 for security, a certain fee is incurred, and the fee can only be paid in ETH. This creates the L2 fee token dilemma as TON from L2 transaction fees may have to be sold to pay for L1 security fees.
+For example, the demand for TON can significantly increase when it is used as an L2 fee token, as users need TON for every transaction on L2. However, this is only one side of the coin. When L2 submits transaction data and state root to L1 for security, a certain fee is incurred, and the fee can only be paid in ETH. This creates the L2 fee token dilemma as TON from L2 transaction fees may have to be sold to pay for rollup fee.
 
-Seigniorage distribution can alleviate this dilemma by encouraging sequencers to attract users to L2. Sequencers, driven by the potential seigniorage revenue, will bring users to L2, creating opportunities to diversify revenue streams such as through flexible fee policies or useful Dapps. As a result, sequencers will be able to cover L1 security fees without selling the native tokens (TON in this example) from L2 transaction fees.
+Seigniorage distribution can alleviate this dilemma by encouraging sequencers to attract users to L2. Sequencers, driven by the potential seigniorage revenue, will bring users to L2, creating opportunities to diversify revenue streams such as through flexible fee policies or useful Dapps. As a result, sequencers will be able to cover rollup fees without selling the native tokens (TON in this example) from L2 transaction fees.
 
 
 # 3. Verification economics
@@ -309,7 +308,7 @@ In staking V2, TON contributes to not only the growth but also the security of L
 
 ### 3.1.1. Overview
 
-The security of the L2 layer heavily relies on a sequencer. In contrast to the L1, whose security is guaranteed by powerful economic incentives and multiple validators, the L2 is more vulnerable to attacks. Sequencers store L2 transaction data on the L1 to mitigate such instability. The challenge process ensures the validity of the data before it is committed to the L1. Anyone can challenge or raise issues against L2 transaction data during DTD.
+The security of the L2 layer heavily relies on a sequencer. In contrast to the L1, whose security is guaranteed by powerful economic incentives and multiple validators, the L2 is more vulnerable to attacks. Sequencers store L2 transaction data and state root on the L1 to mitigate such instability. The challenge process ensures the validity of the data before it is committed to the L1. Anyone can challenge against the state root submitted during DTD.
 
 However, relying solely on the generosity of random entities for security can be inherently unstable. Therefore, the upgraded staking service will include appropriate rewards and penalties to incentivize stakers to be deeply involved in challenges.
 
@@ -537,7 +536,7 @@ The staking verification model can more easily control verification incentives b
 ## 4.1. Sustainable growth of L2
 
 TON incentivizes sequencers to contribute to the growth of L2 both quantitatively and qualitatively. Sequencers aim to attract capital from a large number of users in order to maximize stable seigniorage revenue, resulting in the expansion of L2. </br>
-Once the user base is established, L2 can generate a revenue stream other than transaction fees through discretionary fee policies or useful Dapps. L2 can use a native token as a fee token without falling into the L2 fee token dilemma if such an additional cash flow covers L1 security fees.
+Once the user base is established, L2 can generate a revenue stream other than transaction fees through discretionary fee policies or useful Dapps. L2 can use a native token as a fee token without falling into the L2 fee token dilemma if such an additional cash flow covers rollup fees.
 
 As a result, L2 blockchains are able to build their economy with less influence from external factors.
 
@@ -564,24 +563,18 @@ We will use the following denotation in the example:
 - $S$: Total amount of TON staked
 - $Seig$: Seigniorage generated during a predetermined period
 - $D$: Total amount of TON deposited
-- $C$: Sequencer's collateral, in staked TON. 
 
-Let's say a sequencer has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, $D$ = 0 TON, and $C$ = 20 TON, most of $Seig$ goes to stakers:
-
+Let's say a sequencer has just opened L2. For instance, if $Seig$ = 10 TON, $T$ = 100 TON, and $D$ = 0 TON, all of $Seig$ goes to stakers:
 **Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{0}\over 100} * 10$ = 0 TON
 **Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{100-0}\over 100} * 10$ = 10 TON
 
-If the sequencer draws more depositors to L2, and as a result, $D$ increases to 30 TON, $Seig$ is redistributed:
-
+If the sequencer draws depositors to L2, and as a result, $D$ increases to 30 TON, $Seig$ is redistributed:
 **Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{30}\over 100} * 10$ = 3 TON
 **Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{100-30}\over 100} * 10$ = 7 TON
 
-As the L2 TVL grows from 20 TON to 50 TON, the seigniorage for the sequencer increases from 2 TON to 5 TON. 
-
-The sequencer will try to raise $D$ to 50 TON if the income generated from it (other than L2 transaction fees) is sufficient to cover L1 security fees.
-
+The sequencer will try to raise $D$ to 50 TON if the income generated from it is sufficient to cover the rollup fee.
 **Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{50}\over 100} * 10$ = 5 TON
-**Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{100-50}\over 100} * 10$ = 3 TON
+**Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{100-50}\over 100} * 10$ = 5 TON
 
 An additional 2 TON is added to the seigniorage for the sequencer. Plus, the sequencer does not need to sell the native tokens from L2 transaction fees, thanks to the additional cash flow from increased deposits. This allows us to overcome the L2 fee token dilemma.
 
