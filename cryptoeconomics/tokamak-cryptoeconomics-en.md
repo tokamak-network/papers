@@ -255,7 +255,7 @@ If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all s
 
 ### 2.2.2. TON staking V2
 
-Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive additional seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows with the following notations for L2 environments.
+Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive additional seigniorage in proportion to L2 growth. For example, seigniorage can be distributed with the following notations for L2 environments.
 
 #### TON Supply:
 
@@ -275,13 +275,16 @@ Therefore, $T=T_{L1}+T_{L2}$.
 	
 #### Seigniorage Distribution:
 
-- The total seigniorage comprises of the seigniorage for stakers, L2 seqeuncers, and DAO as $\Phi = \Phi_{S} + \Phi_{L2} + \Phi_{DAO}$.
-	
-Seigniorage for Stakers $\Phi_{S}$: $W_S \cdot \frac{S}{T_\Phi}\Phi$ where $W_S \leq 1$
+The total seigniorage is distributed among stakers, L2 sequencers, and the DAO, given by:
 
-Seigniorage for Sequencers $\Phi_{L2}$: $W_{L2} \cdot \frac{T_{L2}}{T_\Phi} \Phi$ where $W_{L2} \leq 1$
+$\Phi = \Phi_{S} + \Phi_{L2} + \Phi_{DAO}$
 
-Seigniorage for DAO $\Phi_{DAO}$: $\Phi - \Phi_{S} - \Phi_{L2} = \frac{T_\Phi-W_S \cdot S - W_{L2} \cdot T_{L2}}{T_\Phi} \cdot \Phi \geq 0$
+- **Seigniorage for Stakers** ($\Phi_{S}$):  $\Phi_{S} = W_S \cdot \frac{S}{T_\Phi} \Phi, \quad \text{where } 0 \leq W_S \leq 1$
+
+- **Seigniorage for Sequencers** ($\Phi_{L2}$): $\Phi_{L2} = W_{L2} \cdot \frac{T_{L2}}{T_\Phi} \Phi, \quad \text{where } 0 \leq W_{L2} \leq 1$
+
+- **Seigniorage for DAO** ($\Phi_{DAO}$): $\Phi_{DAO} = \Phi - \Phi_{S} - \Phi_{L2} = \left( \frac{T_\Phi - W_S \cdot S - W_{L2} \cdot T_{L2}}{T_\Phi} \right) \Phi \geq 0$
+
 
 ## 2.3. Sustainable growth of L2
 
