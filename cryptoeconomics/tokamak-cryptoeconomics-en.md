@@ -230,7 +230,6 @@ Distributing seigniorage refers to distributing newly issued TON to eligible ent
 
 > We assume the following properties to simplify the discussion:
 > 1. Seigniorage is distributed periodically.
-> 2. Only one L2 exists.
 
 ### 2.2.1. TON staking V1
 
@@ -256,9 +255,9 @@ If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all s
 
 ### 2.2.2. TON staking V2
 
-Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive additional seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows with revised/additional notations for L2 environments.
+Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive additional seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows with the following notations for L2 environments.
 
-### TON Supply:
+#### TON Supply:
 
 - $T$: Total TON supply
 - $T_{L1}$: TON L1 Native Supply
@@ -267,7 +266,7 @@ Once the L2 environment is established, TON Staking V1 will be upgraded to TON S
 
 Therefore, $T=T_{L1}+T_{L2}$.
 
-### Seigniorage Notation:
+#### Seigniorage Notation:
 
 - $\Phi$: Total seigniorage
 - $T_{\Phi}$: Effective TON supply for seigniorage
@@ -283,6 +282,7 @@ Seigniorage for Stakers $\Phi_{S}$: $W_S \cdot \frac{S}{T_\Phi}\Phi$ where $W_S 
 Seigniorage for Sequencers $\Phi_{L2}$: $W_{L2} \cdot \frac{T_{L2}}{T_\Phi} \Phi$ where $W_{L2} \leq 1$
 
 Seigniorage for DAO $\Phi_{DAO}$: $\Phi - \Phi_{S} - \Phi_{L2} = \frac{T_\Phi-W_S \cdot S - W_{L2} \cdot T_{L2}}{T_\Phi} \cdot \Phi \geq 0$
+
 ## 2.3. Sustainable growth of L2
 
 TON seigniorage allows for the sustainable growth of L2 by facilitating its expansion and alleviating the L2 fee token dilemma.
