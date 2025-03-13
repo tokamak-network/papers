@@ -270,7 +270,7 @@ Therefore, $T=T_{L1}+T_{L2}$.
 ### Seigniorage Notation:
 
 - $\Phi$: Total seigniorage
-- $T_{\Phi}$: Effective TON supply for seiniorage
+- $T_{\Phi}$: Effective TON supply for seigniorage
     - The staked amount and the L2 amount mainly affects to the seigniorage distribution
     - $T_{\Phi} = S+T_{L2}$
 	
