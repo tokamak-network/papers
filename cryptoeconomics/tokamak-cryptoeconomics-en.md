@@ -1,8 +1,10 @@
-# Tokamak Layer 2 (L2) Cryptoeconomics
+# Tokamak Layer 2 (L2) Cryptoeconomics 
+
+# Version
+1.1
 
 # Authors
-- Kevin Jeong (kevin@tokamak.network)
-- Wyatt Park (wyatt@tokamak.network)
+Tokamak Network
 
 # Contents
 
@@ -228,38 +230,61 @@ Distributing seigniorage refers to distributing newly issued TON to eligible ent
 
 > We assume the following properties to simplify the discussion:
 > 1. Seigniorage is distributed periodically.
-> 2. Only one L2 exists.
 
 ### 2.2.1. TON staking V1
 
 Tokamak Network's first TON staking service is called TON staking V1. The sequencer must stake a specific amount of TON as collateral. This collateral cannot be withdrawn but will earn staking rewards and will be used in the challenge mechanism once it becomes available. The TON seigniorage is distributed in the following manner:
  
-**Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {Seig}}$
-**Tokamak Network DAO:** ${{W_D} * {{T-S}\over T} * {Seig}}$
-**sTOS holders:** ${{W_P} * {{T-S}\over T} * {Seig}}$
+**Stakers:** ${({S\over T} + {W_S} * {{T-S}\over T}) * {\Phi}}$
+**Tokamak Network DAO:** ${{W_D} * {{T-S}\over T} * {\Phi}}$
+**sTOS holders:** ${{W_P} * {{T-S}\over T} * {\Phi}}$
 
 - $T$: Total TON supply
 - $S$: Total amount of TON staked
-- $Seig$: Seigniorage generated during a predetermined period
+- $\Phi$: Seigniorage generated during a predetermined period
 - $W_S$, $W_D$, $W_P$: Seigniorage weights for stakers / Tokamak Network DAO / sTOS holders
 $({{W_S} + {W_D} + {W_P}} \leq 1)$
 
 If we assume $W_S$ = 1, $W_D$ = $W_P$ = 0 to simplify the discussion, then all seigniorage will go to stakers.
 
-**Stakers:** ${({S\over T} + 1 * {{T-S}\over T}) * {Seig}}$ = $Seig$
-**Tokamak Network DAO:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$
-**sTOS holders:** ${0 * {{T-S}\over T} * {Seig}}$ = $0$
+**Stakers:** ${({S\over T} + 1 * {{T-S}\over T}) * {\Phi}}$ = $\Phi$
+
+**Tokamak Network DAO:** ${0 * {{T-S}\over T} * {\Phi}}$ = $0$
+
+**sTOS holders:** ${0 * {{T-S}\over T} * {\Phi}}$ = $0$
 
 ### 2.2.2. TON staking V2
 
-Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive additional seigniorage in proportion to L2 growth. For example, seigniorage can be distributed as follows:
+Once the L2 environment is established, TON Staking V1 will be upgraded to TON Staking V2. In this version, a sequencer will be able to receive additional seigniorage in proportion to L2 growth. For example, seigniorage can be distributed with the following notations for L2 environments.
 
-**Sequencer:** ${{{D}\over T} * {Seig}}$ = ${{{T_{L2}}\over T} * {Seig}}$ </br> 
-**Stakers:** ${{{T-D}\over T} * {Seig}}$ = ${{{T-{T_{L2}}}\over T} * {Seig}}$ = ${{{T_{L1}}\over T} * {Seig}}$
+#### TON Supply:
 
-- $D$: Total amount of TON deposited to L2.
-- ${T_{L2} \equiv D}$: L2 TON supply
-- ${T_{L1} \equiv T-D = T-T_{L2}}$: L1 TON supply
+- $T$: Total TON supply
+- $T_{L1}$: TON L1 Native Supply
+  * $S \subset T_{L1}$
+- $T_{L2}$: TON L2 Bridged Liquidity
+
+Therefore, $T=T_{L1}+T_{L2}$.
+
+#### Seigniorage Notation:
+
+- $\Phi$: Total seigniorage
+- $T_{\Phi}$: Effective TON supply for seigniorage
+    - The staked amount and the L2 amount mainly affects to the seigniorage distribution
+    - $T_{\Phi} = S+T_{L2}$
+	
+#### Seigniorage Distribution:
+
+The total seigniorage is distributed among stakers, L2 sequencers, and the DAO, given by:
+
+$\Phi = \Phi_{S} + \Phi_{L2} + \Phi_{DAO}$
+
+- **Seigniorage for Stakers** ($\Phi_{S}$):  $\Phi_{S} = W_S \cdot \frac{S}{T_\Phi} \Phi, \quad \text{where } 0 \leq W_S \leq 1$
+
+- **Seigniorage for Sequencers** ($\Phi_{L2}$): $\Phi_{L2} = W_{L2} \cdot \frac{T_{L2}}{T_\Phi} \Phi, \quad \text{where } 0 \leq W_{L2} \leq 1$
+
+- **Seigniorage for DAO** ($\Phi_{DAO}$): $\Phi_{DAO} = \Phi - \Phi_{S} - \Phi_{L2} = \left( \frac{T_\Phi - W_S \cdot S - W_{L2} \cdot T_{L2}}{T_\Phi} \right) \Phi \geq 0$
+
 
 ## 2.3. Sustainable growth of L2
 
